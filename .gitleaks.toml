@@ -1,0 +1,13 @@
+title = "Gitleaks config"
+
+[allowlist]
+  regexes = [
+    '''https:\/\/.*\.(jpg|jpeg|png|gif|webp)(\?.*token=.*)?'''
+  ]
+
+[log]
+  level = "INFO"
+
+[report]
+  format = "json"
+  output = "gitleaks_report.json"
