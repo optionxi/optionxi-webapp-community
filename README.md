@@ -12,9 +12,12 @@
 
 ---
 
-## 🌟 Web App Preview
+## 🌟 [Web App Preview](https://app.optionxi.com)
 
-![Feature Image](screenshots/featureimage.png)
+
+![Feature Image](screenshots/webapp-optionxi.png)
+
+🔗 [Click here to see the web app](https://app.optionxi.com)
 
 ---
 
