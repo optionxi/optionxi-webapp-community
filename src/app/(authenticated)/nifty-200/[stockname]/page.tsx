@@ -15,9 +15,9 @@ import { StockExternalLinks } from "../../stocks/[stockname]/stock-external-link
 
 
 type Props = {
-  params: {
+  params: Promise<{
     stockname: string;
-  };
+  }>;
 };
 
 async function getStockData(stockname: string) {
@@ -37,7 +37,8 @@ async function getStockData(stockname: string) {
 
 // Metadata function to dynamically generate metadata
 export async function generateMetadata({ params }: Props) {
-  const stock = await getStockData(params.stockname);
+  const { stockname } = await params;
+  const stock = await getStockData(stockname);
 
   if (!stock) {
     return {
@@ -46,14 +47,14 @@ export async function generateMetadata({ params }: Props) {
     };
   }
 
-  const decodedStockName = decodeURIComponent(params.stockname);
+  const decodedStockName = decodeURIComponent(stockname);
   return {
     title: `${decodedStockName} Analysis - OptionXi`,
     description: `Detailed analysis, charts, alerts and external links dashboard for ${decodedStockName}.`,
     openGraph: {
       title: `${decodedStockName} Analysis - OptionXi`,
       description: `Detailed analysis, charts, alerts and external links dashboard for ${decodedStockName}.`,
-      url: `https://app.optionxi.com/stocks/${params.stockname}`,
+      url: `https://app.optionxi.com/stocks/${stockname}`,
       images: [
         {
           url: '/metadata/opengraph-image.jpg',
@@ -80,13 +81,14 @@ export async function generateMetadata({ params }: Props) {
 }
 
 export default async function StockDetailPage({ params }: Props) {
-  const stock = await getStockData(params.stockname);
+  const { stockname } = await params;
+  const stock = await getStockData(stockname);
 
   if (!stock) {
     notFound();
   }
 
-  const decodedStockName = decodeURIComponent(params.stockname);
+  const decodedStockName = decodeURIComponent(stockname);
 
   return (
     <ContentLayout title="Stock Analysis">
