@@ -6,12 +6,13 @@ import { fetchStockDataFinancialTables } from '@/lib/supabaseDB/supabase_financi
 import Link from 'next/link'
 
 interface PageProps {
-  params: {
-    stockname: string
-  }
+  params: Promise<{
+    symbol: string;
+  }>;
 }
 export default async function StockFinancialPage({ params }: PageProps) {
-    const stockname = decodeURIComponent(params.stockname)
+    const { symbol } = await params;
+    const stockname = decodeURIComponent(symbol)
     const data = await fetchStockDataFinancialTables(stockname)
   
     if (!data) {
@@ -70,16 +71,17 @@ export async function generateMetadata({ params }: PageProps) {
   //     description: 'The requested stock information could not be found.',
   //   };
   // }
+  const { symbol } = await params;
 
-  const decodedStockName = decodeURIComponent(params.stockname);
+  const decodedStockName = decodeURIComponent(symbol);
   
   return {
     title: `${decodedStockName} Financials - OptionXi`,
-    description: `Financial information for ${params.stockname} including assets, debt, and equity data.`,
+    description: `Financial information for ${symbol} including assets, debt, and equity data.`,
     openGraph: {
       title: `${decodedStockName} Analysis - OptionXi`,
-      description: `Financial information for ${params.stockname} including assets, debt, and equity data.`,
-      url: `https://app.optionxi.com/financials/${params.stockname}`,
+      description: `Financial information for ${symbol} including assets, debt, and equity data.`,
+      url: `https://app.optionxi.com/financials/${symbol}`,
       images: [
         {
           url: '/metadata/opengraph-image.jpg',
@@ -92,7 +94,7 @@ export async function generateMetadata({ params }: PageProps) {
     twitter: {
       card: 'summary_large_image',
       title: `${decodedStockName} Financials - OptionXi`,
-      description: `Financial information for ${params.stockname} including assets, debt, and equity data.`,
+      description: `Financial information for ${symbol} including assets, debt, and equity data.`,
       images: [
         {
           url: '/metadata/twitter-image.jpg',

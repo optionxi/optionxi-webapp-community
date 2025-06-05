@@ -18,17 +18,14 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 
-type PageProps = {
-  params: {
-    symbol: string;
-  };
-};
+interface StockAlertsPageProps {
+  symbol: string
+}
 
 const PAGE_SIZE = 10
 type SentimentFilter = 'all' | 'bullish' | 'bearish'
 
-export default function StockAlertsSection({ params }: PageProps) {
-  const { symbol } = params;
+export default function StockAlertsSection({ symbol }: StockAlertsPageProps) {
   const router = useRouter()
   const pathname = usePathname() || ''
   const searchParams = useSearchParams()
