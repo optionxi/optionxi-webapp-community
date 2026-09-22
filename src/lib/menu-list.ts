@@ -17,6 +17,9 @@ import {
   ChartNetwork,
   Telescope,
   User,
+  Landmark,
+  Brain,
+  Newspaper,
   // Brain,
 } from "lucide-react";
 
@@ -66,9 +69,49 @@ export function getMenuList(): Group[] {
         // }
       ]
     },
+      {
+      groupLabel: "AI",
+      menus: [
+        {
+          href: "/ai-nifty",
+          label: "AI Summary Nifty",
+          icon: Brain,
+        },
+        {
+          href: "/ai-stocks",
+          label: "AI Summary Stocks",
+          icon: Brain,
+        },
+         {
+          href: "/ai-stock-breakouts",
+          label: "Stock Breakouts",
+          icon: Brain,
+        },
+         {
+          href: "/ai-index-breakouts",
+          label: "Index Breakouts",
+          icon: Brain,
+        },
+        ]
+      },
     {
       groupLabel: "Trading Tools",
       menus: [
+        {
+          href: "/strategy-builder",
+          label: "Strategy Builder",
+          icon: PenToolIcon,
+        },
+        {
+          href: "/stock-performance",
+          label: "Stock performance",
+          icon: ChartArea,
+        },
+        //  {
+        //   href: "/sector-performance",
+        //   label: "Sector performance",
+        //   icon: ChartArea,
+        // },
         {
           href: "",
           label: "Top Gainers",
@@ -186,21 +229,38 @@ export function getMenuList(): Group[] {
         //   target: "_blank",  // Add this line
         // },
         {
+          href: "",
+          label: "Brokers",
+          icon: Landmark,
+          submenus: [
+            {
+              href: "/broker/fyers",
+              label: "Fyers"
+            },
+            {
+              href: "/broker/upstox",
+              label: "Upstox"
+            },
+            {
+              href: "/broker/zerodha",
+              label: "Zerodha"
+            },
+          ]
+        },
+         {
+          href: "/market-news",
+          label: "Market News",
+          icon: Newspaper,
+        },
+        {
+          href: "/option-chain",
+          label: "Option Chain",
+          icon: ChartArea,
+        },
+        {
           href: "https://health.optionxi.com",
           label: "Health Status",
           icon: Heart,
-          target: "_blank",  // Add this line
-        },
-        {
-          href: "/feature-request",
-          label: "Feature Request",
-          icon: PenToolIcon,
-          target: "_blank",  // Add this line
-        },
-        {
-          href: "https://optionxi.canny.io/",
-          label: "RoadMap",
-          icon: Telescope,
           target: "_blank",  // Add this line
         },
         {
@@ -211,20 +271,15 @@ export function getMenuList(): Group[] {
         },
       ]
     },
-    {
-      groupLabel: "Account",
-      menus: [
-        {
-          href: "/profile",
-          label: "Profile",
-          icon: User
-        },
-        {
-          href: "/settings",
-          label: "Settings",
-          icon: Settings
-        }
-      ]
-    }
+    // {
+    //   groupLabel: "Account",
+    //   menus: [
+    //     {
+    //       href: "/settings",
+    //       label: "Settings",
+    //       icon: Settings
+    //     }
+    //   ]
+    // }
   ];
 }

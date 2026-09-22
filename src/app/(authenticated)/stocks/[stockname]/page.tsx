@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { notFound } from 'next/navigation';
-import { totalstocks } from '@/datamodels/constants';
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import {
   Breadcrumb,
@@ -12,7 +11,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import StockDashboard from "./stock-dashboard";
 import { StockExternalLinks } from "./stock-external-links";
-import AISummary from "../../my-watchlist/ai-summary";
+import AISummaryFloatingButton from "../../my-watchlist/ai-summary";
 import StockFinancials from "@/components/db_component/cust_financials";
 import StockAlertsSectionSub from "./alert-stock-section-sub";
 import ScannerStocks from "./screeners-stock";
@@ -27,16 +26,18 @@ type Props = {
 
 
 async function getStockData(stockname: string) {
-  const decodedStockname = decodeURIComponent(stockname);
-  const formattedStockName = `${decodedStockname}`.toUpperCase();
+  // const decodedStockname = decodeURIComponent(stockname);
+  // const formattedStockName = `${decodedStockname}`.toUpperCase();
 
-  const stockData = Object.values(totalstocks).find(
-    stock => stock.stock_name.toUpperCase().split(":")[1].split("-")[0] === formattedStockName
-  );
+  // const stockData = Object.values(totalstocks).find(
+  //   stock => stock.stock_name.toUpperCase().split(":")[1].split("-")[0] === formattedStockName
+  // );
 
-  if (!stockData) {
-    return null;
-  }
+  // if (!stockData) {
+  //   return null;
+  // }
+
+  const stockData=stockname;
 
   return stockData;
 }
@@ -112,12 +113,13 @@ export default async function StockDetailPage({ params }: Props) {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+      <AISummaryFloatingButton  symbol={decodedStockName}/>
       <br/>
       <StickyHeader stockName={decodedStockName}/>
       <br/>
       <StockDashboard stockName={decodedStockName} />
       <br/>
-      <StockAlertsSectionSub symbol={decodedStockName}/>
+      <ScannerStocks stockname={decodedStockName}/>
       <br/>
       <StockFinancials stockname={decodedStockName} />
       <br />
@@ -134,11 +136,9 @@ export default async function StockDetailPage({ params }: Props) {
           <Link href="/">Go back to home</Link>
         </div>
       )} */}
-      <ScannerStocks stockname={decodedStockName}/>
+      <StockAlertsSectionSub symbol={decodedStockName}/>
       <br/>
       <Separator />
-      <br />
-      <AISummary />
       <br />
       <StockExternalLinks stockName={decodedStockName} />
     </ContentLayout>

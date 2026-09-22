@@ -1,10 +1,5 @@
 import { AssetsCapital, DebtLiabilities, ShareCapitalEquity } from '@/datamodels/financial_tables_model';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from '@/lib/supabase/client';
 
 export async function fetchStockDataFinancialTables(stockname: string) {
     stockname=stockname+".NS"

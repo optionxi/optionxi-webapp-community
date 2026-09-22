@@ -8,7 +8,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator
 } from "@/components/ui/breadcrumb";
-import N8nChat from "@/components/n8nchat";
+import ChatScreen from "./ai-optionxi";
 
 export default function ShortBuildUpPage() {
   return (
@@ -26,7 +26,7 @@ export default function ShortBuildUpPage() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <N8nChat/>
+      <ChatScreen/>
     </ContentLayout>
   );
 }

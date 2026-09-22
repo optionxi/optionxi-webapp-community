@@ -640,7 +640,7 @@ const AreaChart = React.forwardRef<HTMLDivElement, AreaChartProps>(
         tremor-id="tremor-raw"
         {...other}
       >
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <RechartsAreaChart
             data={data}
             onClick={

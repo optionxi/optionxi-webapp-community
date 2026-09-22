@@ -1,26 +1,32 @@
 'use client'
 
+import Link from 'next/link'
 import { Sparkles } from 'lucide-react'
 
-export default function AISummary() {
+type AISummaryProps = {
+  symbol: string // ✅ required now
+}
+
+export default function AISummaryFloatingButton({ symbol }: AISummaryProps) {
+  if (!symbol) return null // extra safety
+
   return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="relative overflow-hidden rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 p-1">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 opacity-50 blur-xl"></div>
-        <div className="relative rounded-lg p-6 bg-white dark:bg-gray-900">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white">AI Summary</h2>
-            <Sparkles className="w-6 h-6 text-yellow-400" />
-          </div>
-          <p className="text-gray-600 dark:text-gray-300 mb-4">
-            Intelligent insights at your fingertips.
-          </p>
-          <div className="flex items-center space-x-2">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-            <p className="text-green-400 font-medium">Coming Soon</p>
-          </div>
-        </div>
+    <Link
+      href={`/ai-stocks?symbol=${symbol}`}
+      className="fixed bottom-20 md:bottom-5 right-4 md:right-5 z-50 group"
+    >
+      <div
+        className="flex items-center gap-2 px-4 h-12 rounded-full 
+        bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 
+        shadow-lg hover:scale-105 transition-all duration-200"
+      >
+        <Sparkles className="w-5 h-5 text-white" />
+
+        {/* Label */}
+        <span className="text-white text-sm font-medium">
+          <span className="">AI Summary</span>
+        </span>
       </div>
-    </div>
+    </Link>
   )
 }

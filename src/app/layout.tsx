@@ -2,7 +2,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { getServerSession } from 'next-auth';
-import { NxtauthOptions } from '../../pages/api/auth/[...nextauth]';
 import SessionProviderFn from '@/utils/SessionProvider';
 import { Toaster } from '@/components/ui/toaster';
 import { ThemeProvider } from '@/components/providers/theme-provider';
@@ -12,6 +11,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { CSPostHogProvider } from './providers/providers';
 import PostHogPageView from './providers/posthog-pageview';
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { NxtauthOptions } from '@/pages/api/auth/[...nextauth]';
 
 
 
@@ -28,8 +28,8 @@ import { GoogleAnalytics } from '@next/third-parties/google'
         'max-snippet': -1,
       },
     },
-    title: 'OptionXi Future of Trading',
-    description: 'OptionXi is the future of virtual trading, with live scanners and price alerts, also integration live algo trading with past portfolio',
+    title: 'OptionXi Open Source Trading Platform',
+    description: "OptionXi is India's first open source trading platform, with live scanners and price alerts, also integration live algo trading with past portfolio",
     icons: {
       icon: '/favicon.ico',
       apple: [
@@ -48,7 +48,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
       url: 'https://app.optionxi.com',
       siteName: 'OptionXi',
       title: 'OptionXi',
-      description: 'The future of virtual trading, screeners, alerts, heatmaps, AI stock summary',
+      description: "India's first open source trading platform, screeners, alerts, heatmaps, AI stock summary",
       images: [
         {
           url: '/metadata/opengraph-image.jpg',
@@ -63,7 +63,7 @@ import { GoogleAnalytics } from '@next/third-parties/google'
       site: 'https://app.optionxi.com',
       title: 'OptionXi',
       creator: 'Jibin Victor John',
-      description: 'The future of virtual trading, with live screeners and price alerts',
+      description: "India's first open source trading platform, with live screeners and price alerts",
       images: [
         {
           url: '/metadata/twitter-image.jpg',

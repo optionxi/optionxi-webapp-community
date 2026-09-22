@@ -18,7 +18,7 @@ import EmptyState from './atlas-empty-result';
 
 type TabValue = 'All' | 'Bull' | 'Bear';
 
-export default function AtlasOutputDisplay(): JSX.Element {
+export default function AtlasOutputDisplay(): React.JSX.Element {
   const [outputs, setOutputs] = useState<AtlasOutput[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

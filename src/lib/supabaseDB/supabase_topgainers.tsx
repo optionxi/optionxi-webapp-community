@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { StockDataResponse, TopGainerLoserData } from '../../datamodels/topgainerloser_model';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export async function fetchTopGainersData(category: string): Promise<StockDataResponse> {
   try {

@@ -1,11 +1,6 @@
 // lib/supabaseDB/supabase_alerts.ts
 import { AlertModel } from '@/datamodels/alerts_model'
-import { createClient } from '@supabase/supabase-js'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
+import { supabase } from '@/lib/supabase/client';
 
 interface GetAlertsParams {
   page?: number

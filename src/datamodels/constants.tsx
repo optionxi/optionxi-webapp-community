@@ -12,12 +12,8 @@ export type TotalStocks = Record<string, StockData>;
 
 // Total stocks
 export const totalstocks: TotalStocks = {
-    "NSE:20MICRONS-EQ": {
-        "stock_name": "NSE:20MICRONS-EQ",
-        "full_stock_name": "20 MICRONS LTD"
-    },
-    "NSE:21STCENMGM-BE": {
-        "stock_name": "NSE:21STCENMGM-BE",
+    "NSE:21STCENMGM-EQ": {
+        "stock_name": "NSE:21STCENMGM-EQ",
         "full_stock_name": "21ST CENTURY MGMT SERVICE"
     },
     "NSE:360ONE-EQ": {
@@ -32,8 +28,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:3MINDIA-EQ",
         "full_stock_name": "3M INDIA LIMITED"
     },
-    "NSE:3PLAND-BE": {
-        "stock_name": "NSE:3PLAND-BE",
+    "NSE:3PLAND-EQ": {
+        "stock_name": "NSE:3PLAND-EQ",
         "full_stock_name": "3P LAND HOLDINGS LIMITED"
     },
     "NSE:5PAISA-EQ": {
@@ -44,12 +40,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:63MOONS-EQ",
         "full_stock_name": "63 MOONS TECHNOLOGIES LTD"
     },
-    "NSE:A2ZINFRA-BE": {
-        "stock_name": "NSE:A2ZINFRA-BE",
+    "NSE:A2ZINFRA-EQ": {
+        "stock_name": "NSE:A2ZINFRA-EQ",
         "full_stock_name": "A2Z INFRA ENGINEERING LTD"
     },
-    "NSE:AAATECH-EQ": {
-        "stock_name": "NSE:AAATECH-EQ",
+    "NSE:AAATECH-BE": {
+        "stock_name": "NSE:AAATECH-BE",
         "full_stock_name": "AAA TECHNOLOGIES LIMITED"
     },
     "NSE:AADHARHFC-EQ": {
@@ -68,8 +64,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AARON-EQ",
         "full_stock_name": "AARON INDUSTRIES LIMITED"
     },
-    "NSE:AARTECH-BE": {
-        "stock_name": "NSE:AARTECH-BE",
+    "NSE:AARTECH-EQ": {
+        "stock_name": "NSE:AARTECH-EQ",
         "full_stock_name": "AARTECH SOLONICS LIMITED"
     },
     "NSE:AARTIDRUGS-EQ": {
@@ -87,10 +83,6 @@ export const totalstocks: TotalStocks = {
     "NSE:AARTISURF-EQ": {
         "stock_name": "NSE:AARTISURF-EQ",
         "full_stock_name": "AARTI SURFACTANTS LIMITED"
-    },
-    "NSE:AARVEEDEN-BE": {
-        "stock_name": "NSE:AARVEEDEN-BE",
-        "full_stock_name": "AARVEE DEN. & EXP. LTD"
     },
     "NSE:AARVI-EQ": {
         "stock_name": "NSE:AARVI-EQ",
@@ -116,6 +108,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ABCAPITAL-EQ",
         "full_stock_name": "ADITYA BIRLA CAPITAL LTD."
     },
+    "NSE:ABCOTS-EQ": {
+        "stock_name": "NSE:ABCOTS-EQ",
+        "full_stock_name": "A B COTSPIN INDIA LIMITED"
+    },
     "NSE:ABDL-EQ": {
         "stock_name": "NSE:ABDL-EQ",
         "full_stock_name": "ALLIED BLEND N DISTILS L"
@@ -131,6 +127,10 @@ export const totalstocks: TotalStocks = {
     "NSE:ABINFRA-EQ": {
         "stock_name": "NSE:ABINFRA-EQ",
         "full_stock_name": "A B INFRABUILD LIMITED"
+    },
+    "NSE:ABLBL-EQ": {
+        "stock_name": "NSE:ABLBL-EQ",
+        "full_stock_name": "ADITYA BIRLA LIFES BRAN L"
     },
     "NSE:ABMINTLLTD-EQ": {
         "stock_name": "NSE:ABMINTLLTD-EQ",
@@ -184,13 +184,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ACL-EQ",
         "full_stock_name": "ANDHRA CEMENTS LIMITED"
     },
-    "NSE:ACLGATI-EQ": {
-        "stock_name": "NSE:ACLGATI-EQ",
-        "full_stock_name": "ALLCARGO GATI LIMITED"
-    },
     "NSE:ACMESOLAR-EQ": {
         "stock_name": "NSE:ACMESOLAR-EQ",
         "full_stock_name": "ACME SOLAR HOLDINGS LTD"
+    },
+    "NSE:ACUTAAS-EQ": {
+        "stock_name": "NSE:ACUTAAS-EQ",
+        "full_stock_name": "ACUTAAS CHEMICALS LIMITED"
     },
     "NSE:ADANIENSOL-EQ": {
         "stock_name": "NSE:ADANIENSOL-EQ",
@@ -220,8 +220,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ADL-EQ",
         "full_stock_name": "ARCHIDPLY DECOR LIMITED"
     },
-    "NSE:ADORWELD-EQ": {
-        "stock_name": "NSE:ADORWELD-EQ",
+    "NSE:ADOR-EQ": {
+        "stock_name": "NSE:ADOR-EQ",
         "full_stock_name": "ADOR WELDING LTD"
     },
     "NSE:ADROITINFO-EQ": {
@@ -232,9 +232,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ADSL-EQ",
         "full_stock_name": "ALLIED DIGITAL SERV. LTD"
     },
+    "NSE:ADVAIT-EQ": {
+        "stock_name": "NSE:ADVAIT-EQ",
+        "full_stock_name": "ADVAIT ENRGY TRANSITION L"
+    },
+    "NSE:ADVANCE-EQ": {
+        "stock_name": "NSE:ADVANCE-EQ",
+        "full_stock_name": "ADVANCE AGROLIFE LIMITED"
+    },
     "NSE:ADVANIHOTR-EQ": {
         "stock_name": "NSE:ADVANIHOTR-EQ",
         "full_stock_name": "ADVANI HOT.& RES.(I) LTD"
+    },
+    "NSE:ADVENTHTL-EQ": {
+        "stock_name": "NSE:ADVENTHTL-EQ",
+        "full_stock_name": "ADVENT HOTELS INTERNATI L"
     },
     "NSE:ADVENZYMES-EQ": {
         "stock_name": "NSE:ADVENZYMES-EQ",
@@ -244,9 +256,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AEGISLOG-EQ",
         "full_stock_name": "AEGIS LOGISTICS LIMITED"
     },
+    "NSE:AEGISVOPAK-EQ": {
+        "stock_name": "NSE:AEGISVOPAK-EQ",
+        "full_stock_name": "AEGIS VOPAK TERMINALS LTD"
+    },
+    "NSE:AEQUS-EQ": {
+        "stock_name": "NSE:AEQUS-EQ",
+        "full_stock_name": "AEQUS LIMITED"
+    },
+    "NSE:AEROENTER-EQ": {
+        "stock_name": "NSE:AEROENTER-EQ",
+        "full_stock_name": "AEROFLEX ENTERPRISES LTD"
+    },
     "NSE:AEROFLEX-EQ": {
         "stock_name": "NSE:AEROFLEX-EQ",
         "full_stock_name": "AEROFLEX INDUSTRIES LTD"
+    },
+    "NSE:AERONEU-EQ": {
+        "stock_name": "NSE:AERONEU-EQ",
+        "full_stock_name": "AEROFLEX NEU LIMITED"
     },
     "NSE:AETHER-EQ": {
         "stock_name": "NSE:AETHER-EQ",
@@ -258,7 +286,7 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:AFFLE-EQ": {
         "stock_name": "NSE:AFFLE-EQ",
-        "full_stock_name": "AFFLE (INDIA) LIMITED"
+        "full_stock_name": "AFFLE 3I LIMITED"
     },
     "NSE:AFFORDABLE-EQ": {
         "stock_name": "NSE:AFFORDABLE-EQ",
@@ -267,6 +295,10 @@ export const totalstocks: TotalStocks = {
     "NSE:AFIL-EQ": {
         "stock_name": "NSE:AFIL-EQ",
         "full_stock_name": "AKME FINTRADE (INDIA) LTD"
+    },
+    "NSE:AFSL-EQ": {
+        "stock_name": "NSE:AFSL-EQ",
+        "full_stock_name": "ABANS FINANCIAL SRVCS LTD"
     },
     "NSE:AGARIND-EQ": {
         "stock_name": "NSE:AGARIND-EQ",
@@ -284,21 +316,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AGIIL-EQ",
         "full_stock_name": "AGI INFRA LIMITED"
     },
-    "NSE:AGRITECH-EQ": {
-        "stock_name": "NSE:AGRITECH-EQ",
+    "NSE:AGRITECH-BE": {
+        "stock_name": "NSE:AGRITECH-BE",
         "full_stock_name": "AGRI-TECH (INDIA) LIMITED"
     },
     "NSE:AGROPHOS-EQ": {
         "stock_name": "NSE:AGROPHOS-EQ",
         "full_stock_name": "AGRO PHOS INDIA LIMITED"
     },
-    "NSE:AGSTRA-BE": {
-        "stock_name": "NSE:AGSTRA-BE",
+    "NSE:AGSTRA-BZ": {
+        "stock_name": "NSE:AGSTRA-BZ",
         "full_stock_name": "AGS TRANSACT TECH LTD"
     },
-    "NSE:AHL-BE": {
-        "stock_name": "NSE:AHL-BE",
-        "full_stock_name": "ABANS HOLDINGS LIMITED"
+    "NSE:AHCL-EQ": {
+        "stock_name": "NSE:AHCL-EQ",
+        "full_stock_name": "ANLON HEALTHCARE LIMITED"
     },
     "NSE:AHLADA-EQ": {
         "stock_name": "NSE:AHLADA-EQ",
@@ -352,21 +384,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AKG-EQ",
         "full_stock_name": "AKG EXIM LIMITED"
     },
-    "NSE:AKI-BE": {
-        "stock_name": "NSE:AKI-BE",
+    "NSE:AKI-EQ": {
+        "stock_name": "NSE:AKI-EQ",
         "full_stock_name": "AKI INDIA LIMITED"
     },
-    "NSE:AKSHAR-BE": {
-        "stock_name": "NSE:AKSHAR-BE",
+    "NSE:AKSHAR-EQ": {
+        "stock_name": "NSE:AKSHAR-EQ",
         "full_stock_name": "AKSHAR SPINTEX LIMITED"
     },
     "NSE:AKSHARCHEM-EQ": {
         "stock_name": "NSE:AKSHARCHEM-EQ",
         "full_stock_name": "AKSHARCHEM INDIA LIMITED"
     },
-    "NSE:AKSHOPTFBR-BE": {
-        "stock_name": "NSE:AKSHOPTFBR-BE",
-        "full_stock_name": "AKSH OPTIFIBRE  LTD"
+    "NSE:AKSHOPTFBR-EQ": {
+        "stock_name": "NSE:AKSHOPTFBR-EQ",
+        "full_stock_name": "AKSH OPTIFIBRE LIMITED"
     },
     "NSE:AKUMS-EQ": {
         "stock_name": "NSE:AKUMS-EQ",
@@ -387,6 +419,10 @@ export const totalstocks: TotalStocks = {
     "NSE:ALEMBICLTD-EQ": {
         "stock_name": "NSE:ALEMBICLTD-EQ",
         "full_stock_name": "ALEMBIC LIMITED"
+    },
+    "NSE:ALGOQUANT-EQ": {
+        "stock_name": "NSE:ALGOQUANT-EQ",
+        "full_stock_name": "ALGOQUANT FINTECH LIMITED"
     },
     "NSE:ALICON-EQ": {
         "stock_name": "NSE:ALICON-EQ",
@@ -416,6 +452,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ALLDIGI-EQ",
         "full_stock_name": "ALLDIGI TECH LIMITED"
     },
+    "NSE:ALLTIME-EQ": {
+        "stock_name": "NSE:ALLTIME-EQ",
+        "full_stock_name": "ALL TIME PLASTICS LIMITED"
+    },
     "NSE:ALMONDZ-EQ": {
         "stock_name": "NSE:ALMONDZ-EQ",
         "full_stock_name": "ALMONDZ GLOBAL SEC LTD"
@@ -432,13 +472,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ALPHA-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKALPHA"
     },
-    "NSE:ALPHAGEO-BE": {
-        "stock_name": "NSE:ALPHAGEO-BE",
+    "NSE:ALPHAGEO-EQ": {
+        "stock_name": "NSE:ALPHAGEO-EQ",
         "full_stock_name": "ALPHAGEO (INDIA) LIMITED"
     },
-    "NSE:ALPSINDUS-BE": {
-        "stock_name": "NSE:ALPSINDUS-BE",
-        "full_stock_name": "ALPS INDUSTRIES LTD."
+    "NSE:AMAGI-EQ": {
+        "stock_name": "NSE:AMAGI-EQ",
+        "full_stock_name": "AMAGI MEDIA LABS LIMITED"
+    },
+    "NSE:AMANTA-EQ": {
+        "stock_name": "NSE:AMANTA-EQ",
+        "full_stock_name": "AMANTA HEALTHCARE LIMITED"
     },
     "NSE:AMBER-EQ": {
         "stock_name": "NSE:AMBER-EQ",
@@ -459,10 +503,6 @@ export const totalstocks: TotalStocks = {
     "NSE:AMDIND-EQ": {
         "stock_name": "NSE:AMDIND-EQ",
         "full_stock_name": "AMD INDUSTRIES LIMITED"
-    },
-    "NSE:AMIORG-EQ": {
-        "stock_name": "NSE:AMIORG-EQ",
-        "full_stock_name": "AMI ORGANICS LIMITED"
     },
     "NSE:AMJLAND-EQ": {
         "stock_name": "NSE:AMJLAND-EQ",
@@ -512,9 +552,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ANSALAPI-BZ",
         "full_stock_name": "ANSAL PROP & INFRA LTD"
     },
+    "NSE:ANTELOPUS-EQ": {
+        "stock_name": "NSE:ANTELOPUS-EQ",
+        "full_stock_name": "ANTELOPUS SELAN ENRGY LTD"
+    },
     "NSE:ANTGRAPHIC-EQ": {
         "stock_name": "NSE:ANTGRAPHIC-EQ",
         "full_stock_name": "ANTARCTICA LTD"
+    },
+    "NSE:ANTHEM-EQ": {
+        "stock_name": "NSE:ANTHEM-EQ",
+        "full_stock_name": "ANTHEM BIOSCIENCES LTD"
     },
     "NSE:ANUHPHR-EQ": {
         "stock_name": "NSE:ANUHPHR-EQ",
@@ -527,6 +575,22 @@ export const totalstocks: TotalStocks = {
     "NSE:ANURAS-EQ": {
         "stock_name": "NSE:ANURAS-EQ",
         "full_stock_name": "ANUPAM RASAYAN INDIA LTD"
+    },
+    "NSE:AONEGOLD-EQ": {
+        "stock_name": "NSE:AONEGOLD-EQ",
+        "full_stock_name": "AONEAMC - AONEGOLD"
+    },
+    "NSE:AONELIQUID-EQ": {
+        "stock_name": "NSE:AONELIQUID-EQ",
+        "full_stock_name": "AONEAMC - AONELIQUID"
+    },
+    "NSE:AONETMMQ50-EQ": {
+        "stock_name": "NSE:AONETMMQ50-EQ",
+        "full_stock_name": "AONEAMC - AONETMMQ50"
+    },
+    "NSE:AONETOTAL-EQ": {
+        "stock_name": "NSE:AONETOTAL-EQ",
+        "full_stock_name": "AONEAMC - AONETOTAL"
     },
     "NSE:APARINDS-EQ": {
         "stock_name": "NSE:APARINDS-EQ",
@@ -592,12 +656,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ARE&M-EQ",
         "full_stock_name": "AMARA RAJA ENERGY MOB LTD"
     },
-    "NSE:ARENTERP-BE": {
-        "stock_name": "NSE:ARENTERP-BE",
+    "NSE:ARENTERP-EQ": {
+        "stock_name": "NSE:ARENTERP-EQ",
         "full_stock_name": "RAJDARSHAN INDUSTRIES LTD"
     },
-    "NSE:ARIES-BE": {
-        "stock_name": "NSE:ARIES-BE",
+    "NSE:ARFIN-EQ": {
+        "stock_name": "NSE:ARFIN-EQ",
+        "full_stock_name": "ARFIN INDIA LIMITED"
+    },
+    "NSE:ARIES-EQ": {
+        "stock_name": "NSE:ARIES-EQ",
         "full_stock_name": "ARIES AGRO LTD."
     },
     "NSE:ARIHANTCAP-EQ": {
@@ -607,6 +675,10 @@ export const totalstocks: TotalStocks = {
     "NSE:ARIHANTSUP-EQ": {
         "stock_name": "NSE:ARIHANTSUP-EQ",
         "full_stock_name": "ARIHANT SUPERSTRUCT LTD"
+    },
+    "NSE:ARISINFRA-EQ": {
+        "stock_name": "NSE:ARISINFRA-EQ",
+        "full_stock_name": "ARISINFRA SOLUTIONS LTD"
     },
     "NSE:ARKADE-EQ": {
         "stock_name": "NSE:ARKADE-EQ",
@@ -620,20 +692,28 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AROGRANITE-EQ",
         "full_stock_name": "ARO GRANITE IND. LTD."
     },
-    "NSE:ARROWGREEN-BE": {
-        "stock_name": "NSE:ARROWGREEN-BE",
+    "NSE:ARROWGREEN-EQ": {
+        "stock_name": "NSE:ARROWGREEN-EQ",
         "full_stock_name": "ARROW GREENTECH LIMITED"
+    },
+    "NSE:ARSHIYA-BZ": {
+        "stock_name": "NSE:ARSHIYA-BZ",
+        "full_stock_name": "ARSHIYA LIMITED"
+    },
+    "NSE:ARSSBL-EQ": {
+        "stock_name": "NSE:ARSSBL-EQ",
+        "full_stock_name": "ANAND RATHI SH N STK BR L"
     },
     "NSE:ARTEMISMED-EQ": {
         "stock_name": "NSE:ARTEMISMED-EQ",
         "full_stock_name": "ARTEMIS MED SERVICE LTD"
     },
-    "NSE:ARTNIRMAN-BE": {
-        "stock_name": "NSE:ARTNIRMAN-BE",
+    "NSE:ARTNIRMAN-EQ": {
+        "stock_name": "NSE:ARTNIRMAN-EQ",
         "full_stock_name": "ART NIRMAN LIMITED"
     },
-    "NSE:ARVEE-EQ": {
-        "stock_name": "NSE:ARVEE-EQ",
+    "NSE:ARVEE-BE": {
+        "stock_name": "NSE:ARVEE-BE",
         "full_stock_name": "ARVEE LABORATORIES I LTD"
     },
     "NSE:ARVIND-EQ": {
@@ -692,8 +772,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ASIANENE-EQ",
         "full_stock_name": "ASIAN ENERGY SERVICES LTD"
     },
-    "NSE:ASIANHOTNR-BE": {
-        "stock_name": "NSE:ASIANHOTNR-BE",
+    "NSE:ASIANHOTNR-EQ": {
+        "stock_name": "NSE:ASIANHOTNR-EQ",
         "full_stock_name": "ASIAN HOTELS (NORTH) LTD"
     },
     "NSE:ASIANPAINT-EQ": {
@@ -740,32 +820,36 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ASTRON-EQ",
         "full_stock_name": "ASTRON PAPER BORD MIL LTD"
     },
-    "NSE:ATALREAL-BE": {
-        "stock_name": "NSE:ATALREAL-BE",
+    "NSE:ATALREAL-EQ": {
+        "stock_name": "NSE:ATALREAL-EQ",
         "full_stock_name": "ATAL REALTECH LIMITED"
     },
     "NSE:ATAM-EQ": {
         "stock_name": "NSE:ATAM-EQ",
         "full_stock_name": "ATAM VALVES LIMITED"
     },
-    "NSE:ATFL-EQ": {
-        "stock_name": "NSE:ATFL-EQ",
-        "full_stock_name": "AGRO TECH FOODS LIMITED"
-    },
     "NSE:ATGL-EQ": {
         "stock_name": "NSE:ATGL-EQ",
         "full_stock_name": "ADANI TOTAL GAS LIMITED"
+    },
+    "NSE:ATHERENERG-EQ": {
+        "stock_name": "NSE:ATHERENERG-EQ",
+        "full_stock_name": "ATHER ENERGY LIMITED"
     },
     "NSE:ATL-EQ": {
         "stock_name": "NSE:ATL-EQ",
         "full_stock_name": "ALLCARGO TERMINALS LTD"
     },
-    "NSE:ATLANTAA-BE": {
-        "stock_name": "NSE:ATLANTAA-BE",
+    "NSE:ATLANTAA-EQ": {
+        "stock_name": "NSE:ATLANTAA-EQ",
         "full_stock_name": "ATLANTAA LIMITED"
     },
-    "NSE:ATLASCYCLE-BE": {
-        "stock_name": "NSE:ATLASCYCLE-BE",
+    "NSE:ATLANTAELE-EQ": {
+        "stock_name": "NSE:ATLANTAELE-EQ",
+        "full_stock_name": "ATLANTA ELECTRICALS LTD"
+    },
+    "NSE:ATLASCYCLE-EQ": {
+        "stock_name": "NSE:ATLASCYCLE-EQ",
         "full_stock_name": "ATLAS CYCLE (HARYANA) LTD"
     },
     "NSE:ATUL-EQ": {
@@ -780,6 +864,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AUBANK-EQ",
         "full_stock_name": "AU SMALL FINANCE BANK LTD"
     },
+    "NSE:AURIGROW-BE": {
+        "stock_name": "NSE:AURIGROW-BE",
+        "full_stock_name": "AURI GROW INDIA LIMITED"
+    },
     "NSE:AURIONPRO-EQ": {
         "stock_name": "NSE:AURIONPRO-EQ",
         "full_stock_name": "AURIONPRO SOLN LTD"
@@ -792,8 +880,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AURUM-EQ",
         "full_stock_name": "AURUM PROPTECH LIMITED"
     },
-    "NSE:AUSOMENT-EQ": {
-        "stock_name": "NSE:AUSOMENT-EQ",
+    "NSE:AUSOMENT-BE": {
+        "stock_name": "NSE:AUSOMENT-BE",
         "full_stock_name": "AUSOM ENTERPRISE LIMITED"
     },
     "NSE:AUTOAXLES-EQ": {
@@ -824,20 +912,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AVANTIFEED-EQ",
         "full_stock_name": "AVANTI FEEDS LIMITED"
     },
-    "NSE:AVG-BE": {
-        "stock_name": "NSE:AVG-BE",
+    "NSE:AVG-EQ": {
+        "stock_name": "NSE:AVG-EQ",
         "full_stock_name": "AVG LOGISTICS LIMITED"
     },
     "NSE:AVL-EQ": {
         "stock_name": "NSE:AVL-EQ",
         "full_stock_name": "ADITYA VISION LIMITED"
     },
-    "NSE:AVONMORE-BE": {
-        "stock_name": "NSE:AVONMORE-BE",
+    "NSE:AVONMORE-EQ": {
+        "stock_name": "NSE:AVONMORE-EQ",
         "full_stock_name": "AVONMORE CAP&MGT SERV LTD"
     },
-    "NSE:AVROIND-EQ": {
-        "stock_name": "NSE:AVROIND-EQ",
+    "NSE:AVROIND-BE": {
+        "stock_name": "NSE:AVROIND-BE",
         "full_stock_name": "AVRO INDIA LIMITED"
     },
     "NSE:AVTNPL-EQ": {
@@ -854,14 +942,14 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:AWL-EQ": {
         "stock_name": "NSE:AWL-EQ",
-        "full_stock_name": "ADANI WILMAR LIMITED"
+        "full_stock_name": "AWL AGRI BUSINESS LIMITED"
     },
     "NSE:AXISBANK-EQ": {
         "stock_name": "NSE:AXISBANK-EQ",
         "full_stock_name": "AXIS BANK LIMITED"
     },
-    "NSE:AXISCADES-BE": {
-        "stock_name": "NSE:AXISCADES-BE",
+    "NSE:AXISCADES-EQ": {
+        "stock_name": "NSE:AXISCADES-EQ",
         "full_stock_name": "AXISCADES TECH LTD"
     },
     "NSE:AXISGOLD-EQ": {
@@ -872,8 +960,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:AXISILVER-EQ",
         "full_stock_name": "AXISAMC - AXISILVER"
     },
-    "NSE:AXITA-EQ": {
-        "stock_name": "NSE:AXITA-EQ",
+    "NSE:AXISVALUE-EQ": {
+        "stock_name": "NSE:AXISVALUE-EQ",
+        "full_stock_name": "AXISAMC - AXISVALUE"
+    },
+    "NSE:AXITA-BE": {
+        "stock_name": "NSE:AXITA-BE",
         "full_stock_name": "AXITA COTTON LIMITED"
     },
     "NSE:AXSENSEX-EQ": {
@@ -892,8 +984,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BAFNAPH-BE",
         "full_stock_name": "BAFNA PHARMACEUTICALS LTD"
     },
-    "NSE:BAGFILMS-BE": {
-        "stock_name": "NSE:BAGFILMS-BE",
+    "NSE:BAGFILMS-EQ": {
+        "stock_name": "NSE:BAGFILMS-EQ",
         "full_stock_name": "B.A.G FILMS AND MEDIA LTD"
     },
     "NSE:BAIDFIN-EQ": {
@@ -928,6 +1020,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BAJAJHLDNG-EQ",
         "full_stock_name": "BAJAJ HOLDINGS & INVS LTD"
     },
+    "NSE:BAJAJINDEF-EQ": {
+        "stock_name": "NSE:BAJAJINDEF-EQ",
+        "full_stock_name": "INDEF MANUFACTURING LTD"
+    },
     "NSE:BAJEL-EQ": {
         "stock_name": "NSE:BAJEL-EQ",
         "full_stock_name": "BAJEL PROJECTS LIMITED"
@@ -940,9 +1036,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BALAJEE-EQ",
         "full_stock_name": "SHREE TIRUPATI BALAJEE L"
     },
-    "NSE:BALAJITELE-BE": {
-        "stock_name": "NSE:BALAJITELE-BE",
-        "full_stock_name": "BALAJI TELEFILMS LTD."
+    "NSE:BALAJITELE-EQ": {
+        "stock_name": "NSE:BALAJITELE-EQ",
+        "full_stock_name": "BALAJI TELEFILMS LIMITED."
     },
     "NSE:BALAMINES-EQ": {
         "stock_name": "NSE:BALAMINES-EQ",
@@ -976,9 +1072,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BALUFORGE-EQ",
         "full_stock_name": "BALU FORGE INDUSTRIES LTD"
     },
-    "NSE:BANARBEADS-BE": {
-        "stock_name": "NSE:BANARBEADS-BE",
-        "full_stock_name": "BANARASBEADSLTD-ROLLSETT"
+    "NSE:BANARBEADS-EQ": {
+        "stock_name": "NSE:BANARBEADS-EQ",
+        "full_stock_name": "BANARAS BEADS LTD"
     },
     "NSE:BANARISUG-EQ": {
         "stock_name": "NSE:BANARISUG-EQ",
@@ -992,13 +1088,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BANDHANBNK-EQ",
         "full_stock_name": "BANDHAN BANK LIMITED"
     },
-    "NSE:BANG-BE": {
-        "stock_name": "NSE:BANG-BE",
+    "NSE:BANG-EQ": {
+        "stock_name": "NSE:BANG-EQ",
         "full_stock_name": "BANG OVERSEAS LTD."
     },
     "NSE:BANKA-EQ": {
         "stock_name": "NSE:BANKA-EQ",
         "full_stock_name": "BANKA BIOLOO LIMITED"
+    },
+    "NSE:BANKADD-EQ": {
+        "stock_name": "NSE:BANKADD-EQ",
+        "full_stock_name": "DSPAMC - DSPBANK"
     },
     "NSE:BANKBARODA-EQ": {
         "stock_name": "NSE:BANKBARODA-EQ",
@@ -1007,6 +1107,10 @@ export const totalstocks: TotalStocks = {
     "NSE:BANKBEES-EQ": {
         "stock_name": "NSE:BANKBEES-EQ",
         "full_stock_name": "NIP IND ETF BANK BEES"
+    },
+    "NSE:BANKBETA-EQ": {
+        "stock_name": "NSE:BANKBETA-EQ",
+        "full_stock_name": "UTIAMC-BANKBETA"
     },
     "NSE:BANKINDIA-EQ": {
         "stock_name": "NSE:BANKINDIA-EQ",
@@ -1023,10 +1127,6 @@ export const totalstocks: TotalStocks = {
     "NSE:BANSWRAS-EQ": {
         "stock_name": "NSE:BANSWRAS-EQ",
         "full_stock_name": "BANSWARA SYNTEX LIMITED"
-    },
-    "NSE:BARBEQUE-EQ": {
-        "stock_name": "NSE:BARBEQUE-EQ",
-        "full_stock_name": "BARBEQUE NATION HOSP. LTD"
     },
     "NSE:BASF-EQ": {
         "stock_name": "NSE:BASF-EQ",
@@ -1064,6 +1164,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BBTCL-EQ",
         "full_stock_name": "B&B TRIPLEWALL CONT LTD"
     },
+    "NSE:BCG-EQ": {
+        "stock_name": "NSE:BCG-EQ",
+        "full_stock_name": "BRIGHTCOM GROUP LIMITED"
+    },
     "NSE:BCLIND-EQ": {
         "stock_name": "NSE:BCLIND-EQ",
         "full_stock_name": "BCL INDUSTRIES LIMITED"
@@ -1092,6 +1196,14 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BEL-EQ",
         "full_stock_name": "BHARAT ELECTRONICS LTD"
     },
+    "NSE:BELLACASA-EQ": {
+        "stock_name": "NSE:BELLACASA-EQ",
+        "full_stock_name": "BELLA CASA FASH AND RET L"
+    },
+    "NSE:BELRISE-EQ": {
+        "stock_name": "NSE:BELRISE-EQ",
+        "full_stock_name": "BELRISE INDUSTRIES LTD"
+    },
     "NSE:BEML-EQ": {
         "stock_name": "NSE:BEML-EQ",
         "full_stock_name": "BEML LIMITED"
@@ -1104,9 +1216,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BERGEPAINT-EQ",
         "full_stock_name": "BERGER PAINTS (I) LTD"
     },
-    "NSE:BESTAGRO-EQ": {
-        "stock_name": "NSE:BESTAGRO-EQ",
+    "NSE:BESTAGRO-BE": {
+        "stock_name": "NSE:BESTAGRO-BE",
         "full_stock_name": "BEST AGROLIFE LIMITED"
+    },
+    "NSE:BETA-EQ": {
+        "stock_name": "NSE:BETA-EQ",
+        "full_stock_name": "BETA DRUGS LIMITED"
     },
     "NSE:BFINVEST-EQ": {
         "stock_name": "NSE:BFINVEST-EQ",
@@ -1116,12 +1232,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BFSI-EQ",
         "full_stock_name": "MIRAEAMC - MAFSETF"
     },
-    "NSE:BFUTILITIE-EQ": {
-        "stock_name": "NSE:BFUTILITIE-EQ",
+    "NSE:BFUTILITIE-BZ": {
+        "stock_name": "NSE:BFUTILITIE-BZ",
         "full_stock_name": "BF UTILITIES LIMITED"
     },
-    "NSE:BGRENERGY-BE": {
-        "stock_name": "NSE:BGRENERGY-BE",
+    "NSE:BGRENERGY-EQ": {
+        "stock_name": "NSE:BGRENERGY-EQ",
         "full_stock_name": "BGR ENERGY SYSTEMS LTD"
     },
     "NSE:BHAGCHEM-EQ": {
@@ -1132,13 +1248,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BHAGERIA-EQ",
         "full_stock_name": "BHAGERIA INDUSTRIES LTD"
     },
-    "NSE:BHAGYANGR-EQ": {
-        "stock_name": "NSE:BHAGYANGR-EQ",
+    "NSE:BHAGYANGR-BE": {
+        "stock_name": "NSE:BHAGYANGR-BE",
         "full_stock_name": "BHAGYANAGAR INDIA LIMITED"
     },
     "NSE:BHANDARI-EQ": {
         "stock_name": "NSE:BHANDARI-EQ",
         "full_stock_name": "BHANDARI HOSIERY EXP LTD"
+    },
+    "NSE:BHARATCOAL-EQ": {
+        "stock_name": "NSE:BHARATCOAL-EQ",
+        "full_stock_name": "BHARAT COKING COAL LTD"
     },
     "NSE:BHARATFORG-EQ": {
         "stock_name": "NSE:BHARATFORG-EQ",
@@ -1151,6 +1271,10 @@ export const totalstocks: TotalStocks = {
     "NSE:BHARATRAS-EQ": {
         "stock_name": "NSE:BHARATRAS-EQ",
         "full_stock_name": "BHARAT RASAYAN LTD"
+    },
+    "NSE:BHARATSE-EQ": {
+        "stock_name": "NSE:BHARATSE-EQ",
+        "full_stock_name": "BHARAT SEATS LIMITED"
     },
     "NSE:BHARATWIRE-EQ": {
         "stock_name": "NSE:BHARATWIRE-EQ",
@@ -1176,13 +1300,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BIKAJI-EQ",
         "full_stock_name": "BIKAJI FOODS INTERN LTD"
     },
-    "NSE:BIL-BE": {
-        "stock_name": "NSE:BIL-BE",
-        "full_stock_name": "BHARTIYA INETRNATIONAL LT"
+    "NSE:BIL-EQ": {
+        "stock_name": "NSE:BIL-EQ",
+        "full_stock_name": "BHARTIYA INTERNATIONAL"
     },
-    "NSE:BINANIIND-EQ": {
-        "stock_name": "NSE:BINANIIND-EQ",
-        "full_stock_name": "BINANI INDUSTRIES LTD"
+    "NSE:BILVYAPAR-BE": {
+        "stock_name": "NSE:BILVYAPAR-BE",
+        "full_stock_name": "BIL VYAPAR LIMITED"
     },
     "NSE:BIOCON-EQ": {
         "stock_name": "NSE:BIOCON-EQ",
@@ -1200,13 +1324,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BIRLACORPN-EQ",
         "full_stock_name": "BIRLA CORPORATION LTD"
     },
-    "NSE:BIRLAMONEY-BE": {
-        "stock_name": "NSE:BIRLAMONEY-BE",
+    "NSE:BIRLAMONEY-EQ": {
+        "stock_name": "NSE:BIRLAMONEY-EQ",
         "full_stock_name": "ADITYA BIRLA MONEY LTD"
+    },
+    "NSE:BIRLANU-EQ": {
+        "stock_name": "NSE:BIRLANU-EQ",
+        "full_stock_name": "BIRLANU LIMITED"
     },
     "NSE:BLACKBUCK-EQ": {
         "stock_name": "NSE:BLACKBUCK-EQ",
-        "full_stock_name": "ZINKA LOGISTICS SOL LTD"
+        "full_stock_name": "BLACKBUCK LIMITED"
     },
     "NSE:BLAL-EQ": {
         "stock_name": "NSE:BLAL-EQ",
@@ -1236,8 +1364,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BLUECHIP-BE",
         "full_stock_name": "BLUE CHIP INDIA LIMITED"
     },
-    "NSE:BLUECOAST-BE": {
-        "stock_name": "NSE:BLUECOAST-BE",
+    "NSE:BLUECOAST-EQ": {
+        "stock_name": "NSE:BLUECOAST-EQ",
         "full_stock_name": "BLUE COAST HOTELS LIMITED"
     },
     "NSE:BLUEDART-EQ": {
@@ -1252,20 +1380,40 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BLUESTARCO-EQ",
         "full_stock_name": "BLUE STAR LIMITED"
     },
+    "NSE:BLUESTONE-EQ": {
+        "stock_name": "NSE:BLUESTONE-EQ",
+        "full_stock_name": "BLUESTONE JEWEL LFSTL LTD"
+    },
+    "NSE:BLUSPRING-EQ": {
+        "stock_name": "NSE:BLUSPRING-EQ",
+        "full_stock_name": "BLUSPRING ENTERPRISES LTD"
+    },
+    "NSE:BMWVENTLTD-EQ": {
+        "stock_name": "NSE:BMWVENTLTD-EQ",
+        "full_stock_name": "BMW VENTURES LIMITED"
+    },
     "NSE:BODALCHEM-EQ": {
         "stock_name": "NSE:BODALCHEM-EQ",
         "full_stock_name": "BODAL CHEMICALS LTD"
+    },
+    "NSE:BOHRAIND-EQ": {
+        "stock_name": "NSE:BOHRAIND-EQ",
+        "full_stock_name": "BOHRA INDUSTRIES LIMITED"
     },
     "NSE:BOMDYEING-EQ": {
         "stock_name": "NSE:BOMDYEING-EQ",
         "full_stock_name": "BOMBAY DYEING & MFG. CO L"
     },
+    "NSE:BORANA-BE": {
+        "stock_name": "NSE:BORANA-BE",
+        "full_stock_name": "BORANA WEAVES LIMITED"
+    },
     "NSE:BOROLTD-EQ": {
         "stock_name": "NSE:BOROLTD-EQ",
         "full_stock_name": "BOROSIL LIMITED"
     },
-    "NSE:BORORENEW-BE": {
-        "stock_name": "NSE:BORORENEW-BE",
+    "NSE:BORORENEW-EQ": {
+        "stock_name": "NSE:BORORENEW-EQ",
         "full_stock_name": "BOROSIL RENEWABLES LTD"
     },
     "NSE:BOROSCI-EQ": {
@@ -1287,6 +1435,10 @@ export const totalstocks: TotalStocks = {
     "NSE:BRIGADE-EQ": {
         "stock_name": "NSE:BRIGADE-EQ",
         "full_stock_name": "BRIGADE ENTER. LTD"
+    },
+    "NSE:BRIGHOTEL-EQ": {
+        "stock_name": "NSE:BRIGHOTEL-EQ",
+        "full_stock_name": "BRIGADE HOTEL VENTURE LTD"
     },
     "NSE:BRITANNIA-EQ": {
         "stock_name": "NSE:BRITANNIA-EQ",
@@ -1316,9 +1468,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BSOFT-EQ",
         "full_stock_name": "BIRLASOFT LIMITED"
     },
-    "NSE:BTML-BE": {
-        "stock_name": "NSE:BTML-BE",
+    "NSE:BTML-EQ": {
+        "stock_name": "NSE:BTML-EQ",
         "full_stock_name": "BODHI TREE MULTIMEDIA LTD"
+    },
+    "NSE:BUILDPRO-EQ": {
+        "stock_name": "NSE:BUILDPRO-EQ",
+        "full_stock_name": "SHANKARA BUILDPRO LIMITED"
     },
     "NSE:BUTTERFLY-EQ": {
         "stock_name": "NSE:BUTTERFLY-EQ",
@@ -1328,12 +1484,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:BVCL-EQ",
         "full_stock_name": "BARAK VALLEY CEM. LTD."
     },
-    "NSE:BYKE-BE": {
-        "stock_name": "NSE:BYKE-BE",
+    "NSE:BYKE-EQ": {
+        "stock_name": "NSE:BYKE-EQ",
         "full_stock_name": "THE BYKE HOSPITALITY LTD"
     },
-    "NSE:CALSOFT-BE": {
-        "stock_name": "NSE:CALSOFT-BE",
+    "NSE:CALSOFT-EQ": {
+        "stock_name": "NSE:CALSOFT-EQ",
         "full_stock_name": "CALIFORNIA SOFTWARE CO LT"
     },
     "NSE:CAMLINFINE-EQ": {
@@ -1356,6 +1512,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:CANFINHOME-EQ",
         "full_stock_name": "CAN FIN HOMES LTD"
     },
+    "NSE:CANHLIFE-EQ": {
+        "stock_name": "NSE:CANHLIFE-EQ",
+        "full_stock_name": "CANARA HSBC LIFE INS CO L"
+    },
     "NSE:CANTABIL-EQ": {
         "stock_name": "NSE:CANTABIL-EQ",
         "full_stock_name": "CANTABIL RETAIL LTD"
@@ -1363,6 +1523,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CAPACITE-EQ": {
         "stock_name": "NSE:CAPACITE-EQ",
         "full_stock_name": "CAPACITE INFRAPROJECT LTD"
+    },
+    "NSE:CAPILLARY-EQ": {
+        "stock_name": "NSE:CAPILLARY-EQ",
+        "full_stock_name": "CAPILLARY TECHNO INDIA L"
     },
     "NSE:CAPITALSFB-EQ": {
         "stock_name": "NSE:CAPITALSFB-EQ",
@@ -1379,10 +1543,6 @@ export const totalstocks: TotalStocks = {
     "NSE:CARBORUNIV-EQ": {
         "stock_name": "NSE:CARBORUNIV-EQ",
         "full_stock_name": "CARBORUNDUM UNIVERSAL LTD"
-    },
-    "NSE:CAREERP-EQ": {
-        "stock_name": "NSE:CAREERP-EQ",
-        "full_stock_name": "CAREER POINT LIMITED"
     },
     "NSE:CARERATING-EQ": {
         "stock_name": "NSE:CARERATING-EQ",
@@ -1435,6 +1595,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CELLO-EQ": {
         "stock_name": "NSE:CELLO-EQ",
         "full_stock_name": "CELLO WORLD LIMITED"
+    },
+    "NSE:CEMPRO-EQ": {
+        "stock_name": "NSE:CEMPRO-EQ",
+        "full_stock_name": "CEMINDIA PROJECTS LIMITED"
     },
     "NSE:CENTENKA-EQ": {
         "stock_name": "NSE:CENTENKA-EQ",
@@ -1494,7 +1658,11 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:CHEMBOND-EQ": {
         "stock_name": "NSE:CHEMBOND-EQ",
-        "full_stock_name": "CHEMBOND CHEMICALS LTD"
+        "full_stock_name": "CHEMBOND MATERIALTECH LTD"
+    },
+    "NSE:CHEMBONDCH-EQ": {
+        "stock_name": "NSE:CHEMBONDCH-EQ",
+        "full_stock_name": "CHEMBOND CHEMICAL LIMITED"
     },
     "NSE:CHEMCON-EQ": {
         "stock_name": "NSE:CHEMCON-EQ",
@@ -1503,6 +1671,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CHEMFAB-EQ": {
         "stock_name": "NSE:CHEMFAB-EQ",
         "full_stock_name": "CHEMFAB ALKALIS LIMITED"
+    },
+    "NSE:CHEMICAL-EQ": {
+        "stock_name": "NSE:CHEMICAL-EQ",
+        "full_stock_name": "KOTAKMAMC - CHEMICAL"
     },
     "NSE:CHEMPLASTS-EQ": {
         "stock_name": "NSE:CHEMPLASTS-EQ",
@@ -1515,6 +1687,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CHEVIOT-EQ": {
         "stock_name": "NSE:CHEVIOT-EQ",
         "full_stock_name": "CHEVIOT COMPANY LIMITED"
+    },
+    "NSE:CHOICEGOLD-EQ": {
+        "stock_name": "NSE:CHOICEGOLD-EQ",
+        "full_stock_name": "CHOICEAMC - CHOICEGOLD"
     },
     "NSE:CHOICEIN-EQ": {
         "stock_name": "NSE:CHOICEIN-EQ",
@@ -1532,12 +1708,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:CIEINDIA-EQ",
         "full_stock_name": "CIE AUTOMOTIVE INDIA LTD"
     },
+    "NSE:CIFL-EQ": {
+        "stock_name": "NSE:CIFL-EQ",
+        "full_stock_name": "CAPITAL INDIA FINANCE LTD"
+    },
     "NSE:CIGNITITEC-EQ": {
         "stock_name": "NSE:CIGNITITEC-EQ",
         "full_stock_name": "CIGNITI TECHNOLOGIES LTD"
     },
-    "NSE:CINELINE-BE": {
-        "stock_name": "NSE:CINELINE-BE",
+    "NSE:CINELINE-EQ": {
+        "stock_name": "NSE:CINELINE-EQ",
         "full_stock_name": "CINELINE INDIA LIMITED"
     },
     "NSE:CINEVISTA-EQ": {
@@ -1564,21 +1744,33 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:CMSINFO-EQ",
         "full_stock_name": "CMS INFO SYSTEMS LIMITED"
     },
+    "NSE:CNL-EQ": {
+        "stock_name": "NSE:CNL-EQ",
+        "full_stock_name": "CREATIVE NEWTECH LIMITED"
+    },
     "NSE:COALINDIA-EQ": {
         "stock_name": "NSE:COALINDIA-EQ",
         "full_stock_name": "COAL INDIA LTD"
     },
-    "NSE:COASTCORP-EQ": {
-        "stock_name": "NSE:COASTCORP-EQ",
+    "NSE:COASTCORP-BE": {
+        "stock_name": "NSE:COASTCORP-BE",
         "full_stock_name": "COASTAL CORPORATION LTD"
     },
     "NSE:COCHINSHIP-EQ": {
         "stock_name": "NSE:COCHINSHIP-EQ",
         "full_stock_name": "COCHIN SHIPYARD LIMITED"
     },
+    "NSE:COFFEEDAY-EQ": {
+        "stock_name": "NSE:COFFEEDAY-EQ",
+        "full_stock_name": "COFFEE DAY ENTERPRISE LTD"
+    },
     "NSE:COFORGE-EQ": {
         "stock_name": "NSE:COFORGE-EQ",
         "full_stock_name": "COFORGE LIMITED"
+    },
+    "NSE:COHANCE-EQ": {
+        "stock_name": "NSE:COHANCE-EQ",
+        "full_stock_name": "COHANCE LIFESCIENCES LTD"
     },
     "NSE:COLPAL-EQ": {
         "stock_name": "NSE:COLPAL-EQ",
@@ -1640,6 +1832,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:COROMANDEL-EQ",
         "full_stock_name": "COROMANDEL INTERNTL. LTD"
     },
+    "NSE:CORONA-EQ": {
+        "stock_name": "NSE:CORONA-EQ",
+        "full_stock_name": "CORONA REMEDIES LIMITED"
+    },
     "NSE:COSMOFIRST-EQ": {
         "stock_name": "NSE:COSMOFIRST-EQ",
         "full_stock_name": "COSMO FIRST LIMITED"
@@ -1648,13 +1844,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:COUNCODOS-EQ",
         "full_stock_name": "COUNTRY CONDO S LIMITED"
     },
+    "NSE:CPCAP-EQ": {
+        "stock_name": "NSE:CPCAP-EQ",
+        "full_stock_name": "CP CAPITAL LIMITED"
+    },
+    "NSE:CPEDU-EQ": {
+        "stock_name": "NSE:CPEDU-EQ",
+        "full_stock_name": "CAREER POINT EDUTECH LTD"
+    },
+    "NSE:CPPLUS-EQ": {
+        "stock_name": "NSE:CPPLUS-EQ",
+        "full_stock_name": "ADITYA INFOTECH LIMITED"
+    },
     "NSE:CRAFTSMAN-EQ": {
         "stock_name": "NSE:CRAFTSMAN-EQ",
         "full_stock_name": "CRAFTSMAN AUTOMATION LTD"
     },
-    "NSE:CREATIVE-EQ": {
-        "stock_name": "NSE:CREATIVE-EQ",
-        "full_stock_name": "CREATIVE NEWTECH LIMITED"
+    "NSE:CRAMC-EQ": {
+        "stock_name": "NSE:CRAMC-EQ",
+        "full_stock_name": "CANARA ROBECO AMC LIMITED"
     },
     "NSE:CREATIVEYE-EQ": {
         "stock_name": "NSE:CREATIVEYE-EQ",
@@ -1671,6 +1879,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CRISIL-EQ": {
         "stock_name": "NSE:CRISIL-EQ",
         "full_stock_name": "CRISIL LTD"
+    },
+    "NSE:CRIZAC-EQ": {
+        "stock_name": "NSE:CRIZAC-EQ",
+        "full_stock_name": "CRIZAC LIMITED"
     },
     "NSE:CROMPTON-EQ": {
         "stock_name": "NSE:CROMPTON-EQ",
@@ -1696,9 +1908,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:CUB-EQ",
         "full_stock_name": "CITY UNION BANK LTD"
     },
-    "NSE:CUBEXTUB-BE": {
-        "stock_name": "NSE:CUBEXTUB-BE",
-        "full_stock_name": "CUBEXTUBINGS-ROLLSETT"
+    "NSE:CUBEXTUB-EQ": {
+        "stock_name": "NSE:CUBEXTUB-EQ",
+        "full_stock_name": "CUBEX TUBINGS LTD"
     },
     "NSE:CUMMINSIND-EQ": {
         "stock_name": "NSE:CUMMINSIND-EQ",
@@ -1707,6 +1919,10 @@ export const totalstocks: TotalStocks = {
     "NSE:CUPID-EQ": {
         "stock_name": "NSE:CUPID-EQ",
         "full_stock_name": "CUPID LIMITED"
+    },
+    "NSE:CURAA-BE": {
+        "stock_name": "NSE:CURAA-BE",
+        "full_stock_name": "CURA TECHNOLOGIES LIMITED"
     },
     "NSE:CYBERMEDIA-EQ": {
         "stock_name": "NSE:CYBERMEDIA-EQ",
@@ -1852,8 +2068,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DELHIVERY-EQ",
         "full_stock_name": "DELHIVERY LIMITED"
     },
-    "NSE:DELPHIFX-BE": {
-        "stock_name": "NSE:DELPHIFX-BE",
+    "NSE:DELPHIFX-EQ": {
+        "stock_name": "NSE:DELPHIFX-EQ",
         "full_stock_name": "DELPHI WORLD MONEY LTD"
     },
     "NSE:DELTACORP-EQ": {
@@ -1880,44 +2096,48 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DEVIT-EQ",
         "full_stock_name": "DEV INFO TECHNOLOGY LTD"
     },
+    "NSE:DEVX-EQ": {
+        "stock_name": "NSE:DEVX-EQ",
+        "full_stock_name": "DEV ACCELERATOR LIMITED"
+    },
     "NSE:DEVYANI-EQ": {
         "stock_name": "NSE:DEVYANI-EQ",
         "full_stock_name": "DEVYANI INTERNATIONAL LTD"
     },
-    "NSE:DGCONTENT-BE": {
-        "stock_name": "NSE:DGCONTENT-BE",
+    "NSE:DGCONTENT-EQ": {
+        "stock_name": "NSE:DGCONTENT-EQ",
         "full_stock_name": "DIGICONTENT LIMITED"
     },
     "NSE:DHAMPURSUG-EQ": {
         "stock_name": "NSE:DHAMPURSUG-EQ",
         "full_stock_name": "DHAMPUR SUGAR MILLS LTD."
     },
-    "NSE:DHANBANK-BE": {
-        "stock_name": "NSE:DHANBANK-BE",
+    "NSE:DHANBANK-EQ": {
+        "stock_name": "NSE:DHANBANK-EQ",
         "full_stock_name": "DHANLAXMI BANK LIMITED"
-    },
-    "NSE:DHANI-EQ": {
-        "stock_name": "NSE:DHANI-EQ",
-        "full_stock_name": "DHANI SERVICES LIMITED"
     },
     "NSE:DHANUKA-EQ": {
         "stock_name": "NSE:DHANUKA-EQ",
         "full_stock_name": "DHANUKA AGRITECH LTD"
     },
+    "NSE:DHARAN-BZ": {
+        "stock_name": "NSE:DHARAN-BZ",
+        "full_stock_name": "DHARAN INFRA-EPC LIMITED"
+    },
     "NSE:DHARMAJ-EQ": {
         "stock_name": "NSE:DHARMAJ-EQ",
         "full_stock_name": "DHARMAJ CROP GUARD LTD"
     },
-    "NSE:DHRUV-BE": {
-        "stock_name": "NSE:DHRUV-BE",
+    "NSE:DHRUV-EQ": {
+        "stock_name": "NSE:DHRUV-EQ",
         "full_stock_name": "DHRUV CONSULTANCY SER LTD"
     },
     "NSE:DHUNINV-EQ": {
         "stock_name": "NSE:DHUNINV-EQ",
         "full_stock_name": "DHUNSERI INVESTMENTS LTD"
     },
-    "NSE:DIACABS-BE": {
-        "stock_name": "NSE:DIACABS-BE",
+    "NSE:DIACABS-EQ": {
+        "stock_name": "NSE:DIACABS-EQ",
         "full_stock_name": "DIAMOND POWER INFRA LTD"
     },
     "NSE:DIAMINESQ-EQ": {
@@ -1932,8 +2152,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DICIND-EQ",
         "full_stock_name": "DIC INDIA LIMITED"
     },
-    "NSE:DIFFNKG-BE": {
-        "stock_name": "NSE:DIFFNKG-BE",
+    "NSE:DIFFNKG-EQ": {
+        "stock_name": "NSE:DIFFNKG-EQ",
         "full_stock_name": "DIFFUSION ENGINEERS LTD"
     },
     "NSE:DIGIDRIVE-EQ": {
@@ -1944,12 +2164,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DIGISPICE-EQ",
         "full_stock_name": "DIGISPICE TECHNOLOGIES LT"
     },
-    "NSE:DIGJAMLMTD-BE": {
-        "stock_name": "NSE:DIGJAMLMTD-BE",
+    "NSE:DIGITIDE-EQ": {
+        "stock_name": "NSE:DIGITIDE-EQ",
+        "full_stock_name": "DIGITIDE SOLUTIONS LTD"
+    },
+    "NSE:DIGJAMLMTD-EQ": {
+        "stock_name": "NSE:DIGJAMLMTD-EQ",
         "full_stock_name": "DIGJAM LTD"
     },
-    "NSE:DIL-BE": {
-        "stock_name": "NSE:DIL-BE",
+    "NSE:DIL-BZ": {
+        "stock_name": "NSE:DIL-BZ",
         "full_stock_name": "DEBOCK INDUSTRIES LIMITED"
     },
     "NSE:DISHTV-EQ": {
@@ -1959,6 +2183,10 @@ export const totalstocks: TotalStocks = {
     "NSE:DIVGIITTS-EQ": {
         "stock_name": "NSE:DIVGIITTS-EQ",
         "full_stock_name": "DIVGI TORQTRANSFER SYST L"
+    },
+    "NSE:DIVIDEND-EQ": {
+        "stock_name": "NSE:DIVIDEND-EQ",
+        "full_stock_name": "MIRAEAMC - DIVIDEND"
     },
     "NSE:DIVISLAB-EQ": {
         "stock_name": "NSE:DIVISLAB-EQ",
@@ -1972,8 +2200,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DIXON-EQ",
         "full_stock_name": "DIXON TECHNO (INDIA) LTD"
     },
-    "NSE:DJML-BE": {
-        "stock_name": "NSE:DJML-BE",
+    "NSE:DJML-EQ": {
+        "stock_name": "NSE:DJML-EQ",
         "full_stock_name": "DJ MEDIAPRINT & LOG LTD"
     },
     "NSE:DLF-EQ": {
@@ -1988,8 +2216,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:DMART-EQ",
         "full_stock_name": "AVENUE SUPERMARTS LIMITED"
     },
-    "NSE:DMCC-BE": {
-        "stock_name": "NSE:DMCC-BE",
+    "NSE:DMCC-EQ": {
+        "stock_name": "NSE:DMCC-EQ",
         "full_stock_name": "DMCC SPECIALITY CHEMICALS"
     },
     "NSE:DNAMEDIA-EQ": {
@@ -2088,6 +2316,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EASEMYTRIP-EQ",
         "full_stock_name": "EASY TRIP PLANNERS LTD"
     },
+    "NSE:EBGNG-EQ": {
+        "stock_name": "NSE:EBGNG-EQ",
+        "full_stock_name": "GNG ELECTRONICS LIMITED"
+    },
     "NSE:ECAPINSURE-EQ": {
         "stock_name": "NSE:ECAPINSURE-EQ",
         "full_stock_name": "EDELAMC - ECAPINSURE"
@@ -2103,6 +2335,10 @@ export const totalstocks: TotalStocks = {
     "NSE:EDELWEISS-EQ": {
         "stock_name": "NSE:EDELWEISS-EQ",
         "full_stock_name": "EDELWEISS FIN SERV LTD"
+    },
+    "NSE:EFCIL-EQ": {
+        "stock_name": "NSE:EFCIL-EQ",
+        "full_stock_name": "EFC (I) LIMITED"
     },
     "NSE:EGOLD-EQ": {
         "stock_name": "NSE:EGOLD-EQ",
@@ -2152,21 +2388,33 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ELECTCAST-EQ",
         "full_stock_name": "ELECTROSTEEL CASTINGS LTD"
     },
-    "NSE:ELECTHERM-BE": {
-        "stock_name": "NSE:ELECTHERM-BE",
+    "NSE:ELECTHERM-EQ": {
+        "stock_name": "NSE:ELECTHERM-EQ",
         "full_stock_name": "ELECTROTHERM (I) LTD."
     },
     "NSE:ELGIEQUIP-EQ": {
         "stock_name": "NSE:ELGIEQUIP-EQ",
         "full_stock_name": "ELGI EQUIPMENTS LTD"
     },
-    "NSE:ELGIRUBCO-BE": {
-        "stock_name": "NSE:ELGIRUBCO-BE",
+    "NSE:ELGIRUBCO-EQ": {
+        "stock_name": "NSE:ELGIRUBCO-EQ",
         "full_stock_name": "ELGI RUBBER CO. LTD"
     },
     "NSE:ELIN-EQ": {
         "stock_name": "NSE:ELIN-EQ",
         "full_stock_name": "ELIN ELECTRONICS LIMITED"
+    },
+    "NSE:ELIQUID-EQ": {
+        "stock_name": "NSE:ELIQUID-EQ",
+        "full_stock_name": "EDELAMC - ELIQUID"
+    },
+    "NSE:ELLEN-EQ": {
+        "stock_name": "NSE:ELLEN-EQ",
+        "full_stock_name": "ELLENBARRIE INDUS GASES L"
+    },
+    "NSE:ELM250-EQ": {
+        "stock_name": "NSE:ELM250-EQ",
+        "full_stock_name": "EDELAMC - ELM250"
     },
     "NSE:EMAMILTD-EQ": {
         "stock_name": "NSE:EMAMILTD-EQ",
@@ -2176,13 +2424,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EMAMIPAP-EQ",
         "full_stock_name": "EMAMI PAPER MILLS LIMITED"
     },
-    "NSE:EMAMIREAL-BE": {
-        "stock_name": "NSE:EMAMIREAL-BE",
+    "NSE:EMAMIREAL-EQ": {
+        "stock_name": "NSE:EMAMIREAL-EQ",
         "full_stock_name": "EMAMI REALTY LIMITED"
     },
-    "NSE:EMBDL-EQ": {
-        "stock_name": "NSE:EMBDL-EQ",
-        "full_stock_name": "EQUINOX INDIA DEV LTD"
+    "NSE:EMBDL-BE": {
+        "stock_name": "NSE:EMBDL-BE",
+        "full_stock_name": "EMBASSY DEVELOPMENTS LTD"
     },
     "NSE:EMCURE-EQ": {
         "stock_name": "NSE:EMCURE-EQ",
@@ -2192,13 +2440,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EMIL-EQ",
         "full_stock_name": "ELECTRONICS MART IND LTD"
     },
-    "NSE:EMKAY-BE": {
-        "stock_name": "NSE:EMKAY-BE",
+    "NSE:EMKAY-EQ": {
+        "stock_name": "NSE:EMKAY-EQ",
         "full_stock_name": "EMKAY GLOBAL FIN SERV LTD"
     },
     "NSE:EMMBI-EQ": {
         "stock_name": "NSE:EMMBI-EQ",
         "full_stock_name": "EMMBI INDUSTRIES LIMITED"
+    },
+    "NSE:EMMVEE-EQ": {
+        "stock_name": "NSE:EMMVEE-EQ",
+        "full_stock_name": "EMMVEE PHOTOVOLTAIC PWR L"
     },
     "NSE:EMSLIMITED-EQ": {
         "stock_name": "NSE:EMSLIMITED-EQ",
@@ -2216,6 +2468,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ENDURANCE-EQ",
         "full_stock_name": "ENDURANCE TECHNO. LTD."
     },
+    "NSE:ENERGY-EQ": {
+        "stock_name": "NSE:ENERGY-EQ",
+        "full_stock_name": "MIRAEAMC - ENERGY"
+    },
     "NSE:ENERGYDEV-BE": {
         "stock_name": "NSE:ENERGYDEV-BE",
         "full_stock_name": "ENERGY DEVE. CO.LTD"
@@ -2228,6 +2484,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ENIL-EQ",
         "full_stock_name": "ENTERTAIN NET. IND. LTD."
     },
+    "NSE:ENRIN-EQ": {
+        "stock_name": "NSE:ENRIN-EQ",
+        "full_stock_name": "SIEMENS ENERGY INDIA LTD"
+    },
     "NSE:ENTERO-EQ": {
         "stock_name": "NSE:ENTERO-EQ",
         "full_stock_name": "ENTERO HEALTHCARE SOLU L"
@@ -2236,6 +2496,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EPACK-EQ",
         "full_stock_name": "EPACK DURABLE LIMITED"
     },
+    "NSE:EPACKPEB-EQ": {
+        "stock_name": "NSE:EPACKPEB-EQ",
+        "full_stock_name": "EPACK PREFAB TECHN LTD"
+    },
     "NSE:EPIGRAL-EQ": {
         "stock_name": "NSE:EPIGRAL-EQ",
         "full_stock_name": "EPIGRAL LIMITED"
@@ -2243,6 +2507,14 @@ export const totalstocks: TotalStocks = {
     "NSE:EPL-EQ": {
         "stock_name": "NSE:EPL-EQ",
         "full_stock_name": "EPL LIMITED"
+    },
+    "NSE:EQUAL200-EQ": {
+        "stock_name": "NSE:EQUAL200-EQ",
+        "full_stock_name": "MIRAEAMC - EQUAL200"
+    },
+    "NSE:EQUAL50-EQ": {
+        "stock_name": "NSE:EQUAL50-EQ",
+        "full_stock_name": "MIRAEAMC - EQUAL50"
     },
     "NSE:EQUAL50ADD-EQ": {
         "stock_name": "NSE:EQUAL50ADD-EQ",
@@ -2272,6 +2544,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ESCORTS-EQ",
         "full_stock_name": "ESCORTS KUBOTA LIMITED"
     },
+    "NSE:ESENSEX-EQ": {
+        "stock_name": "NSE:ESENSEX-EQ",
+        "full_stock_name": "EDELAMC - ESENSEX"
+    },
     "NSE:ESG-EQ": {
         "stock_name": "NSE:ESG-EQ",
         "full_stock_name": "MIRAEAMC - MAESGETF"
@@ -2292,6 +2568,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ESTER-EQ",
         "full_stock_name": "ESTER INDUSTRIES LTD"
     },
+    "NSE:ETERNAL-EQ": {
+        "stock_name": "NSE:ETERNAL-EQ",
+        "full_stock_name": "ETERNAL LIMITED"
+    },
     "NSE:ETHOSLTD-EQ": {
         "stock_name": "NSE:ETHOSLTD-EQ",
         "full_stock_name": "ETHOS LIMITED"
@@ -2299,6 +2579,14 @@ export const totalstocks: TotalStocks = {
     "NSE:EUREKAFORB-EQ": {
         "stock_name": "NSE:EUREKAFORB-EQ",
         "full_stock_name": "EUREKA FORBES LIMITED"
+    },
+    "NSE:EUROBOND-EQ": {
+        "stock_name": "NSE:EUROBOND-EQ",
+        "full_stock_name": "EURO PANEL PRODUCTS LTD"
+    },
+    "NSE:EUROPRATIK-EQ": {
+        "stock_name": "NSE:EUROPRATIK-EQ",
+        "full_stock_name": "EURO PRATIK SALES LIMITED"
     },
     "NSE:EUROTEXIND-BE": {
         "stock_name": "NSE:EUROTEXIND-BE",
@@ -2308,21 +2596,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EVEREADY-EQ",
         "full_stock_name": "EVEREADY INDS. IND.  LTD."
     },
-    "NSE:EVERESTIND-BE": {
-        "stock_name": "NSE:EVERESTIND-BE",
+    "NSE:EVERESTIND-EQ": {
+        "stock_name": "NSE:EVERESTIND-EQ",
         "full_stock_name": "EVEREST INDUSTRIES LTD"
     },
     "NSE:EVINDIA-EQ": {
         "stock_name": "NSE:EVINDIA-EQ",
         "full_stock_name": "MIRAEAMC - EVINDIA"
     },
-    "NSE:EXCEL-BE": {
-        "stock_name": "NSE:EXCEL-BE",
+    "NSE:EXCEL-EQ": {
+        "stock_name": "NSE:EXCEL-EQ",
         "full_stock_name": "EXCEL REALTY N INFRA LTD"
     },
     "NSE:EXCELINDUS-EQ": {
         "stock_name": "NSE:EXCELINDUS-EQ",
         "full_stock_name": "EXCEL INDUSTRIES LTD"
+    },
+    "NSE:EXCELSOFT-EQ": {
+        "stock_name": "NSE:EXCELSOFT-EQ",
+        "full_stock_name": "EXCELSOFT TECHNOLOGIES L"
     },
     "NSE:EXICOM-EQ": {
         "stock_name": "NSE:EXICOM-EQ",
@@ -2336,9 +2628,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:EXPLEOSOL-EQ",
         "full_stock_name": "EXPLEO SOLUTIONS LIMITED"
     },
-    "NSE:EXXARO-EQ": {
-        "stock_name": "NSE:EXXARO-EQ",
+    "NSE:EXXARO-BE": {
+        "stock_name": "NSE:EXXARO-BE",
         "full_stock_name": "EXXARO TILES LIMITED"
+    },
+    "NSE:FABTECH-EQ": {
+        "stock_name": "NSE:FABTECH-EQ",
+        "full_stock_name": "FABTECH TECHNOLOGIES LTD"
     },
     "NSE:FACT-EQ": {
         "stock_name": "NSE:FACT-EQ",
@@ -2376,8 +2672,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:FEL-BZ",
         "full_stock_name": "FUTURE ENTERPRISES LTD"
     },
-    "NSE:FELDVR-BE": {
-        "stock_name": "NSE:FELDVR-BE",
+    "NSE:FELDVR-BZ": {
+        "stock_name": "NSE:FELDVR-BZ",
         "full_stock_name": "FUTURE ENTERPRISES LTD"
     },
     "NSE:FIBERWEB-EQ": {
@@ -2392,8 +2688,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:FILATEX-EQ",
         "full_stock_name": "FILATEX INDIA LTD"
     },
-    "NSE:FILATFASH-BE": {
-        "stock_name": "NSE:FILATFASH-BE",
+    "NSE:FILATFASH-EQ": {
+        "stock_name": "NSE:FILATFASH-EQ",
         "full_stock_name": "FILATEX FASHIONS LIMITED"
     },
     "NSE:FINCABLES-EQ": {
@@ -2403,6 +2699,10 @@ export const totalstocks: TotalStocks = {
     "NSE:FINEORG-EQ": {
         "stock_name": "NSE:FINEORG-EQ",
         "full_stock_name": "FINE ORGANIC IND. LTD."
+    },
+    "NSE:FINKURVE-EQ": {
+        "stock_name": "NSE:FINKURVE-EQ",
+        "full_stock_name": "FINKURVE FINANCIAL SERV L"
     },
     "NSE:FINOPB-EQ": {
         "stock_name": "NSE:FINOPB-EQ",
@@ -2416,6 +2716,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:FIRSTCRY-EQ",
         "full_stock_name": "BRAINBEES SOLUTIONS LTD"
     },
+    "NSE:FISCHER-EQ": {
+        "stock_name": "NSE:FISCHER-EQ",
+        "full_stock_name": "FISCHER MEDICAL VENTURE L"
+    },
     "NSE:FIVESTAR-EQ": {
         "stock_name": "NSE:FIVESTAR-EQ",
         "full_stock_name": "FIVE-STAR BUS FIN LTD"
@@ -2424,8 +2728,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:FLAIR-EQ",
         "full_stock_name": "FLAIR WRITING INDUST LTD"
     },
-    "NSE:FLEXITUFF-BE": {
-        "stock_name": "NSE:FLEXITUFF-BE",
+    "NSE:FLEXIADD-EQ": {
+        "stock_name": "NSE:FLEXIADD-EQ",
+        "full_stock_name": "DSPAMC - FLEXIADD"
+    },
+    "NSE:FLEXITUFF-EQ": {
+        "stock_name": "NSE:FLEXITUFF-EQ",
         "full_stock_name": "FLEXITUFF VENTURES INT L"
     },
     "NSE:FLFL-BZ": {
@@ -2440,8 +2748,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:FMGOETZE-EQ",
         "full_stock_name": "FEDERAL-MOGUL GOETZE (IND"
     },
-    "NSE:FMNL-BE": {
-        "stock_name": "NSE:FMNL-BE",
+    "NSE:FMNL-EQ": {
+        "stock_name": "NSE:FMNL-EQ",
         "full_stock_name": "FUTURE MKT NETWORKS LTD"
     },
     "NSE:FOCUS-EQ": {
@@ -2512,9 +2820,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GANESHBE-EQ",
         "full_stock_name": "GANESH BENZOPLAST LIMITED"
     },
-    "NSE:GANESHHOUC-EQ": {
-        "stock_name": "NSE:GANESHHOUC-EQ",
-        "full_stock_name": "GANESH HOUSING CORP LTD"
+    "NSE:GANESHCP-EQ": {
+        "stock_name": "NSE:GANESHCP-EQ",
+        "full_stock_name": "GANESH CONSUMER PRODUCT L"
+    },
+    "NSE:GANESHHOU-EQ": {
+        "stock_name": "NSE:GANESHHOU-EQ",
+        "full_stock_name": "GANESH HOUSING LIMITED"
     },
     "NSE:GANGAFORGE-EQ": {
         "stock_name": "NSE:GANGAFORGE-EQ",
@@ -2532,25 +2844,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GARUDA-EQ",
         "full_stock_name": "GARUDA CONSTRUCT N ENG L"
     },
-    "NSE:GATECH-BE": {
-        "stock_name": "NSE:GATECH-BE",
+    "NSE:GATECH-EQ": {
+        "stock_name": "NSE:GATECH-EQ",
         "full_stock_name": "GACM TECHNOLOGIES LIMITED"
     },
-    "NSE:GATECHDVR-BE": {
-        "stock_name": "NSE:GATECHDVR-BE",
+    "NSE:GATECHDVR-EQ": {
+        "stock_name": "NSE:GATECHDVR-EQ",
         "full_stock_name": "GACM TECHNOLOGIES LIMITED"
     },
     "NSE:GATEWAY-EQ": {
         "stock_name": "NSE:GATEWAY-EQ",
         "full_stock_name": "GATEWAY DISTRIPARKS LTD"
     },
-    "NSE:GAYAHWS-BE": {
-        "stock_name": "NSE:GAYAHWS-BE",
+    "NSE:GAYAHWS-EQ": {
+        "stock_name": "NSE:GAYAHWS-EQ",
         "full_stock_name": "GAYATRI HIGHWAYS LIMITED"
     },
-    "NSE:GAYAPROJ-BZ": {
-        "stock_name": "NSE:GAYAPROJ-BZ",
-        "full_stock_name": "GAYATRI PROJECTS LTD"
+    "NSE:GCSL-BE": {
+        "stock_name": "NSE:GCSL-BE",
+        "full_stock_name": "GRETEX CORPORATE SERVICES"
     },
     "NSE:GEECEE-EQ": {
         "stock_name": "NSE:GEECEE-EQ",
@@ -2560,6 +2872,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GEEKAYWIRE-EQ",
         "full_stock_name": "GEEKAY WIRES LIMITED"
     },
+    "NSE:GEMAROMA-EQ": {
+        "stock_name": "NSE:GEMAROMA-EQ",
+        "full_stock_name": "GEM AROMATICS LIMITED"
+    },
     "NSE:GENCON-EQ": {
         "stock_name": "NSE:GENCON-EQ",
         "full_stock_name": "GENERIC ENG CONS PROJ LTD"
@@ -2568,8 +2884,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GENESYS-EQ",
         "full_stock_name": "GENESYS INTL CORPN LTD"
     },
-    "NSE:GENSOL-EQ": {
-        "stock_name": "NSE:GENSOL-EQ",
+    "NSE:GENSOL-BZ": {
+        "stock_name": "NSE:GENSOL-BZ",
         "full_stock_name": "GENSOL ENGINEERING LTD"
     },
     "NSE:GENUSPAPER-EQ": {
@@ -2583,10 +2899,6 @@ export const totalstocks: TotalStocks = {
     "NSE:GEOJITFSL-EQ": {
         "stock_name": "NSE:GEOJITFSL-EQ",
         "full_stock_name": "GEOJIT FINANCIAL SER L"
-    },
-    "NSE:GEPIL-EQ": {
-        "stock_name": "NSE:GEPIL-EQ",
-        "full_stock_name": "GE POWER INDIA LIMITED"
     },
     "NSE:GESHIP-EQ": {
         "stock_name": "NSE:GESHIP-EQ",
@@ -2612,13 +2924,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GICRE-EQ",
         "full_stock_name": "GENERAL INS CORP OF INDIA"
     },
-    "NSE:GILLANDERS-BE": {
-        "stock_name": "NSE:GILLANDERS-BE",
+    "NSE:GILLANDERS-EQ": {
+        "stock_name": "NSE:GILLANDERS-EQ",
         "full_stock_name": "GILLANDERS ARBUTHNOT LTD"
     },
     "NSE:GILLETTE-EQ": {
         "stock_name": "NSE:GILLETTE-EQ",
         "full_stock_name": "GILLETTE INDIA LTD"
+    },
+    "NSE:GILT10BETA-EQ": {
+        "stock_name": "NSE:GILT10BETA-EQ",
+        "full_stock_name": "UTIAMC-GILT10BETA"
+    },
+    "NSE:GILT5BETA-EQ": {
+        "stock_name": "NSE:GILT5BETA-EQ",
+        "full_stock_name": "UTIAMC-GILT5BETA"
     },
     "NSE:GILT5YBEES-EQ": {
         "stock_name": "NSE:GILT5YBEES-EQ",
@@ -2632,8 +2952,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GIPCL-EQ",
         "full_stock_name": "GUJ IND POW CO. LTD"
     },
-    "NSE:GKWLIMITED-BE": {
-        "stock_name": "NSE:GKWLIMITED-BE",
+    "NSE:GKENERGY-EQ": {
+        "stock_name": "NSE:GKENERGY-EQ",
+        "full_stock_name": "GK ENERGY LIMITED"
+    },
+    "NSE:GKSL-EQ": {
+        "stock_name": "NSE:GKSL-EQ",
+        "full_stock_name": "GUJARAT KIDNEY N SUP SP L"
+    },
+    "NSE:GKWLIMITED-EQ": {
+        "stock_name": "NSE:GKWLIMITED-EQ",
         "full_stock_name": "GKW LIMITED"
     },
     "NSE:GLAND-EQ": {
@@ -2648,21 +2976,29 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GLENMARK-EQ",
         "full_stock_name": "GLENMARK PHARMACEUTICALS"
     },
-    "NSE:GLOBAL-EQ": {
-        "stock_name": "NSE:GLOBAL-EQ",
+    "NSE:GLFL-BE": {
+        "stock_name": "NSE:GLFL-BE",
+        "full_stock_name": "GUJARAT LEASE FINANCING L"
+    },
+    "NSE:GLOBAL-BE": {
+        "stock_name": "NSE:GLOBAL-BE",
         "full_stock_name": "GLOBAL EDUCATION LIMITED"
     },
-    "NSE:GLOBALE-BE": {
-        "stock_name": "NSE:GLOBALE-BE",
+    "NSE:GLOBALE-EQ": {
+        "stock_name": "NSE:GLOBALE-EQ",
         "full_stock_name": "GLOBALE TESSILE LIMITED"
     },
-    "NSE:GLOBALVECT-BE": {
-        "stock_name": "NSE:GLOBALVECT-BE",
+    "NSE:GLOBALVECT-EQ": {
+        "stock_name": "NSE:GLOBALVECT-EQ",
         "full_stock_name": "GLOBAL VEC HELICORP LTD"
     },
     "NSE:GLOBE-EQ": {
         "stock_name": "NSE:GLOBE-EQ",
-        "full_stock_name": "GLOBE TEXTILES (I) LTD."
+        "full_stock_name": "GLOBE ENTERPRISE (I) LTD"
+    },
+    "NSE:GLOBECIVIL-EQ": {
+        "stock_name": "NSE:GLOBECIVIL-EQ",
+        "full_stock_name": "GLOBE CIVIL PROJECTS LTD"
     },
     "NSE:GLOBUSSPR-EQ": {
         "stock_name": "NSE:GLOBUSSPR-EQ",
@@ -2671,6 +3007,10 @@ export const totalstocks: TotalStocks = {
     "NSE:GLOSTERLTD-EQ": {
         "stock_name": "NSE:GLOSTERLTD-EQ",
         "full_stock_name": "GLOSTER LIMITED"
+    },
+    "NSE:GLOTTIS-EQ": {
+        "stock_name": "NSE:GLOTTIS-EQ",
+        "full_stock_name": "GLOTTIS LIMITED"
     },
     "NSE:GMBREW-EQ": {
         "stock_name": "NSE:GMBREW-EQ",
@@ -2712,17 +3052,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GOCOLORS-EQ",
         "full_stock_name": "GO FASHION INDIA LTD"
     },
-    "NSE:GODAVARIB-BE": {
-        "stock_name": "NSE:GODAVARIB-BE",
+    "NSE:GODAVARIB-EQ": {
+        "stock_name": "NSE:GODAVARIB-EQ",
         "full_stock_name": "GODAVARI BIOREFINERIES L"
     },
     "NSE:GODFRYPHLP-EQ": {
         "stock_name": "NSE:GODFRYPHLP-EQ",
         "full_stock_name": "GODFREY PHILLIPS INDIA LT"
-    },
-    "NSE:GODHA-BE": {
-        "stock_name": "NSE:GODHA-BE",
-        "full_stock_name": "GODHA CABCON INSULAT LTD"
     },
     "NSE:GODIGIT-EQ": {
         "stock_name": "NSE:GODIGIT-EQ",
@@ -2744,10 +3080,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GODREJPROP-EQ",
         "full_stock_name": "GODREJ PROPERTIES LTD"
     },
-    "NSE:GOENKA-BZ": {
-        "stock_name": "NSE:GOENKA-BZ",
-        "full_stock_name": "GOENKA DIAMOND&JEWELS LTD"
-    },
     "NSE:GOKEX-EQ": {
         "stock_name": "NSE:GOKEX-EQ",
         "full_stock_name": "GOKALDAS EXPORTS LTD."
@@ -2764,9 +3096,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GOLD1-EQ",
         "full_stock_name": "KOTAK GOLD ETF"
     },
+    "NSE:GOLD360-EQ": {
+        "stock_name": "NSE:GOLD360-EQ",
+        "full_stock_name": "360ONEAMC - GOLD360"
+    },
+    "NSE:GOLDADD-EQ": {
+        "stock_name": "NSE:GOLDADD-EQ",
+        "full_stock_name": "DSPAMC - DSPGOLD"
+    },
     "NSE:GOLDBEES-EQ": {
         "stock_name": "NSE:GOLDBEES-EQ",
         "full_stock_name": "NIP IND ETF GOLD BEES"
+    },
+    "NSE:GOLDBETA-EQ": {
+        "stock_name": "NSE:GOLDBETA-EQ",
+        "full_stock_name": "UTIAMC-UTIGOLDBETA"
+    },
+    "NSE:GOLDBND-EQ": {
+        "stock_name": "NSE:GOLDBND-EQ",
+        "full_stock_name": "BANDHANAMC - GOLDBND"
     },
     "NSE:GOLDCASE-EQ": {
         "stock_name": "NSE:GOLDCASE-EQ",
@@ -2780,10 +3128,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GOLDIAM-EQ",
         "full_stock_name": "GOLDIAM INTERNATIONAL LTD"
     },
-    "NSE:GOLDSHARE-EQ": {
-        "stock_name": "NSE:GOLDSHARE-EQ",
-        "full_stock_name": "UTI GOLD ETF"
-    },
     "NSE:GOLDTECH-EQ": {
         "stock_name": "NSE:GOLDTECH-EQ",
         "full_stock_name": "AION-TECH SOLUTIONS LTD"
@@ -2796,8 +3140,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GOPAL-EQ",
         "full_stock_name": "GOPAL SNACKS LIMITED"
     },
-    "NSE:GOYALALUM-EQ": {
-        "stock_name": "NSE:GOYALALUM-EQ",
+    "NSE:GOYALALUM-BE": {
+        "stock_name": "NSE:GOYALALUM-BE",
         "full_stock_name": "GOYAL ALUMINIUMS LIMITED"
     },
     "NSE:GPIL-EQ": {
@@ -2868,6 +3212,18 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GROBTEA-EQ",
         "full_stock_name": "THE GROB TEA COMPANY LTD"
     },
+    "NSE:GROWW-EQ": {
+        "stock_name": "NSE:GROWW-EQ",
+        "full_stock_name": "BILLIONBRAINS GARAGE VN L"
+    },
+    "NSE:GROWWCAPM-EQ": {
+        "stock_name": "NSE:GROWWCAPM-EQ",
+        "full_stock_name": "GROWWAMC - GROWWCAPM"
+    },
+    "NSE:GROWWCHEM-EQ": {
+        "stock_name": "NSE:GROWWCHEM-EQ",
+        "full_stock_name": "GROWWAMC - GROWWCHEM"
+    },
     "NSE:GROWWDEFNC-EQ": {
         "stock_name": "NSE:GROWWDEFNC-EQ",
         "full_stock_name": "GROWWAMC - GROWWDEFNC"
@@ -2884,9 +3240,53 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GROWWLIQID-EQ",
         "full_stock_name": "GROWWAMC - GROWWLIQID"
     },
+    "NSE:GROWWLOVOL-EQ": {
+        "stock_name": "NSE:GROWWLOVOL-EQ",
+        "full_stock_name": "GROWWAMC - GROWWLOVOL"
+    },
+    "NSE:GROWWMC150-EQ": {
+        "stock_name": "NSE:GROWWMC150-EQ",
+        "full_stock_name": "GROWWAMC - GROWWMC150"
+    },
+    "NSE:GROWWMETAL-EQ": {
+        "stock_name": "NSE:GROWWMETAL-EQ",
+        "full_stock_name": "GROWWAMC - GROWWMETAL"
+    },
+    "NSE:GROWWMOM50-EQ": {
+        "stock_name": "NSE:GROWWMOM50-EQ",
+        "full_stock_name": "GROWWAMC - GROWWMOM50"
+    },
+    "NSE:GROWWN200-EQ": {
+        "stock_name": "NSE:GROWWN200-EQ",
+        "full_stock_name": "GROWWAMC - GROWWN200"
+    },
+    "NSE:GROWWNET-EQ": {
+        "stock_name": "NSE:GROWWNET-EQ",
+        "full_stock_name": "GROWWAMC - GROWWNET"
+    },
+    "NSE:GROWWNXT50-EQ": {
+        "stock_name": "NSE:GROWWNXT50-EQ",
+        "full_stock_name": "GROWWAMC - GROWWNXT50"
+    },
+    "NSE:GROWWPOWER-EQ": {
+        "stock_name": "NSE:GROWWPOWER-EQ",
+        "full_stock_name": "GROWWAMC - GROWWPOWER"
+    },
     "NSE:GROWWRAIL-EQ": {
         "stock_name": "NSE:GROWWRAIL-EQ",
         "full_stock_name": "GROWWAMC - GROWWRAIL"
+    },
+    "NSE:GROWWRLTY-EQ": {
+        "stock_name": "NSE:GROWWRLTY-EQ",
+        "full_stock_name": "GROWWAMC - GROWWRLTY"
+    },
+    "NSE:GROWWSC250-EQ": {
+        "stock_name": "NSE:GROWWSC250-EQ",
+        "full_stock_name": "GROWWAMC - GROWWSC250"
+    },
+    "NSE:GROWWSLVR-EQ": {
+        "stock_name": "NSE:GROWWSLVR-EQ",
+        "full_stock_name": "GROWWAMC - GROWWSLVR"
     },
     "NSE:GRPLTD-EQ": {
         "stock_name": "NSE:GRPLTD-EQ",
@@ -2912,8 +3312,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GSFC-EQ",
         "full_stock_name": "GUJ STATE FERT & CHEM LTD"
     },
-    "NSE:GSLSU-EQ": {
-        "stock_name": "NSE:GSLSU-EQ",
+    "NSE:GSLSU-BE": {
+        "stock_name": "NSE:GSLSU-BE",
         "full_stock_name": "GLOBAL SURFACES LIMITED"
     },
     "NSE:GSPL-EQ": {
@@ -2924,8 +3324,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GSS-EQ",
         "full_stock_name": "GSS INFOTECH LIMITED"
     },
-    "NSE:GTECJAINX-BE": {
-        "stock_name": "NSE:GTECJAINX-BE",
+    "NSE:GTECJAINX-EQ": {
+        "stock_name": "NSE:GTECJAINX-EQ",
         "full_stock_name": "G-TEC JAINX EDUCATION LTD"
     },
     "NSE:GTL-EQ": {
@@ -2960,6 +3360,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GUJRAFFIA-BE",
         "full_stock_name": "GUJARAT RAFFIA INDUST LTD"
     },
+    "NSE:GUJTHEM-EQ": {
+        "stock_name": "NSE:GUJTHEM-EQ",
+        "full_stock_name": "GUJARAT THEMIS BIOSYN LTD"
+    },
     "NSE:GULFOILLUB-EQ": {
         "stock_name": "NSE:GULFOILLUB-EQ",
         "full_stock_name": "GULF OIL LUB. IND. LTD."
@@ -2976,6 +3380,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:GVKPIL-BE",
         "full_stock_name": "GVK POW. & INFRA LTD."
     },
+    "NSE:GVPIL-EQ": {
+        "stock_name": "NSE:GVPIL-EQ",
+        "full_stock_name": "GE POWER INDIA LIMITED"
+    },
     "NSE:GVPTECH-EQ": {
         "stock_name": "NSE:GVPTECH-EQ",
         "full_stock_name": "GVP INFOTECH LIMITED"
@@ -2987,6 +3395,14 @@ export const totalstocks: TotalStocks = {
     "NSE:HAL-EQ": {
         "stock_name": "NSE:HAL-EQ",
         "full_stock_name": "HINDUSTAN AERONAUTICS LTD"
+    },
+    "NSE:HALDER-BE": {
+        "stock_name": "NSE:HALDER-BE",
+        "full_stock_name": "HALDER VENTURE LIMITED"
+    },
+    "NSE:HALEOSLABS-BE": {
+        "stock_name": "NSE:HALEOSLABS-BE",
+        "full_stock_name": "HALEOS LABS LIMITED"
     },
     "NSE:HAPPSTMNDS-EQ": {
         "stock_name": "NSE:HAPPSTMNDS-EQ",
@@ -3032,8 +3448,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HBLENGINE-EQ",
         "full_stock_name": "HBL ENGINEERING LTD"
     },
-    "NSE:HBSL-EQ": {
-        "stock_name": "NSE:HBSL-EQ",
+    "NSE:HBSL-BE": {
+        "stock_name": "NSE:HBSL-BE",
         "full_stock_name": "HB STOCKHOLDINGS LIMITED"
     },
     "NSE:HCC-EQ": {
@@ -3047,6 +3463,10 @@ export const totalstocks: TotalStocks = {
     "NSE:HCLTECH-EQ": {
         "stock_name": "NSE:HCLTECH-EQ",
         "full_stock_name": "HCL TECHNOLOGIES LTD"
+    },
+    "NSE:HDBFS-EQ": {
+        "stock_name": "NSE:HDBFS-EQ",
+        "full_stock_name": "HDB FINANCIAL SERVICES L"
     },
     "NSE:HDFCAMC-EQ": {
         "stock_name": "NSE:HDFCAMC-EQ",
@@ -3132,6 +3552,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HDFCVALUE-EQ",
         "full_stock_name": "HDFCAMC - HDFCVALUE"
     },
+    "NSE:HDIL-BZ": {
+        "stock_name": "NSE:HDIL-BZ",
+        "full_stock_name": "HOUSING DEV & INFRA LTD"
+    },
     "NSE:HEADSUP-EQ": {
         "stock_name": "NSE:HEADSUP-EQ",
         "full_stock_name": "HEADS UP VENTURES LIMITED"
@@ -3164,10 +3588,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HERANBA-EQ",
         "full_stock_name": "HERANBA INDUSTRIES LTD"
     },
-    "NSE:HERCULES-BE": {
-        "stock_name": "NSE:HERCULES-BE",
-        "full_stock_name": "HERCULES HOI. LTD."
-    },
     "NSE:HERITGFOOD-EQ": {
         "stock_name": "NSE:HERITGFOOD-EQ",
         "full_stock_name": "HERITAGE FOODS LTD"
@@ -3179,10 +3599,6 @@ export const totalstocks: TotalStocks = {
     "NSE:HESTERBIO-EQ": {
         "stock_name": "NSE:HESTERBIO-EQ",
         "full_stock_name": "HESTER BIOSCIENCES LTD"
-    },
-    "NSE:HEUBACHIND-EQ": {
-        "stock_name": "NSE:HEUBACHIND-EQ",
-        "full_stock_name": "HEUBACH COLORANTS IND LTD"
     },
     "NSE:HEXATRADEX-EQ": {
         "stock_name": "NSE:HEXATRADEX-EQ",
@@ -3200,6 +3616,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HGINFRA-EQ",
         "full_stock_name": "H.G.INFRA ENGINEERING LTD"
     },
+    "NSE:HGM-EQ": {
+        "stock_name": "NSE:HGM-EQ",
+        "full_stock_name": "HANDSON GBL MNGMNT LTD"
+    },
     "NSE:HGS-EQ": {
         "stock_name": "NSE:HGS-EQ",
         "full_stock_name": "HINDUJA GLOBAL SOLS. LTD."
@@ -3208,9 +3628,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HIKAL-EQ",
         "full_stock_name": "HIKAL LIMITED"
     },
-    "NSE:HIL-EQ": {
-        "stock_name": "NSE:HIL-EQ",
-        "full_stock_name": "HIL LIMITED"
+    "NSE:HILINFRA-EQ": {
+        "stock_name": "NSE:HILINFRA-EQ",
+        "full_stock_name": "HIGHWAY INFRASTRUCTURE L"
     },
     "NSE:HILTON-EQ": {
         "stock_name": "NSE:HILTON-EQ",
@@ -3228,17 +3648,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HINDCOMPOS-EQ",
         "full_stock_name": "HINDUSTAN COMPOSITES LTD."
     },
-    "NSE:HINDCON-BE": {
-        "stock_name": "NSE:HINDCON-BE",
+    "NSE:HINDCON-EQ": {
+        "stock_name": "NSE:HINDCON-EQ",
         "full_stock_name": "HINDCON CHEMICALS LIMITED"
     },
     "NSE:HINDCOPPER-EQ": {
         "stock_name": "NSE:HINDCOPPER-EQ",
         "full_stock_name": "HINDUSTAN COPPER LTD"
-    },
-    "NSE:HINDMOTORS-EQ": {
-        "stock_name": "NSE:HINDMOTORS-EQ",
-        "full_stock_name": "HINDUSTAN MOTORS LIMITED"
     },
     "NSE:HINDOILEXP-EQ": {
         "stock_name": "NSE:HINDOILEXP-EQ",
@@ -3324,10 +3740,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HONDAPOWER-EQ",
         "full_stock_name": "HONDA I POWER PRODUCT LTD"
     },
-    "NSE:HOVS-EQ": {
-        "stock_name": "NSE:HOVS-EQ",
-        "full_stock_name": "HOV SERVICES LTD"
-    },
     "NSE:HPAL-EQ": {
         "stock_name": "NSE:HPAL-EQ",
         "full_stock_name": "HP ADHESIVES LIMITED"
@@ -3368,13 +3780,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:HYUNDAI-EQ",
         "full_stock_name": "HYUNDAI MOTOR INDIA LTD"
     },
-    "NSE:ICDSLTD-BE": {
-        "stock_name": "NSE:ICDSLTD-BE",
-        "full_stock_name": "ICDSLTD"
+    "NSE:IBULLSLTD-EQ": {
+        "stock_name": "NSE:IBULLSLTD-EQ",
+        "full_stock_name": "INDIABULLS LIMITED"
+    },
+    "NSE:ICDSLTD-EQ": {
+        "stock_name": "NSE:ICDSLTD-EQ",
+        "full_stock_name": "ICDS LTD"
     },
     "NSE:ICEMAKE-EQ": {
         "stock_name": "NSE:ICEMAKE-EQ",
         "full_stock_name": "ICE MAKE REFRIGERAT LTD"
+    },
+    "NSE:ICICIAMC-EQ": {
+        "stock_name": "NSE:ICICIAMC-EQ",
+        "full_stock_name": "ICICI PRUDENTIAL AMC LTD"
     },
     "NSE:ICICIB22-EQ": {
         "stock_name": "NSE:ICICIB22-EQ",
@@ -3416,10 +3836,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IDFCFIRSTB-EQ",
         "full_stock_name": "IDFC FIRST BANK LIMITED"
     },
-    "NSE:IEL-BE": {
-        "stock_name": "NSE:IEL-BE",
-        "full_stock_name": "INDIABULLS ENT LTD"
-    },
     "NSE:IEX-EQ": {
         "stock_name": "NSE:IEX-EQ",
         "full_stock_name": "INDIAN ENERGY EXC LTD"
@@ -3444,6 +3860,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IGARASHI-EQ",
         "full_stock_name": "IGARASHI MOTORS INDIA LTD"
     },
+    "NSE:IGCL-EQ": {
+        "stock_name": "NSE:IGCL-EQ",
+        "full_stock_name": "INDOGULF CROPSCIENCES LTD"
+    },
     "NSE:IGIL-EQ": {
         "stock_name": "NSE:IGIL-EQ",
         "full_stock_name": "INTERNATIO GEMM INS (I) L"
@@ -3464,13 +3884,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IIFLCAPS-EQ",
         "full_stock_name": "IIFL CAPITAL SERVICES LTD"
     },
-    "NSE:IITL-BE": {
-        "stock_name": "NSE:IITL-BE",
+    "NSE:IITL-EQ": {
+        "stock_name": "NSE:IITL-EQ",
         "full_stock_name": "INDUSTRIAL INV TRUST LTD"
     },
     "NSE:IKIO-EQ": {
         "stock_name": "NSE:IKIO-EQ",
-        "full_stock_name": "IKIO LIGHTING LIMITED"
+        "full_stock_name": "IKIO TECHNOLOGIES LIMITED"
     },
     "NSE:IKS-EQ": {
         "stock_name": "NSE:IKS-EQ",
@@ -3532,9 +3952,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:INDIANB-EQ",
         "full_stock_name": "INDIAN BANK"
     },
-    "NSE:INDIANCARD-BE": {
-        "stock_name": "NSE:INDIANCARD-BE",
-        "full_stock_name": "INDIAN CARD"
+    "NSE:INDIANCARD-EQ": {
+        "stock_name": "NSE:INDIANCARD-EQ",
+        "full_stock_name": "INDIAN CARD CLOTHING CO."
     },
     "NSE:INDIANHUME-EQ": {
         "stock_name": "NSE:INDIANHUME-EQ",
@@ -3551,6 +3971,10 @@ export const totalstocks: TotalStocks = {
     "NSE:INDIGOPNTS-EQ": {
         "stock_name": "NSE:INDIGOPNTS-EQ",
         "full_stock_name": "INDIGO PAINTS LIMITED"
+    },
+    "NSE:INDIQUBE-EQ": {
+        "stock_name": "NSE:INDIQUBE-EQ",
+        "full_stock_name": "INDIQUBE SPACES LIMITED"
     },
     "NSE:INDNIPPON-EQ": {
         "stock_name": "NSE:INDNIPPON-EQ",
@@ -3584,12 +4008,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:INDOTECH-EQ",
         "full_stock_name": "INDO TECH TRANSFORM LTD."
     },
-    "NSE:INDOTHAI-BE": {
-        "stock_name": "NSE:INDOTHAI-BE",
+    "NSE:INDOTHAI-EQ": {
+        "stock_name": "NSE:INDOTHAI-EQ",
         "full_stock_name": "INDO THAI SEC LTD"
     },
-    "NSE:INDOUS-BE": {
-        "stock_name": "NSE:INDOUS-BE",
+    "NSE:INDOUS-EQ": {
+        "stock_name": "NSE:INDOUS-EQ",
         "full_stock_name": "INDO US BIOTECH LTD"
     },
     "NSE:INDOWIND-EQ": {
@@ -3603,10 +4027,6 @@ export const totalstocks: TotalStocks = {
     "NSE:INDSWFTLAB-EQ": {
         "stock_name": "NSE:INDSWFTLAB-EQ",
         "full_stock_name": "IND SWIFT LABORATORIES LT"
-    },
-    "NSE:INDSWFTLTD-BE": {
-        "stock_name": "NSE:INDSWFTLTD-BE",
-        "full_stock_name": "IND-SWIFT LIMITED"
     },
     "NSE:INDTERRAIN-EQ": {
         "stock_name": "NSE:INDTERRAIN-EQ",
@@ -3628,8 +4048,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:INFOBEAN-EQ",
         "full_stock_name": "INFOBEANS TECHNO. LTD."
     },
-    "NSE:INFOMEDIA-BE": {
-        "stock_name": "NSE:INFOMEDIA-BE",
+    "NSE:INFOMEDIA-EQ": {
+        "stock_name": "NSE:INFOMEDIA-EQ",
         "full_stock_name": "INFOMEDIA PRESS LIMITED"
     },
     "NSE:INFRABEES-EQ": {
@@ -3682,7 +4102,11 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:INTERARCH-EQ": {
         "stock_name": "NSE:INTERARCH-EQ",
-        "full_stock_name": "INTERARCH BUILDING PROD L"
+        "full_stock_name": "INTERARCH BLDNG SOLTN LTD"
+    },
+    "NSE:INTERNET-EQ": {
+        "stock_name": "NSE:INTERNET-EQ",
+        "full_stock_name": "MIRAEAMC - INTERNET"
     },
     "NSE:INTLCONV-EQ": {
         "stock_name": "NSE:INTLCONV-EQ",
@@ -3736,9 +4160,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IRFC-EQ",
         "full_stock_name": "INDIAN RAILWAY FIN CORP L"
     },
-    "NSE:IRIS-BE": {
-        "stock_name": "NSE:IRIS-BE",
-        "full_stock_name": "IRIS BUSINESS SERV LTD"
+    "NSE:IRIS-EQ": {
+        "stock_name": "NSE:IRIS-EQ",
+        "full_stock_name": "IRIS REGTECH SOLUTION LTD"
     },
     "NSE:IRISDOREME-EQ": {
         "stock_name": "NSE:IRISDOREME-EQ",
@@ -3748,10 +4172,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IRMENERGY-EQ",
         "full_stock_name": "IRM ENERGY LIMITED"
     },
-    "NSE:ISEC-EQ": {
-        "stock_name": "NSE:ISEC-EQ",
-        "full_stock_name": "ICICI SECURITIES LIMITED"
-    },
     "NSE:ISFT-EQ": {
         "stock_name": "NSE:ISFT-EQ",
         "full_stock_name": "INTRASOFT TECH. LTD"
@@ -3760,13 +4180,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ISGEC-EQ",
         "full_stock_name": "ISGEC HEAVY ENG LTD"
     },
+    "NSE:ISHANCH-EQ": {
+        "stock_name": "NSE:ISHANCH-EQ",
+        "full_stock_name": "ISHAN DYES N CHEMICALS L"
+    },
     "NSE:IT-EQ": {
         "stock_name": "NSE:IT-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKIT"
     },
+    "NSE:ITADD-EQ": {
+        "stock_name": "NSE:ITADD-EQ",
+        "full_stock_name": "DSPAMC - DSPIT"
+    },
     "NSE:ITBEES-EQ": {
         "stock_name": "NSE:ITBEES-EQ",
         "full_stock_name": "NIP IND ETF IT"
+    },
+    "NSE:ITBETA-EQ": {
+        "stock_name": "NSE:ITBETA-EQ",
+        "full_stock_name": "UTIAMC-ITBETA"
     },
     "NSE:ITC-EQ": {
         "stock_name": "NSE:ITC-EQ",
@@ -3780,13 +4212,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ITDC-EQ",
         "full_stock_name": "INDIA TOUR. DEV. CO. LTD."
     },
-    "NSE:ITDCEM-EQ": {
-        "stock_name": "NSE:ITDCEM-EQ",
-        "full_stock_name": "ITD CEMENTATION INDIA LTD"
-    },
-    "NSE:ITI-BE": {
-        "stock_name": "NSE:ITI-BE",
+    "NSE:ITI-EQ": {
+        "stock_name": "NSE:ITI-EQ",
         "full_stock_name": "ITI LTD"
+    },
+    "NSE:IVALUE-EQ": {
+        "stock_name": "NSE:IVALUE-EQ",
+        "full_stock_name": "IVALUE INFOSOLUTIONS LTD"
     },
     "NSE:IVC-EQ": {
         "stock_name": "NSE:IVC-EQ",
@@ -3800,16 +4232,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:IVZINGOLD-EQ",
         "full_stock_name": "INVESCO INDIA GOLD ETF"
     },
-    "NSE:IWEL-EQ": {
-        "stock_name": "NSE:IWEL-EQ",
-        "full_stock_name": "INOX WIND ENERGY LIMITED"
-    },
     "NSE:IXIGO-EQ": {
         "stock_name": "NSE:IXIGO-EQ",
         "full_stock_name": "LE TRAVENUES TECHNOLOGY L"
     },
-    "NSE:IZMO-BE": {
-        "stock_name": "NSE:IZMO-BE",
+    "NSE:IZMO-EQ": {
+        "stock_name": "NSE:IZMO-EQ",
         "full_stock_name": "IZMO LIMITED"
     },
     "NSE:J&KBANK-EQ": {
@@ -3832,6 +4260,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:JAICORPLTD-EQ",
         "full_stock_name": "JAI CORP LIMITED"
     },
+    "NSE:JAINREC-EQ": {
+        "stock_name": "NSE:JAINREC-EQ",
+        "full_stock_name": "JAIN RESOURCE RECYCLING L"
+    },
     "NSE:JAIPURKURT-EQ": {
         "stock_name": "NSE:JAIPURKURT-EQ",
         "full_stock_name": "NANDANI CREATION LIMITED"
@@ -3839,6 +4271,10 @@ export const totalstocks: TotalStocks = {
     "NSE:JAMNAAUTO-EQ": {
         "stock_name": "NSE:JAMNAAUTO-EQ",
         "full_stock_name": "JAMNA AUTO IND LTD"
+    },
+    "NSE:JARO-EQ": {
+        "stock_name": "NSE:JARO-EQ",
+        "full_stock_name": "JARO INS OF TEC MG N RE L"
     },
     "NSE:JASH-EQ": {
         "stock_name": "NSE:JASH-EQ",
@@ -3851,6 +4287,10 @@ export const totalstocks: TotalStocks = {
     "NSE:JAYBARMARU-EQ": {
         "stock_name": "NSE:JAYBARMARU-EQ",
         "full_stock_name": "JAY BHARAT MARUTI LTD"
+    },
+    "NSE:JAYKAY-EQ": {
+        "stock_name": "NSE:JAYKAY-EQ",
+        "full_stock_name": "JAYKAY ENTERPRISES LTD"
     },
     "NSE:JAYNECOIND-EQ": {
         "stock_name": "NSE:JAYNECOIND-EQ",
@@ -3867,10 +4307,6 @@ export const totalstocks: TotalStocks = {
     "NSE:JBMA-EQ": {
         "stock_name": "NSE:JBMA-EQ",
         "full_stock_name": "JBM AUTO LIMITED"
-    },
-    "NSE:JCHAC-EQ": {
-        "stock_name": "NSE:JCHAC-EQ",
-        "full_stock_name": "JOHNSON CONTROLS HITACHI"
     },
     "NSE:JGCHEM-EQ": {
         "stock_name": "NSE:JGCHEM-EQ",
@@ -3894,7 +4330,7 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:JINDALSTEL-EQ": {
         "stock_name": "NSE:JINDALSTEL-EQ",
-        "full_stock_name": "JINDAL STEEL & POWER LTD"
+        "full_stock_name": "JINDAL STEEL LIMITED"
     },
     "NSE:JINDRILL-EQ": {
         "stock_name": "NSE:JINDRILL-EQ",
@@ -3928,6 +4364,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:JKIL-EQ",
         "full_stock_name": "JKUMAR INFR.LTD."
     },
+    "NSE:JKIPL-EQ": {
+        "stock_name": "NSE:JKIPL-EQ",
+        "full_stock_name": "JINKUSHAL INDUSTRIES LTD"
+    },
     "NSE:JKLAKSHMI-EQ": {
         "stock_name": "NSE:JKLAKSHMI-EQ",
         "full_stock_name": "JK LAKSHMI CEMENT LTD"
@@ -3960,10 +4400,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:JOCIL-EQ",
         "full_stock_name": "JOCIL LIMITED"
     },
-    "NSE:JPASSOCIAT-BE": {
-        "stock_name": "NSE:JPASSOCIAT-BE",
-        "full_stock_name": "JAIPRAKASH ASSOCIATES LTD"
-    },
     "NSE:JPOLYINVST-EQ": {
         "stock_name": "NSE:JPOLYINVST-EQ",
         "full_stock_name": "JIND POL INV & FIN CO LTD"
@@ -3980,12 +4416,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:JSL-EQ",
         "full_stock_name": "JINDAL STAINLESS LIMITED"
     },
+    "NSE:JSLL-EQ": {
+        "stock_name": "NSE:JSLL-EQ",
+        "full_stock_name": "JEENA SIKHO LIFECARE LTD"
+    },
+    "NSE:JSWCEMENT-EQ": {
+        "stock_name": "NSE:JSWCEMENT-EQ",
+        "full_stock_name": "JSW CEMENT LIMITED"
+    },
     "NSE:JSWENERGY-EQ": {
         "stock_name": "NSE:JSWENERGY-EQ",
         "full_stock_name": "JSW ENERGY LIMITED"
     },
-    "NSE:JSWHL-BE": {
-        "stock_name": "NSE:JSWHL-BE",
+    "NSE:JSWHL-EQ": {
+        "stock_name": "NSE:JSWHL-EQ",
         "full_stock_name": "JSW HOLDINGS LIMITED"
     },
     "NSE:JSWINFRA-EQ": {
@@ -4004,8 +4448,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:JTLIND-EQ",
         "full_stock_name": "JTL INDUSTRIES LIMITED"
     },
-    "NSE:JUBLCPL-BE": {
-        "stock_name": "NSE:JUBLCPL-BE",
+    "NSE:JUBLCPL-EQ": {
+        "stock_name": "NSE:JUBLCPL-EQ",
         "full_stock_name": "JUBILANT AGRI N CON PRO L"
     },
     "NSE:JUBLFOOD-EQ": {
@@ -4064,12 +4508,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KALAMANDIR-EQ",
         "full_stock_name": "SAI SILKS (KALAMANDIR) L"
     },
+    "NSE:KALPATARU-EQ": {
+        "stock_name": "NSE:KALPATARU-EQ",
+        "full_stock_name": "KALPATARU LIMITED"
+    },
     "NSE:KALYANI-BE": {
         "stock_name": "NSE:KALYANI-BE",
         "full_stock_name": "KALYANI COMMERCIALS LTD"
     },
-    "NSE:KALYANIFRG-BE": {
-        "stock_name": "NSE:KALYANIFRG-BE",
+    "NSE:KALYANIFRG-EQ": {
+        "stock_name": "NSE:KALYANIFRG-EQ",
         "full_stock_name": "KALYANI FORGE LIMITED"
     },
     "NSE:KALYANKJIL-EQ": {
@@ -4084,8 +4532,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KAMDHENU-EQ",
         "full_stock_name": "KAMDHENU LIMITED"
     },
-    "NSE:KAMOPAINTS-BE": {
-        "stock_name": "NSE:KAMOPAINTS-BE",
+    "NSE:KAMOPAINTS-EQ": {
+        "stock_name": "NSE:KAMOPAINTS-EQ",
         "full_stock_name": "KAMDHENU VENTURES LIMITED"
     },
     "NSE:KANANIIND-EQ": {
@@ -4104,8 +4552,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KANSAINER-EQ",
         "full_stock_name": "KANSAI NEROLAC PAINTS LTD"
     },
-    "NSE:KAPSTON-EQ": {
-        "stock_name": "NSE:KAPSTON-EQ",
+    "NSE:KAPSTON-BE": {
+        "stock_name": "NSE:KAPSTON-BE",
         "full_stock_name": "KAPSTON SERVICES LIMITED"
     },
     "NSE:KARMAENG-EQ": {
@@ -4120,9 +4568,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KAUSHALYA-EQ",
         "full_stock_name": "KAUSHALYA INFRA DEV LTD."
     },
-    "NSE:KAVVERITEL-BE": {
-        "stock_name": "NSE:KAVVERITEL-BE",
-        "full_stock_name": "KAVVERI TEL. LTD."
+    "NSE:KAVDEFENCE-EQ": {
+        "stock_name": "NSE:KAVDEFENCE-EQ",
+        "full_stock_name": "KAVVERI DFS & WIR TEC LTD"
     },
     "NSE:KAYA-EQ": {
         "stock_name": "NSE:KAYA-EQ",
@@ -4131,10 +4579,6 @@ export const totalstocks: TotalStocks = {
     "NSE:KAYNES-EQ": {
         "stock_name": "NSE:KAYNES-EQ",
         "full_stock_name": "KAYNES TECHNOLOGY IND LTD"
-    },
-    "NSE:KBCGLOBAL-BE": {
-        "stock_name": "NSE:KBCGLOBAL-BE",
-        "full_stock_name": "KBC GLOBAL LIMITED"
     },
     "NSE:KCP-EQ": {
         "stock_name": "NSE:KCP-EQ",
@@ -4156,8 +4600,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KECL-EQ",
         "full_stock_name": "KIRLOSKAR ELECTRIC CO LTD"
     },
-    "NSE:KEEPLEARN-BE": {
-        "stock_name": "NSE:KEEPLEARN-BE",
+    "NSE:KEEPLEARN-EQ": {
+        "stock_name": "NSE:KEEPLEARN-EQ",
         "full_stock_name": "DSJ KEEP LEARNING LTD"
     },
     "NSE:KEI-EQ": {
@@ -4168,12 +4612,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KELLTONTEC-EQ",
         "full_stock_name": "KELLTON TECH SOL LTD"
     },
-    "NSE:KERNEX-BE": {
-        "stock_name": "NSE:KERNEX-BE",
+    "NSE:KERNEX-EQ": {
+        "stock_name": "NSE:KERNEX-EQ",
         "full_stock_name": "KERNEX MICROSYS(I) LTD"
     },
-    "NSE:KESORAMIND-EQ": {
-        "stock_name": "NSE:KESORAMIND-EQ",
+    "NSE:KESORAMIND-BE": {
+        "stock_name": "NSE:KESORAMIND-BE",
         "full_stock_name": "KESORAM INDUSTRIES LTD"
     },
     "NSE:KEYFINSERV-EQ": {
@@ -4240,8 +4684,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KIRLPNU-EQ",
         "full_stock_name": "KIRLOSKAR PNEUMATIC COM L"
     },
-    "NSE:KITEX-BE": {
-        "stock_name": "NSE:KITEX-BE",
+    "NSE:KITEX-EQ": {
+        "stock_name": "NSE:KITEX-EQ",
         "full_stock_name": "KITEX GARMENTS LTD"
     },
     "NSE:KKCL-EQ": {
@@ -4255,6 +4699,10 @@ export const totalstocks: TotalStocks = {
     "NSE:KMSUGAR-EQ": {
         "stock_name": "NSE:KMSUGAR-EQ",
         "full_stock_name": "K M SUGAR MILLS LTD"
+    },
+    "NSE:KNAGRI-EQ": {
+        "stock_name": "NSE:KNAGRI-EQ",
+        "full_stock_name": "KN AGRI RESOURCES LIMITED"
     },
     "NSE:KNRCON-EQ": {
         "stock_name": "NSE:KNRCON-EQ",
@@ -4272,8 +4720,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KOLTEPATIL-EQ",
         "full_stock_name": "KOLTE PATIL DEV. LTD."
     },
-    "NSE:KOPRAN-BE": {
-        "stock_name": "NSE:KOPRAN-BE",
+    "NSE:KOPRAN-EQ": {
+        "stock_name": "NSE:KOPRAN-EQ",
         "full_stock_name": "KOPRAN LTD"
     },
     "NSE:KOTAKBANK-EQ": {
@@ -4288,9 +4736,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KOTHARIPET-EQ",
         "full_stock_name": "KOTHARI PETROCHEM LTD"
     },
-    "NSE:KOTHARIPRO-BE": {
-        "stock_name": "NSE:KOTHARIPRO-BE",
-        "full_stock_name": "KOTHARI PRODUCTS"
+    "NSE:KOTHARIPRO-EQ": {
+        "stock_name": "NSE:KOTHARIPRO-EQ",
+        "full_stock_name": "KOTHARI PRODUCTS LTD"
     },
     "NSE:KPEL-EQ": {
         "stock_name": "NSE:KPEL-EQ",
@@ -4316,24 +4764,32 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KRBL-EQ",
         "full_stock_name": "KRBL LIMITED"
     },
-    "NSE:KREBSBIO-BE": {
-        "stock_name": "NSE:KREBSBIO-BE",
+    "NSE:KREBSBIO-EQ": {
+        "stock_name": "NSE:KREBSBIO-EQ",
         "full_stock_name": "KREBS BIOCHEMICALS & IND"
     },
-    "NSE:KRIDHANINF-BE": {
-        "stock_name": "NSE:KRIDHANINF-BE",
+    "NSE:KRIDHANINF-EQ": {
+        "stock_name": "NSE:KRIDHANINF-EQ",
         "full_stock_name": "KRIDHAN INFRA LIMITED"
     },
     "NSE:KRISHANA-EQ": {
         "stock_name": "NSE:KRISHANA-EQ",
         "full_stock_name": "KRISHANA PHOSCHEM LIMITED"
     },
+    "NSE:KRISHIVAL-EQ": {
+        "stock_name": "NSE:KRISHIVAL-EQ",
+        "full_stock_name": "KRISHIVAL FOODS LIMITED"
+    },
+    "NSE:KRISHNADEF-EQ": {
+        "stock_name": "NSE:KRISHNADEF-EQ",
+        "full_stock_name": "KRISHNA DEF AND ALD IND L"
+    },
     "NSE:KRITI-EQ": {
         "stock_name": "NSE:KRITI-EQ",
         "full_stock_name": "KRITI INDUSTRIES IND LTD"
     },
-    "NSE:KRITIKA-BE": {
-        "stock_name": "NSE:KRITIKA-BE",
+    "NSE:KRITIKA-EQ": {
+        "stock_name": "NSE:KRITIKA-EQ",
         "full_stock_name": "KRITIKA WIRES LIMITED"
     },
     "NSE:KRITINUT-EQ": {
@@ -4368,8 +4824,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:KSCL-EQ",
         "full_stock_name": "KAVERI SEED CO. LTD."
     },
-    "NSE:KSHITIJPOL-BE": {
-        "stock_name": "NSE:KSHITIJPOL-BE",
+    "NSE:KSHINTL-EQ": {
+        "stock_name": "NSE:KSHINTL-EQ",
+        "full_stock_name": "KSH INTERNATIONAL LIMITED"
+    },
+    "NSE:KSHITIJPOL-EQ": {
+        "stock_name": "NSE:KSHITIJPOL-EQ",
         "full_stock_name": "KSHITIJ POLYLINE LIMITED"
     },
     "NSE:KSL-EQ": {
@@ -4379,6 +4839,10 @@ export const totalstocks: TotalStocks = {
     "NSE:KSOLVES-EQ": {
         "stock_name": "NSE:KSOLVES-EQ",
         "full_stock_name": "KSOLVES INDIA LIMITED"
+    },
+    "NSE:KSR-BE": {
+        "stock_name": "NSE:KSR-BE",
+        "full_stock_name": "KSR FOOTWEAR LIMITED"
     },
     "NSE:KTKBANK-EQ": {
         "stock_name": "NSE:KTKBANK-EQ",
@@ -4396,20 +4860,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:LAKPRE-BZ",
         "full_stock_name": "LAKSHMI PRE SCRE LTD"
     },
-    "NSE:LAL-BE": {
-        "stock_name": "NSE:LAL-BE",
+    "NSE:LAL-EQ": {
+        "stock_name": "NSE:LAL-EQ",
         "full_stock_name": "LORENZINI APPARELS LTD"
     },
     "NSE:LALPATHLAB-EQ": {
         "stock_name": "NSE:LALPATHLAB-EQ",
         "full_stock_name": "DR. LAL PATH LABS LTD."
     },
-    "NSE:LAMBODHARA-BE": {
-        "stock_name": "NSE:LAMBODHARA-BE",
+    "NSE:LAMBODHARA-EQ": {
+        "stock_name": "NSE:LAMBODHARA-EQ",
         "full_stock_name": "LAMBODHARA TEXTILES LTD."
     },
-    "NSE:LANCORHOL-EQ": {
-        "stock_name": "NSE:LANCORHOL-EQ",
+    "NSE:LANCORHOL-BE": {
+        "stock_name": "NSE:LANCORHOL-BE",
         "full_stock_name": "LANCOR HOLDINGS LIMITED"
     },
     "NSE:LANDMARK-EQ": {
@@ -4444,13 +4908,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:LAXMIDENTL-EQ",
         "full_stock_name": "LAXMI DENTAL LIMITED"
     },
+    "NSE:LAXMIINDIA-EQ": {
+        "stock_name": "NSE:LAXMIINDIA-EQ",
+        "full_stock_name": "LAXMI INDIA FINANCE LTD"
+    },
     "NSE:LCCINFOTEC-BE": {
         "stock_name": "NSE:LCCINFOTEC-BE",
         "full_stock_name": "LCC INFOTECH LTD"
     },
+    "NSE:LEMERITE-EQ": {
+        "stock_name": "NSE:LEMERITE-EQ",
+        "full_stock_name": "LE MERITE EXPORTS LIMITED"
+    },
     "NSE:LEMONTREE-EQ": {
         "stock_name": "NSE:LEMONTREE-EQ",
         "full_stock_name": "LEMON TREE HOTELS LTD"
+    },
+    "NSE:LENSKART-EQ": {
+        "stock_name": "NSE:LENSKART-EQ",
+        "full_stock_name": "LENSKART SOLUTIONS LTD"
     },
     "NSE:LEXUS-EQ": {
         "stock_name": "NSE:LEXUS-EQ",
@@ -4464,8 +4940,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:LGBBROSLTD-EQ",
         "full_stock_name": "LG BALAKRISHNAN & BROS"
     },
-    "NSE:LGHL-BE": {
-        "stock_name": "NSE:LGHL-BE",
+    "NSE:LGEINDIA-EQ": {
+        "stock_name": "NSE:LGEINDIA-EQ",
+        "full_stock_name": "LG ELECTRONICS INDIA LTD"
+    },
+    "NSE:LGHL-EQ": {
+        "stock_name": "NSE:LGHL-EQ",
         "full_stock_name": "LAXMI GOLDORNA HOUSE LTD"
     },
     "NSE:LIBAS-EQ": {
@@ -4511,6 +4991,10 @@ export const totalstocks: TotalStocks = {
     "NSE:LINDEINDIA-EQ": {
         "stock_name": "NSE:LINDEINDIA-EQ",
         "full_stock_name": "LINDE INDIA LIMITED"
+    },
+    "NSE:LIQGRWBEES-EQ": {
+        "stock_name": "NSE:LIQGRWBEES-EQ",
+        "full_stock_name": "NIPPONAMC - LIQGRWBEES"
     },
     "NSE:LIQUID-EQ": {
         "stock_name": "NSE:LIQUID-EQ",
@@ -4562,15 +5046,19 @@ export const totalstocks: TotalStocks = {
     },
     "NSE:LODHA-EQ": {
         "stock_name": "NSE:LODHA-EQ",
-        "full_stock_name": "MACROTECH DEVELOPERS LTD"
+        "full_stock_name": "LODHA DEVELOPERS LIMITED"
     },
     "NSE:LOKESHMACH-EQ": {
         "stock_name": "NSE:LOKESHMACH-EQ",
         "full_stock_name": "LOKESH MACHINES LTD"
     },
-    "NSE:LORDSCHLO-BE": {
-        "stock_name": "NSE:LORDSCHLO-BE",
+    "NSE:LORDSCHLO-EQ": {
+        "stock_name": "NSE:LORDSCHLO-EQ",
         "full_stock_name": "LORDS CHLORO ALKALI LTD"
+    },
+    "NSE:LOTUSDEV-EQ": {
+        "stock_name": "NSE:LOTUSDEV-EQ",
+        "full_stock_name": "SRI LOTUS DEVLPRS N RTY L"
     },
     "NSE:LOTUSEYE-EQ": {
         "stock_name": "NSE:LOTUSEYE-EQ",
@@ -4588,12 +5076,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:LOWVOL1-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKLOVOL"
     },
-    "NSE:LOYALTEX-BE": {
-        "stock_name": "NSE:LOYALTEX-BE",
+    "NSE:LOYALTEX-EQ": {
+        "stock_name": "NSE:LOYALTEX-EQ",
         "full_stock_name": "LOYAL TEXTILE MILLS LTD"
     },
-    "NSE:LPDC-BE": {
-        "stock_name": "NSE:LPDC-BE",
+    "NSE:LPDC-EQ": {
+        "stock_name": "NSE:LPDC-EQ",
         "full_stock_name": "LANDMARK PR.DEV.CO.LTD"
     },
     "NSE:LT-EQ": {
@@ -4611,6 +5099,10 @@ export const totalstocks: TotalStocks = {
     "NSE:LTGILTBEES-EQ": {
         "stock_name": "NSE:LTGILTBEES-EQ",
         "full_stock_name": "NIP IND ETF LONGTERM GILT"
+    },
+    "NSE:LTGILTCASE-EQ": {
+        "stock_name": "NSE:LTGILTCASE-EQ",
+        "full_stock_name": "ZERODHAAMC - LTGILTCASE"
     },
     "NSE:LTIM-EQ": {
         "stock_name": "NSE:LTIM-EQ",
@@ -4700,8 +5192,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MAHASTEEL-BE",
         "full_stock_name": "MAHAMAYA STEEL INDS LTD"
     },
-    "NSE:MAHEPC-BE": {
-        "stock_name": "NSE:MAHEPC-BE",
+    "NSE:MAHEPC-EQ": {
+        "stock_name": "NSE:MAHEPC-EQ",
         "full_stock_name": "MAHINDRA EPC IRRIG LTD"
     },
     "NSE:MAHESHWARI-EQ": {
@@ -4748,12 +5240,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MAMATA-EQ",
         "full_stock_name": "MAMATA MACHINERY LIMITED"
     },
-    "NSE:MANAKALUCO-EQ": {
-        "stock_name": "NSE:MANAKALUCO-EQ",
+    "NSE:MANAKALUCO-BE": {
+        "stock_name": "NSE:MANAKALUCO-BE",
         "full_stock_name": "MANAK ALUMINIUM CO. LTD."
     },
-    "NSE:MANAKCOAT-BE": {
-        "stock_name": "NSE:MANAKCOAT-BE",
+    "NSE:MANAKCOAT-EQ": {
+        "stock_name": "NSE:MANAKCOAT-EQ",
         "full_stock_name": "MAN COAT METAL & IND LTD"
     },
     "NSE:MANAKSIA-EQ": {
@@ -4780,13 +5272,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MANCREDIT-EQ",
         "full_stock_name": "MANGAL CREDIT N FINCORP L"
     },
-    "NSE:MANGALAM-EQ": {
-        "stock_name": "NSE:MANGALAM-EQ",
+    "NSE:MANGALAM-BE": {
+        "stock_name": "NSE:MANGALAM-BE",
         "full_stock_name": "MANGALAM DRUG & CHEM LTD"
-    },
-    "NSE:MANGCHEFER-EQ": {
-        "stock_name": "NSE:MANGCHEFER-EQ",
-        "full_stock_name": "MANG.CHEM.FERT.LTD"
     },
     "NSE:MANGLMCEM-EQ": {
         "stock_name": "NSE:MANGLMCEM-EQ",
@@ -4804,8 +5292,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MANKIND-EQ",
         "full_stock_name": "MANKIND PHARMA LIMITED"
     },
-    "NSE:MANOMAY-EQ": {
-        "stock_name": "NSE:MANOMAY-EQ",
+    "NSE:MANOMAY-BE": {
+        "stock_name": "NSE:MANOMAY-BE",
         "full_stock_name": "MANOMAY TEX INDIA LTD"
     },
     "NSE:MANORAMA-EQ": {
@@ -4815,6 +5303,10 @@ export const totalstocks: TotalStocks = {
     "NSE:MANORG-EQ": {
         "stock_name": "NSE:MANORG-EQ",
         "full_stock_name": "MANGALAM ORGANICS LIMITED"
+    },
+    "NSE:MANUFGBEES-EQ": {
+        "stock_name": "NSE:MANUFGBEES-EQ",
+        "full_stock_name": "NIPPONAMC - MANUFGBEES"
     },
     "NSE:MANUGRAPH-EQ": {
         "stock_name": "NSE:MANUGRAPH-EQ",
@@ -4840,17 +5332,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MARICO-EQ",
         "full_stock_name": "MARICO LIMITED"
     },
-    "NSE:MARINE-BE": {
-        "stock_name": "NSE:MARINE-BE",
+    "NSE:MARINE-EQ": {
+        "stock_name": "NSE:MARINE-EQ",
         "full_stock_name": "MARINE ELECTRICAL (I) LTD"
+    },
+    "NSE:MARKOLINES-EQ": {
+        "stock_name": "NSE:MARKOLINES-EQ",
+        "full_stock_name": "MARKOLINES PAVEMENT TEC L"
     },
     "NSE:MARKSANS-EQ": {
         "stock_name": "NSE:MARKSANS-EQ",
         "full_stock_name": "MARKSANS PHARMA LIMITED"
-    },
-    "NSE:MARSHALL-BE": {
-        "stock_name": "NSE:MARSHALL-BE",
-        "full_stock_name": "MARSHALL MACHINES LTD"
     },
     "NSE:MARUTI-EQ": {
         "stock_name": "NSE:MARUTI-EQ",
@@ -4860,8 +5352,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MASFIN-EQ",
         "full_stock_name": "MAS FINANCIAL SERV LTD"
     },
-    "NSE:MASKINVEST-BE": {
-        "stock_name": "NSE:MASKINVEST-BE",
+    "NSE:MASKINVEST-EQ": {
+        "stock_name": "NSE:MASKINVEST-EQ",
         "full_stock_name": "MASK INVESTMENTS LIMITED"
     },
     "NSE:MASPTOP50-EQ": {
@@ -4900,8 +5392,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MAYURUNIQ-EQ",
         "full_stock_name": "MAYUR UNIQUOTERS LTD"
     },
-    "NSE:MAZDA-BE": {
-        "stock_name": "NSE:MAZDA-BE",
+    "NSE:MAZDA-EQ": {
+        "stock_name": "NSE:MAZDA-EQ",
         "full_stock_name": "MAZDA LIMITED"
     },
     "NSE:MAZDOCK-EQ": {
@@ -4912,9 +5404,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MBAPL-EQ",
         "full_stock_name": "MADHYA BHARAT AGRO P. LTD"
     },
-    "NSE:MBECL-BZ": {
-        "stock_name": "NSE:MBECL-BZ",
-        "full_stock_name": "MCNALLY BH. ENG. CO.LTD"
+    "NSE:MBEL-EQ": {
+        "stock_name": "NSE:MBEL-EQ",
+        "full_stock_name": "M AND B ENGINEERING LTD"
     },
     "NSE:MBLINFRA-EQ": {
         "stock_name": "NSE:MBLINFRA-EQ",
@@ -4924,8 +5416,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MCL-BE",
         "full_stock_name": "MADHAV COPPER LIMITED"
     },
-    "NSE:MCLEODRUSS-BE": {
-        "stock_name": "NSE:MCLEODRUSS-BE",
+    "NSE:MCLEODRUSS-EQ": {
+        "stock_name": "NSE:MCLEODRUSS-EQ",
         "full_stock_name": "MCLEOD RUSSEL INDIA LTD."
     },
     "NSE:MCLOUD-EQ": {
@@ -4956,13 +5448,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MEDPLUS-EQ",
         "full_stock_name": "MEDPLUS HEALTH SERV LTD"
     },
+    "NSE:MEESHO-EQ": {
+        "stock_name": "NSE:MEESHO-EQ",
+        "full_stock_name": "MEESHO LIMITED"
+    },
     "NSE:MEGASOFT-BE": {
         "stock_name": "NSE:MEGASOFT-BE",
         "full_stock_name": "MEGASOFT LTD"
     },
-    "NSE:MEGASTAR-EQ": {
-        "stock_name": "NSE:MEGASTAR-EQ",
+    "NSE:MEGASTAR-BE": {
+        "stock_name": "NSE:MEGASTAR-BE",
         "full_stock_name": "MEGASTAR FOODS LIMITED"
+    },
+    "NSE:MEIL-EQ": {
+        "stock_name": "NSE:MEIL-EQ",
+        "full_stock_name": "MANGAL ELECTRICAL IND L"
     },
     "NSE:MENONBE-EQ": {
         "stock_name": "NSE:MENONBE-EQ",
@@ -4984,8 +5484,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:METROPOLIS-EQ",
         "full_stock_name": "METROPOLIS HEALTHCARE LTD"
     },
-    "NSE:MFML-BE": {
-        "stock_name": "NSE:MFML-BE",
+    "NSE:MFML-EQ": {
+        "stock_name": "NSE:MFML-EQ",
         "full_stock_name": "MAHALAXMI FABRIC MILLS LT"
     },
     "NSE:MFSL-EQ": {
@@ -5000,8 +5500,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MGL-EQ",
         "full_stock_name": "MAHANAGAR GAS LTD."
     },
-    "NSE:MHLXMIRU-BE": {
-        "stock_name": "NSE:MHLXMIRU-BE",
+    "NSE:MHLXMIRU-EQ": {
+        "stock_name": "NSE:MHLXMIRU-EQ",
         "full_stock_name": "MAHALAXMI RUBTECH LIMITED"
     },
     "NSE:MHRIL-EQ": {
@@ -5011,6 +5511,10 @@ export const totalstocks: TotalStocks = {
     "NSE:MICEL-EQ": {
         "stock_name": "NSE:MICEL-EQ",
         "full_stock_name": "MIC ELECTRONICS LTD"
+    },
+    "NSE:MID150-EQ": {
+        "stock_name": "NSE:MID150-EQ",
+        "full_stock_name": "KOTAKMAMC - MID150"
     },
     "NSE:MID150BEES-EQ": {
         "stock_name": "NSE:MID150BEES-EQ",
@@ -5024,6 +5528,14 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MIDCAP-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKMID50"
     },
+    "NSE:MIDCAPADD-EQ": {
+        "stock_name": "NSE:MIDCAPADD-EQ",
+        "full_stock_name": "DSPAMC - MIDCAPADD"
+    },
+    "NSE:MIDCAPBETA-EQ": {
+        "stock_name": "NSE:MIDCAPBETA-EQ",
+        "full_stock_name": "UTIAMC-MIDCAPBETA"
+    },
     "NSE:MIDHANI-EQ": {
         "stock_name": "NSE:MIDHANI-EQ",
         "full_stock_name": "MISHRA DHATU NIGAM LTD"
@@ -5035,6 +5547,10 @@ export const totalstocks: TotalStocks = {
     "NSE:MIDSMALL-EQ": {
         "stock_name": "NSE:MIDSMALL-EQ",
         "full_stock_name": "MIRAEAMC - MIDSMALL"
+    },
+    "NSE:MIDWESTLTD-EQ": {
+        "stock_name": "NSE:MIDWESTLTD-EQ",
+        "full_stock_name": "MIDWEST LIMITED"
     },
     "NSE:MINDACORP-EQ": {
         "stock_name": "NSE:MINDACORP-EQ",
@@ -5080,25 +5596,49 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MNC-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKMNC"
     },
+    "NSE:MOALPHA50-EQ": {
+        "stock_name": "NSE:MOALPHA50-EQ",
+        "full_stock_name": "MOTILALAMC - MOALPHA50"
+    },
     "NSE:MOBIKWIK-EQ": {
         "stock_name": "NSE:MOBIKWIK-EQ",
         "full_stock_name": "ONE MOBIKWIK SYSTEMS LTD"
+    },
+    "NSE:MOCAPITAL-EQ": {
+        "stock_name": "NSE:MOCAPITAL-EQ",
+        "full_stock_name": "MOTILALAMC - MOCAPITAL"
     },
     "NSE:MODEFENCE-EQ": {
         "stock_name": "NSE:MODEFENCE-EQ",
         "full_stock_name": "MOTILALAMC - MODEFENCE"
     },
+    "NSE:MODINATUR-EQ": {
+        "stock_name": "NSE:MODINATUR-EQ",
+        "full_stock_name": "MODI NATURALS LIMITED"
+    },
     "NSE:MODIRUBBER-EQ": {
         "stock_name": "NSE:MODIRUBBER-EQ",
         "full_stock_name": "MODI RUBBER LTD"
+    },
+    "NSE:MODIS-EQ": {
+        "stock_name": "NSE:MODIS-EQ",
+        "full_stock_name": "MODIS NAVNIRMAN LTD"
     },
     "NSE:MODISONLTD-EQ": {
         "stock_name": "NSE:MODISONLTD-EQ",
         "full_stock_name": "MODISON LIMITED"
     },
-    "NSE:MODTHREAD-BE": {
-        "stock_name": "NSE:MODTHREAD-BE",
+    "NSE:MODTHREAD-EQ": {
+        "stock_name": "NSE:MODTHREAD-EQ",
         "full_stock_name": "MODERN THREADS INDIA LTD"
+    },
+    "NSE:MOENERGY-EQ": {
+        "stock_name": "NSE:MOENERGY-EQ",
+        "full_stock_name": "MOTILALAMC - MOENERGY"
+    },
+    "NSE:MOGOLD-EQ": {
+        "stock_name": "NSE:MOGOLD-EQ",
+        "full_stock_name": "MOTILALAMC - MOGOLD"
     },
     "NSE:MOGSEC-EQ": {
         "stock_name": "NSE:MOGSEC-EQ",
@@ -5108,13 +5648,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MOHEALTH-EQ",
         "full_stock_name": "MOTILALAMC - MOHEALTH"
     },
-    "NSE:MOHITIND-BE": {
-        "stock_name": "NSE:MOHITIND-BE",
+    "NSE:MOHITIND-EQ": {
+        "stock_name": "NSE:MOHITIND-EQ",
         "full_stock_name": "MOHIT INDUSTRIES LTD"
     },
     "NSE:MOIL-EQ": {
         "stock_name": "NSE:MOIL-EQ",
         "full_stock_name": "MOIL LIMITED"
+    },
+    "NSE:MOINFRA-EQ": {
+        "stock_name": "NSE:MOINFRA-EQ",
+        "full_stock_name": "MOTILALAMC - MOINFRA"
+    },
+    "NSE:MOIPO-EQ": {
+        "stock_name": "NSE:MOIPO-EQ",
+        "full_stock_name": "MOTILALAMC - MOIPO"
     },
     "NSE:MOKSH-EQ": {
         "stock_name": "NSE:MOKSH-EQ",
@@ -5148,9 +5696,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MOMENTUM-EQ",
         "full_stock_name": "BIRLASLAMC - MOMENTUM"
     },
+    "NSE:MOMENTUM30-EQ": {
+        "stock_name": "NSE:MOMENTUM30-EQ",
+        "full_stock_name": "KOTAKMAMC - MOMENTUM30"
+    },
     "NSE:MOMENTUM50-EQ": {
         "stock_name": "NSE:MOMENTUM50-EQ",
         "full_stock_name": "MOTILALAMC - MOMENTUM50"
+    },
+    "NSE:MOMGF-EQ": {
+        "stock_name": "NSE:MOMGF-EQ",
+        "full_stock_name": "MOTILALAMC - MOMGF"
+    },
+    "NSE:MOMIDMTM-EQ": {
+        "stock_name": "NSE:MOMIDMTM-EQ",
+        "full_stock_name": "MOTILALAMC - MOMIDMTM"
+    },
+    "NSE:MOMNC-EQ": {
+        "stock_name": "NSE:MOMNC-EQ",
+        "full_stock_name": "MOTILALAMC - MOMNC"
     },
     "NSE:MOMOMENTUM-EQ": {
         "stock_name": "NSE:MOMOMENTUM-EQ",
@@ -5160,9 +5724,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MON100-EQ",
         "full_stock_name": "MOTILAL OS NASDAQ100 ETF"
     },
+    "NSE:MON50EQUAL-EQ": {
+        "stock_name": "NSE:MON50EQUAL-EQ",
+        "full_stock_name": "MOTILALAMC - MON50EQUAL"
+    },
     "NSE:MONARCH-EQ": {
         "stock_name": "NSE:MONARCH-EQ",
         "full_stock_name": "MONARCH NETWORTH CAP LTD"
+    },
+    "NSE:MONEXT50-EQ": {
+        "stock_name": "NSE:MONEXT50-EQ",
+        "full_stock_name": "MOTILALAMC - MONEXT50"
+    },
+    "NSE:MONEYBOXX-EQ": {
+        "stock_name": "NSE:MONEYBOXX-EQ",
+        "full_stock_name": "MONEYBOXX FINANCE LIMITED"
     },
     "NSE:MONQ50-EQ": {
         "stock_name": "NSE:MONQ50-EQ",
@@ -5172,13 +5748,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MONTECARLO-EQ",
         "full_stock_name": "MONTE CARLO FASHIONS LTD."
     },
+    "NSE:MOPSE-EQ": {
+        "stock_name": "NSE:MOPSE-EQ",
+        "full_stock_name": "MOTILALAMC - MOPSE"
+    },
     "NSE:MOQUALITY-EQ": {
         "stock_name": "NSE:MOQUALITY-EQ",
         "full_stock_name": "MOTILALAMC - MOQUALITY"
-    },
-    "NSE:MORARJEE-BZ": {
-        "stock_name": "NSE:MORARJEE-BZ",
-        "full_stock_name": "MORARJEE TEXTILES LIMITED"
     },
     "NSE:MOREALTY-EQ": {
         "stock_name": "NSE:MOREALTY-EQ",
@@ -5191,6 +5767,14 @@ export const totalstocks: TotalStocks = {
     "NSE:MOSCHIP-EQ": {
         "stock_name": "NSE:MOSCHIP-EQ",
         "full_stock_name": "MOSCHIP TECHNOLOGIES LTD"
+    },
+    "NSE:MOSERVICE-EQ": {
+        "stock_name": "NSE:MOSERVICE-EQ",
+        "full_stock_name": "MOTILALAMC - MOSERVICE"
+    },
+    "NSE:MOSILVER-EQ": {
+        "stock_name": "NSE:MOSILVER-EQ",
+        "full_stock_name": "MOTILALAMC - MOSILVER"
     },
     "NSE:MOSMALL250-EQ": {
         "stock_name": "NSE:MOSMALL250-EQ",
@@ -5212,6 +5796,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MOTOGENFIN-EQ",
         "full_stock_name": "MOTOR & GENERAL FINANCE L"
     },
+    "NSE:MOTOUR-EQ": {
+        "stock_name": "NSE:MOTOUR-EQ",
+        "full_stock_name": "MOTILALAMC - MOTOUR"
+    },
     "NSE:MOVALUE-EQ": {
         "stock_name": "NSE:MOVALUE-EQ",
         "full_stock_name": "MOTILALAMC - MOVALUE"
@@ -5232,6 +5820,14 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MRPL-EQ",
         "full_stock_name": "MRPL"
     },
+    "NSE:MSCIADD-EQ": {
+        "stock_name": "NSE:MSCIADD-EQ",
+        "full_stock_name": "DSPAMC - MSCIADD"
+    },
+    "NSE:MSCIINDIA-EQ": {
+        "stock_name": "NSE:MSCIINDIA-EQ",
+        "full_stock_name": "KOTAKMAMC - MSCIINDIA"
+    },
     "NSE:MSPL-EQ": {
         "stock_name": "NSE:MSPL-EQ",
         "full_stock_name": "MSP STEEL & POWER LTD."
@@ -5247,6 +5843,10 @@ export const totalstocks: TotalStocks = {
     "NSE:MTARTECH-EQ": {
         "stock_name": "NSE:MTARTECH-EQ",
         "full_stock_name": "MTAR TECHNOLOGIES LIMITED"
+    },
+    "NSE:MTEDUCARE-BE": {
+        "stock_name": "NSE:MTEDUCARE-BE",
+        "full_stock_name": "MT EDUCARE LTD"
     },
     "NSE:MTNL-EQ": {
         "stock_name": "NSE:MTNL-EQ",
@@ -5304,6 +5904,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:MVGJL-EQ",
         "full_stock_name": "MANOJ VAIBHAV GEM N JEW L"
     },
+    "NSE:MWL-EQ": {
+        "stock_name": "NSE:MWL-EQ",
+        "full_stock_name": "MANGALAM WORLDWIDE LTD"
+    },
     "NSE:NACLIND-EQ": {
         "stock_name": "NSE:NACLIND-EQ",
         "full_stock_name": "NACL INDUSTRIES LIMITED"
@@ -5312,8 +5916,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NAGAFERT-EQ",
         "full_stock_name": "NAGARJUN FERT AND CHE LTD"
     },
-    "NSE:NAGREEKCAP-BE": {
-        "stock_name": "NSE:NAGREEKCAP-BE",
+    "NSE:NAGREEKCAP-EQ": {
+        "stock_name": "NSE:NAGREEKCAP-EQ",
         "full_stock_name": "NAGREEKA CAP & INFR.LTD"
     },
     "NSE:NAGREEKEXP-EQ": {
@@ -5336,8 +5940,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NAHARSPING-EQ",
         "full_stock_name": "NAHAR SPINNING MILLS LTD."
     },
-    "NSE:NARMADA-BE": {
-        "stock_name": "NSE:NARMADA-BE",
+    "NSE:NARMADA-EQ": {
+        "stock_name": "NSE:NARMADA-EQ",
         "full_stock_name": "NARMADA AGROBASE LIMITED"
     },
     "NSE:NATCAPSUQ-EQ": {
@@ -5388,8 +5992,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NBCC-EQ",
         "full_stock_name": "NBCC (INDIA) LIMITED"
     },
-    "NSE:NBIFIN-BE": {
-        "stock_name": "NSE:NBIFIN-BE",
+    "NSE:NBIFIN-EQ": {
+        "stock_name": "NSE:NBIFIN-EQ",
         "full_stock_name": "N.B.I. IND. FIN. CO. LTD"
     },
     "NSE:NCC-EQ": {
@@ -5400,8 +6004,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NCLIND-EQ",
         "full_stock_name": "NCL INDUSTRIES LIMITED"
     },
-    "NSE:NDGL-BE": {
-        "stock_name": "NSE:NDGL-BE",
+    "NSE:NDGL-EQ": {
+        "stock_name": "NSE:NDGL-EQ",
         "full_stock_name": "NAGA DHUNSERI GROUP LTD"
     },
     "NSE:NDL-EQ": {
@@ -5424,8 +6028,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NECCLTD-EQ",
         "full_stock_name": "NORTH EAST CARRY CORP LTD"
     },
-    "NSE:NECLIFE-EQ": {
-        "stock_name": "NSE:NECLIFE-EQ",
+    "NSE:NECLIFE-BE": {
+        "stock_name": "NSE:NECLIFE-BE",
         "full_stock_name": "NECTAR LIFESCIENCES LTD."
     },
     "NSE:NELCAST-EQ": {
@@ -5439,6 +6043,10 @@ export const totalstocks: TotalStocks = {
     "NSE:NEOGEN-EQ": {
         "stock_name": "NSE:NEOGEN-EQ",
         "full_stock_name": "NEOGEN CHEMICALS LIMITED"
+    },
+    "NSE:NEPHROPLUS-EQ": {
+        "stock_name": "NSE:NEPHROPLUS-EQ",
+        "full_stock_name": "NEPHROCARE HEALTH SERV L"
     },
     "NSE:NESCO-EQ": {
         "stock_name": "NSE:NESCO-EQ",
@@ -5472,8 +6080,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NEXT50-EQ",
         "full_stock_name": "MIRAEAMC - MANXT50"
     },
-    "NSE:NEXTMEDIA-BE": {
-        "stock_name": "NSE:NEXTMEDIA-BE",
+    "NSE:NEXT50ADD-EQ": {
+        "stock_name": "NSE:NEXT50ADD-EQ",
+        "full_stock_name": "DSPAMC - NEXT50ADD"
+    },
+    "NSE:NEXT50BETA-EQ": {
+        "stock_name": "NSE:NEXT50BETA-EQ",
+        "full_stock_name": "UTIAMC-NEXT50BETA"
+    },
+    "NSE:NEXTMEDIA-EQ": {
+        "stock_name": "NSE:NEXTMEDIA-EQ",
         "full_stock_name": "NEXT MEDIAWORKS LIMITED"
     },
     "NSE:NFL-EQ": {
@@ -5504,17 +6120,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NIBE-EQ",
         "full_stock_name": "NIBE LIMITED"
     },
-    "NSE:NIBL-BE": {
-        "stock_name": "NSE:NIBL-BE",
+    "NSE:NIBL-EQ": {
+        "stock_name": "NSE:NIBL-EQ",
         "full_stock_name": "NRB INDUS. BEARINGS LTD."
     },
     "NSE:NIF100BEES-EQ": {
         "stock_name": "NSE:NIF100BEES-EQ",
         "full_stock_name": "NIP IND ETF NIFTY 100"
-    },
-    "NSE:NIFMID150-EQ": {
-        "stock_name": "NSE:NIFMID150-EQ",
-        "full_stock_name": "UTIAMC - NIFMID150"
     },
     "NSE:NIITLTD-EQ": {
         "stock_name": "NSE:NIITLTD-EQ",
@@ -5528,8 +6140,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NILAINFRA-EQ",
         "full_stock_name": "NILA INFRASTRUCTURES LTD"
     },
-    "NSE:NILASPACES-BE": {
-        "stock_name": "NSE:NILASPACES-BE",
+    "NSE:NILASPACES-EQ": {
+        "stock_name": "NSE:NILASPACES-EQ",
         "full_stock_name": "NILA SPACES LIMITED"
     },
     "NSE:NILKAMAL-EQ": {
@@ -5552,8 +6164,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NIRAJISPAT-EQ",
         "full_stock_name": "NIRAJ ISPAT IND LTD"
     },
-    "NSE:NITCO-BE": {
-        "stock_name": "NSE:NITCO-BE",
+    "NSE:NITCO-EQ": {
+        "stock_name": "NSE:NITCO-EQ",
         "full_stock_name": "NITCO LIMITED"
     },
     "NSE:NITINSPIN-EQ": {
@@ -5568,9 +6180,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NIVABUPA-EQ",
         "full_stock_name": "NIVA BUPA HEALTH INS CO L"
     },
-    "NSE:NKIND-BE": {
-        "stock_name": "NSE:NKIND-BE",
-        "full_stock_name": "NKINDUSTRIES LTD"
+    "NSE:NKIND-EQ": {
+        "stock_name": "NSE:NKIND-EQ",
+        "full_stock_name": "NK INDUSTRIES LTD"
     },
     "NSE:NLCINDIA-EQ": {
         "stock_name": "NSE:NLCINDIA-EQ",
@@ -5584,8 +6196,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NOCIL-EQ",
         "full_stock_name": "NOCIL LIMITED"
     },
-    "NSE:NOIDATOLL-BE": {
-        "stock_name": "NSE:NOIDATOLL-BE",
+    "NSE:NOIDATOLL-EQ": {
+        "stock_name": "NSE:NOIDATOLL-EQ",
         "full_stock_name": "NOIDA TOLL BRIDGE CO LTD"
     },
     "NSE:NORBTEAEXP-BE": {
@@ -5603,6 +6215,10 @@ export const totalstocks: TotalStocks = {
     "NSE:NPBET-EQ": {
         "stock_name": "NSE:NPBET-EQ",
         "full_stock_name": "TATAAML - NPBET"
+    },
+    "NSE:NPST-EQ": {
+        "stock_name": "NSE:NPST-EQ",
+        "full_stock_name": "NETWORK PEOPLE SRV TECH L"
     },
     "NSE:NRAIL-EQ": {
         "stock_name": "NSE:NRAIL-EQ",
@@ -5636,8 +6252,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:NUCLEUS-EQ",
         "full_stock_name": "NUCLEUS SOFTWARE EXPORTS"
     },
-    "NSE:NURECA-BE": {
-        "stock_name": "NSE:NURECA-BE",
+    "NSE:NURECA-EQ": {
+        "stock_name": "NSE:NURECA-EQ",
         "full_stock_name": "NURECA LIMITED"
     },
     "NSE:NUVAMA-EQ": {
@@ -5672,16 +6288,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:OBEROIRLTY-EQ",
         "full_stock_name": "OBEROI REALTY LIMITED"
     },
-    "NSE:OCCL-EQ": {
-        "stock_name": "NSE:OCCL-EQ",
-        "full_stock_name": "ORIENTAL CARBN & CHEM LTD"
-    },
     "NSE:OCCLLTD-EQ": {
         "stock_name": "NSE:OCCLLTD-EQ",
         "full_stock_name": "OCCL LIMITED"
     },
-    "NSE:ODIGMA-BE": {
-        "stock_name": "NSE:ODIGMA-BE",
+    "NSE:ODIGMA-EQ": {
+        "stock_name": "NSE:ODIGMA-EQ",
         "full_stock_name": "ODIGMA CONSULTANCY SOL L"
     },
     "NSE:OFSS-EQ": {
@@ -5712,12 +6324,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:OMAXE-EQ",
         "full_stock_name": "OMAXE LIMITED"
     },
+    "NSE:OMFREIGHT-EQ": {
+        "stock_name": "NSE:OMFREIGHT-EQ",
+        "full_stock_name": "OM FREIGHT FORWARDERS LTD"
+    },
     "NSE:OMINFRAL-EQ": {
         "stock_name": "NSE:OMINFRAL-EQ",
         "full_stock_name": "OM INFRA LIMITED"
     },
-    "NSE:ONELIFECAP-EQ": {
-        "stock_name": "NSE:ONELIFECAP-EQ",
+    "NSE:OMKARCHEM-BZ": {
+        "stock_name": "NSE:OMKARCHEM-BZ",
+        "full_stock_name": "OMKAR SPL CHEM LTD"
+    },
+    "NSE:ONELIFECAP-BE": {
+        "stock_name": "NSE:ONELIFECAP-BE",
         "full_stock_name": "ONELIFE CAP ADVISORS LTD"
     },
     "NSE:ONEPOINT-EQ": {
@@ -5744,8 +6364,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:OPTIEMUS-EQ",
         "full_stock_name": "OPTIEMUS INFRACOM LTD"
     },
-    "NSE:ORBTEXP-BE": {
-        "stock_name": "NSE:ORBTEXP-BE",
+    "NSE:ORBTEXP-EQ": {
+        "stock_name": "NSE:ORBTEXP-EQ",
         "full_stock_name": "ORBIT EXPORTS LIMITED"
     },
     "NSE:ORCHASP-EQ": {
@@ -5756,8 +6376,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ORCHPHARMA-EQ",
         "full_stock_name": "ORCHID PHARMA LIMITED"
     },
-    "NSE:ORICONENT-EQ": {
-        "stock_name": "NSE:ORICONENT-EQ",
+    "NSE:ORICONENT-BE": {
+        "stock_name": "NSE:ORICONENT-BE",
         "full_stock_name": "ORICON ENTERPRISES LTD"
     },
     "NSE:ORIENTALTL-EQ": {
@@ -5784,8 +6404,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ORIENTHOT-EQ",
         "full_stock_name": "ORIENT HOTELS LTD"
     },
-    "NSE:ORIENTLTD-BE": {
-        "stock_name": "NSE:ORIENTLTD-BE",
+    "NSE:ORIENTLTD-EQ": {
+        "stock_name": "NSE:ORIENTLTD-EQ",
         "full_stock_name": "ORIENT PRESS LIMITED"
     },
     "NSE:ORIENTPPR-EQ": {
@@ -5800,16 +6420,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ORISSAMINE-EQ",
         "full_stock_name": "ORISSA MIN DEV CO LTD"
     },
-    "NSE:ORTEL-BZ": {
-        "stock_name": "NSE:ORTEL-BZ",
-        "full_stock_name": "ORTEL COMMUNICATIONS LTD"
+    "NSE:ORKLAINDIA-EQ": {
+        "stock_name": "NSE:ORKLAINDIA-EQ",
+        "full_stock_name": "ORKLA INDIA LIMITED"
     },
-    "NSE:ORTINGLOBE-EQ": {
-        "stock_name": "NSE:ORTINGLOBE-EQ",
+    "NSE:ORTINGLOBE-BE": {
+        "stock_name": "NSE:ORTINGLOBE-BE",
         "full_stock_name": "ORTIN GLOBAL LIMITED"
     },
-    "NSE:OSIAHYPER-BE": {
-        "stock_name": "NSE:OSIAHYPER-BE",
+    "NSE:OSIAHYPER-EQ": {
+        "stock_name": "NSE:OSIAHYPER-EQ",
         "full_stock_name": "OSIA HYPER RETAIL LIMITED"
     },
     "NSE:OSWALAGRO-EQ": {
@@ -5820,9 +6440,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:OSWALGREEN-EQ",
         "full_stock_name": "OSWAL GREENTECH LIMITED"
     },
-    "NSE:OSWALSEEDS-BE": {
-        "stock_name": "NSE:OSWALSEEDS-BE",
+    "NSE:OSWALPUMPS-EQ": {
+        "stock_name": "NSE:OSWALPUMPS-EQ",
+        "full_stock_name": "OSWAL PUMPS LIMITED"
+    },
+    "NSE:OSWALSEEDS-EQ": {
+        "stock_name": "NSE:OSWALSEEDS-EQ",
         "full_stock_name": "SHREEOSWAL S AND CHE LTD"
+    },
+    "NSE:PACEDIGITK-EQ": {
+        "stock_name": "NSE:PACEDIGITK-EQ",
+        "full_stock_name": "PACE DIGITEK LIMITED"
     },
     "NSE:PAGEIND-EQ": {
         "stock_name": "NSE:PAGEIND-EQ",
@@ -5840,16 +6468,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PALASHSECU-EQ",
         "full_stock_name": "PALASH SECURITIES LTD"
     },
-    "NSE:PALREDTEC-BE": {
-        "stock_name": "NSE:PALREDTEC-BE",
+    "NSE:PALREDTEC-EQ": {
+        "stock_name": "NSE:PALREDTEC-EQ",
         "full_stock_name": "PALRED TECHNOLOGIES LTD"
     },
     "NSE:PANACEABIO-EQ": {
         "stock_name": "NSE:PANACEABIO-EQ",
         "full_stock_name": "PANACEA BIOTEC LTD"
     },
-    "NSE:PANACHE-BE": {
-        "stock_name": "NSE:PANACHE-BE",
+    "NSE:PANACHE-EQ": {
+        "stock_name": "NSE:PANACHE-EQ",
         "full_stock_name": "PANACHE DIGILIFE LIMITED"
     },
     "NSE:PANAMAPET-EQ": {
@@ -5860,8 +6488,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PANSARI-BE",
         "full_stock_name": "PANSARI DEVELOPERS LTD"
     },
-    "NSE:PAR-BE": {
-        "stock_name": "NSE:PAR-BE",
+    "NSE:PAR-EQ": {
+        "stock_name": "NSE:PAR-EQ",
         "full_stock_name": "PAR DRUGS AND CHEM LTD"
     },
     "NSE:PARACABLES-EQ": {
@@ -5884,13 +6512,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PARASPETRO-EQ",
         "full_stock_name": "PARAS PETROFILS LTD."
     },
+    "NSE:PARKHOSPS-EQ": {
+        "stock_name": "NSE:PARKHOSPS-EQ",
+        "full_stock_name": "PARK MEDI WORLD LIMITED"
+    },
     "NSE:PARKHOTELS-EQ": {
         "stock_name": "NSE:PARKHOTELS-EQ",
         "full_stock_name": "PARKHOTELS"
     },
-    "NSE:PARSVNATH-BE": {
-        "stock_name": "NSE:PARSVNATH-BE",
+    "NSE:PARSVNATH-EQ": {
+        "stock_name": "NSE:PARSVNATH-EQ",
         "full_stock_name": "PARSVNATH DEVELOPER LTD"
+    },
+    "NSE:PASHUPATI-EQ": {
+        "stock_name": "NSE:PASHUPATI-EQ",
+        "full_stock_name": "PASHUPATI COTSPIN LIMITED"
     },
     "NSE:PASUPTAC-EQ": {
         "stock_name": "NSE:PASUPTAC-EQ",
@@ -5904,9 +6540,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PATELENG-EQ",
         "full_stock_name": "PATEL ENGINEERING LTD."
     },
+    "NSE:PATELRMART-EQ": {
+        "stock_name": "NSE:PATELRMART-EQ",
+        "full_stock_name": "PATEL RETAIL LIMITED"
+    },
     "NSE:PATINTLOG-EQ": {
         "stock_name": "NSE:PATINTLOG-EQ",
         "full_stock_name": "PATEL INT. LOG. LTD"
+    },
+    "NSE:PAUSHAKLTD-EQ": {
+        "stock_name": "NSE:PAUSHAKLTD-EQ",
+        "full_stock_name": "PAUSHAK LIMITED"
     },
     "NSE:PAVNAIND-EQ": {
         "stock_name": "NSE:PAVNAIND-EQ",
@@ -5935,10 +6579,6 @@ export const totalstocks: TotalStocks = {
     "NSE:PEARLPOLY-EQ": {
         "stock_name": "NSE:PEARLPOLY-EQ",
         "full_stock_name": "PEARL POLYMERS LTD"
-    },
-    "NSE:PEL-EQ": {
-        "stock_name": "NSE:PEL-EQ",
-        "full_stock_name": "PIRAMAL ENTERPRISES LTD"
     },
     "NSE:PENIND-EQ": {
         "stock_name": "NSE:PENIND-EQ",
@@ -5996,12 +6636,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PHOENIXLTD-EQ",
         "full_stock_name": "THE PHOENIX MILLS LTD"
     },
+    "NSE:PICCADIL-EQ": {
+        "stock_name": "NSE:PICCADIL-EQ",
+        "full_stock_name": "PICCADILY AGRO INDUSTRI L"
+    },
     "NSE:PIDILITIND-EQ": {
         "stock_name": "NSE:PIDILITIND-EQ",
         "full_stock_name": "PIDILITE INDUSTRIES LTD"
     },
-    "NSE:PIGL-BE": {
-        "stock_name": "NSE:PIGL-BE",
+    "NSE:PIGL-EQ": {
+        "stock_name": "NSE:PIGL-EQ",
         "full_stock_name": "POWER INSTRUMENT (G) LTD"
     },
     "NSE:PIIND-EQ": {
@@ -6016,9 +6660,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PILITA-EQ",
         "full_stock_name": "PIL ITALICA LIFESTYLE LTD"
     },
-    "NSE:PIONEEREMB-BE": {
-        "stock_name": "NSE:PIONEEREMB-BE",
+    "NSE:PINELABS-EQ": {
+        "stock_name": "NSE:PINELABS-EQ",
+        "full_stock_name": "PINE LABS LIMITED"
+    },
+    "NSE:PIONEEREMB-EQ": {
+        "stock_name": "NSE:PIONEEREMB-EQ",
         "full_stock_name": "PIONEER EMBROIDERIES LTD"
+    },
+    "NSE:PIRAMALFIN-EQ": {
+        "stock_name": "NSE:PIRAMALFIN-EQ",
+        "full_stock_name": "PIRAMAL FINANCE LIMITED"
     },
     "NSE:PITTIENG-EQ": {
         "stock_name": "NSE:PITTIENG-EQ",
@@ -6028,8 +6680,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PIXTRANS-EQ",
         "full_stock_name": "PIX TRANSMISSIONS LIMITED"
     },
-    "NSE:PKTEA-BE": {
-        "stock_name": "NSE:PKTEA-BE",
+    "NSE:PKTEA-EQ": {
+        "stock_name": "NSE:PKTEA-EQ",
         "full_stock_name": "THE P K TEA PROD CO LTD"
     },
     "NSE:PLASTIBLEN-EQ": {
@@ -6056,8 +6708,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PNBHOUSING-EQ",
         "full_stock_name": "PNB HOUSING FIN LTD."
     },
-    "NSE:PNC-BE": {
-        "stock_name": "NSE:PNC-BE",
+    "NSE:PNC-EQ": {
+        "stock_name": "NSE:PNC-EQ",
         "full_stock_name": "PRITISH NANDY COMMUNICATI"
     },
     "NSE:PNCINFRA-EQ": {
@@ -6128,8 +6780,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PPLPHARMA-EQ",
         "full_stock_name": "PIRAMAL PHARMA LIMITED"
     },
-    "NSE:PRAENG-EQ": {
-        "stock_name": "NSE:PRAENG-EQ",
+    "NSE:PRABHA-EQ": {
+        "stock_name": "NSE:PRABHA-EQ",
+        "full_stock_name": "PRABHA ENERGY LIMITED"
+    },
+    "NSE:PRAENG-BE": {
+        "stock_name": "NSE:PRAENG-BE",
         "full_stock_name": "PRAJAY ENG. SYN. LTD."
     },
     "NSE:PRAJIND-EQ": {
@@ -6140,20 +6796,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PRAKASH-EQ",
         "full_stock_name": "PRAKASH INDUSTRIES LTD"
     },
-    "NSE:PRAKASHSTL-EQ": {
-        "stock_name": "NSE:PRAKASHSTL-EQ",
+    "NSE:PRAKASHSTL-BE": {
+        "stock_name": "NSE:PRAKASHSTL-BE",
         "full_stock_name": "PRAKASH STEELAGE LTD"
     },
-    "NSE:PRAXIS-BE": {
-        "stock_name": "NSE:PRAXIS-BE",
+    "NSE:PRAXIS-EQ": {
+        "stock_name": "NSE:PRAXIS-EQ",
         "full_stock_name": "PRAXIS HOME RETAIL LTD"
     },
     "NSE:PRECAM-EQ": {
         "stock_name": "NSE:PRECAM-EQ",
         "full_stock_name": "PRECISION CAMSHAFTS LTD."
     },
-    "NSE:PRECOT-BE": {
-        "stock_name": "NSE:PRECOT-BE",
+    "NSE:PRECOT-EQ": {
+        "stock_name": "NSE:PRECOT-EQ",
         "full_stock_name": "PRECOT LIMITED"
     },
     "NSE:PRECWIRE-EQ": {
@@ -6172,9 +6828,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PREMIERENE-EQ",
         "full_stock_name": "PREMIER ENERGIES LIMITED"
     },
-    "NSE:PREMIERPOL-BE": {
-        "stock_name": "NSE:PREMIERPOL-BE",
-        "full_stock_name": "PREMIER POLYFILMS LTD"
+    "NSE:PREMIERPOL-EQ": {
+        "stock_name": "NSE:PREMIERPOL-EQ",
+        "full_stock_name": "PREMIER POLYFILM LTD"
     },
     "NSE:PRESTIGE-EQ": {
         "stock_name": "NSE:PRESTIGE-EQ",
@@ -6187,6 +6843,10 @@ export const totalstocks: TotalStocks = {
     "NSE:PRIMESECU-EQ": {
         "stock_name": "NSE:PRIMESECU-EQ",
         "full_stock_name": "PRIME SECURITIES LIMITED"
+    },
+    "NSE:PRIMO-EQ": {
+        "stock_name": "NSE:PRIMO-EQ",
+        "full_stock_name": "PRIMO CHEMICALS LIMITED"
     },
     "NSE:PRINCEPIPE-EQ": {
         "stock_name": "NSE:PRINCEPIPE-EQ",
@@ -6204,6 +6864,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PRIVISCL-EQ",
         "full_stock_name": "PRIVI SPECIALITY CHE LTD"
     },
+    "NSE:PROSTARM-EQ": {
+        "stock_name": "NSE:PROSTARM-EQ",
+        "full_stock_name": "PROSTARM INFO SYSTEMS LTD"
+    },
     "NSE:PROTEAN-EQ": {
         "stock_name": "NSE:PROTEAN-EQ",
         "full_stock_name": "PROTEAN EGOV TECHNO LTD"
@@ -6220,8 +6884,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PRUDENT-EQ",
         "full_stock_name": "PRUDENT CORP ADV SER LTD"
     },
-    "NSE:PRUDMOULI-BE": {
-        "stock_name": "NSE:PRUDMOULI-BE",
+    "NSE:PRUDMOULI-EQ": {
+        "stock_name": "NSE:PRUDMOULI-EQ",
         "full_stock_name": "PRUDENTIAL SUGAR CORPORAT"
     },
     "NSE:PSB-EQ": {
@@ -6280,6 +6944,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:PVTBANKADD-EQ",
         "full_stock_name": "DSPAMC - DSPPVBKETF"
     },
+    "NSE:PWL-EQ": {
+        "stock_name": "NSE:PWL-EQ",
+        "full_stock_name": "PHYSICSWALLAH LIMITED"
+    },
     "NSE:PYRAMID-EQ": {
         "stock_name": "NSE:PYRAMID-EQ",
         "full_stock_name": "PYRAMID TECHNOPLAST LTD"
@@ -6288,9 +6956,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:QGOLDHALF-EQ",
         "full_stock_name": "QUANTUM GOLD FUND"
     },
+    "NSE:QPOWER-EQ": {
+        "stock_name": "NSE:QPOWER-EQ",
+        "full_stock_name": "QUALITY POWER ELEC EQUP L"
+    },
     "NSE:QUADFUTURE-EQ": {
         "stock_name": "NSE:QUADFUTURE-EQ",
         "full_stock_name": "QUADRANT FUTURE TEK LTD"
+    },
+    "NSE:QUALITY30-EQ": {
+        "stock_name": "NSE:QUALITY30-EQ",
+        "full_stock_name": "KOTAKMAMC - QUALITY30"
     },
     "NSE:QUESS-EQ": {
         "stock_name": "NSE:QUESS-EQ",
@@ -6308,8 +6984,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RACLGEAR-EQ",
         "full_stock_name": "RACL GEARTECH LIMITED"
     },
-    "NSE:RADAAN-BE": {
-        "stock_name": "NSE:RADAAN-BE",
+    "NSE:RADAAN-EQ": {
+        "stock_name": "NSE:RADAAN-EQ",
         "full_stock_name": "RADAAN MEDIAWORKS (I) LTD"
     },
     "NSE:RADHIKAJWE-EQ": {
@@ -6340,13 +7016,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RAINBOW-EQ",
         "full_stock_name": "RAINBOW CHILDRENS MED LTD"
     },
-    "NSE:RAJESHEXPO-EQ": {
-        "stock_name": "NSE:RAJESHEXPO-EQ",
+    "NSE:RAJESHEXPO-BZ": {
+        "stock_name": "NSE:RAJESHEXPO-BZ",
         "full_stock_name": "RAJESH EXPORTS LTD"
     },
     "NSE:RAJMET-EQ": {
         "stock_name": "NSE:RAJMET-EQ",
         "full_stock_name": "RAJNANDINI METAL LIMITED"
+    },
+    "NSE:RAJOOENG-EQ": {
+        "stock_name": "NSE:RAJOOENG-EQ",
+        "full_stock_name": "RAJOO ENGINEERS LIMITED"
     },
     "NSE:RAJRATAN-EQ": {
         "stock_name": "NSE:RAJRATAN-EQ",
@@ -6360,8 +7040,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RAJSREESUG-EQ",
         "full_stock_name": "RAJSHREE SUGAR & CHEMICAL"
     },
-    "NSE:RAJTV-BE": {
-        "stock_name": "NSE:RAJTV-BE",
+    "NSE:RAJTV-EQ": {
+        "stock_name": "NSE:RAJTV-EQ",
         "full_stock_name": "RAJ TV NETWORK LTD"
     },
     "NSE:RALLIS-EQ": {
@@ -6404,10 +7084,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RANASUG-EQ",
         "full_stock_name": "RANA SUGARS LTD."
     },
-    "NSE:RANEENGINE-EQ": {
-        "stock_name": "NSE:RANEENGINE-EQ",
-        "full_stock_name": "RANE ENG VALVE LTD"
-    },
     "NSE:RANEHOLDIN-EQ": {
         "stock_name": "NSE:RANEHOLDIN-EQ",
         "full_stock_name": "RANE HOLDINGS LIMITED"
@@ -6432,13 +7108,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RAYMONDLSL-EQ",
         "full_stock_name": "RAYMOND LIFESTYLE LIMITED"
     },
+    "NSE:RAYMONDREL-EQ": {
+        "stock_name": "NSE:RAYMONDREL-EQ",
+        "full_stock_name": "RAYMOND REALTY LIMITED"
+    },
     "NSE:RBA-EQ": {
         "stock_name": "NSE:RBA-EQ",
         "full_stock_name": "RESTAURANT BRAND ASIA LTD"
-    },
-    "NSE:RBL-EQ": {
-        "stock_name": "NSE:RBL-EQ",
-        "full_stock_name": "RANE BRAKE LINING LTD"
     },
     "NSE:RBLBANK-EQ": {
         "stock_name": "NSE:RBLBANK-EQ",
@@ -6451,6 +7127,10 @@ export const totalstocks: TotalStocks = {
     "NSE:RCF-EQ": {
         "stock_name": "NSE:RCF-EQ",
         "full_stock_name": "RASHTRIYA CHEMICALS & FER"
+    },
+    "NSE:RCOM-BE": {
+        "stock_name": "NSE:RCOM-BE",
+        "full_stock_name": "RELIANCE COMMUNICATIONS L"
     },
     "NSE:RECLTD-EQ": {
         "stock_name": "NSE:RECLTD-EQ",
@@ -6468,9 +7148,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:REFEX-EQ",
         "full_stock_name": "REFEX INDUSTRIES LIMITED"
     },
-    "NSE:REGENCERAM-BE": {
-        "stock_name": "NSE:REGENCERAM-BE",
-        "full_stock_name": "REGENCYCERAMICS-LTD"
+    "NSE:REGAAL-EQ": {
+        "stock_name": "NSE:REGAAL-EQ",
+        "full_stock_name": "REGAAL RESOURCES LIMITED"
+    },
+    "NSE:REGENCERAM-EQ": {
+        "stock_name": "NSE:REGENCERAM-EQ",
+        "full_stock_name": "REGENCY CERAMICS LTD."
     },
     "NSE:RELAXO-EQ": {
         "stock_name": "NSE:RELAXO-EQ",
@@ -6480,8 +7164,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RELCHEMQ-EQ",
         "full_stock_name": "RELIANCE CHEMOTEX IND LTD"
     },
-    "NSE:RELIABLE-EQ": {
-        "stock_name": "NSE:RELIABLE-EQ",
+    "NSE:RELIABLE-BE": {
+        "stock_name": "NSE:RELIABLE-BE",
         "full_stock_name": "RELIABLE DATA SERVICE LTD"
     },
     "NSE:RELIANCE-EQ": {
@@ -6491,10 +7175,6 @@ export const totalstocks: TotalStocks = {
     "NSE:RELIGARE-EQ": {
         "stock_name": "NSE:RELIGARE-EQ",
         "full_stock_name": "RELIGARE ENTER. LTD."
-    },
-    "NSE:RELINFRA-EQ": {
-        "stock_name": "NSE:RELINFRA-EQ",
-        "full_stock_name": "RELIANCE INFRASTRUCTU LTD"
     },
     "NSE:RELTD-EQ": {
         "stock_name": "NSE:RELTD-EQ",
@@ -6512,8 +7192,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:REPCOHOME-EQ",
         "full_stock_name": "REPCO HOME FINANCE LTD"
     },
-    "NSE:REPL-BE": {
-        "stock_name": "NSE:REPL-BE",
+    "NSE:REPL-EQ": {
+        "stock_name": "NSE:REPL-EQ",
         "full_stock_name": "RUDRABHISHEK ENTERP LTD"
     },
     "NSE:REPRO-EQ": {
@@ -6532,16 +7212,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RGL-EQ",
         "full_stock_name": "RENAISSANCE GLOBAL LTD"
     },
-    "NSE:RHFL-BE": {
-        "stock_name": "NSE:RHFL-BE",
+    "NSE:RHETAN-EQ": {
+        "stock_name": "NSE:RHETAN-EQ",
+        "full_stock_name": "RHETAN TMT LIMITED"
+    },
+    "NSE:RHFL-BZ": {
+        "stock_name": "NSE:RHFL-BZ",
         "full_stock_name": "RELIANCE HOME FINANCE LTD"
     },
     "NSE:RHIM-EQ": {
         "stock_name": "NSE:RHIM-EQ",
         "full_stock_name": "RHI MAGNESITA INDIA LTD"
     },
-    "NSE:RHL-BE": {
-        "stock_name": "NSE:RHL-BE",
+    "NSE:RHL-EQ": {
+        "stock_name": "NSE:RHL-EQ",
         "full_stock_name": "ROBUST HOTELS LIMITED"
     },
     "NSE:RICOAUTO-EQ": {
@@ -6580,9 +7264,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RKSWAMY-EQ",
         "full_stock_name": "R K SWAMY LIMITED"
     },
+    "NSE:RMDRIP-EQ": {
+        "stock_name": "NSE:RMDRIP-EQ",
+        "full_stock_name": "R M DRIP & SPRINK SYS LTD"
+    },
     "NSE:RML-EQ": {
         "stock_name": "NSE:RML-EQ",
         "full_stock_name": "RANE (MADRAS) LIMITED"
+    },
+    "NSE:RNBDENIMS-EQ": {
+        "stock_name": "NSE:RNBDENIMS-EQ",
+        "full_stock_name": "R&B DENIMS LIMITED"
     },
     "NSE:ROHLTD-EQ": {
         "stock_name": "NSE:ROHLTD-EQ",
@@ -6604,8 +7296,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:ROSSARI-EQ",
         "full_stock_name": "ROSSARI BIOTECH LIMITED"
     },
-    "NSE:ROSSELLIND-BE": {
-        "stock_name": "NSE:ROSSELLIND-BE",
+    "NSE:ROSSELLIND-EQ": {
+        "stock_name": "NSE:ROSSELLIND-EQ",
         "full_stock_name": "ROSSELL INDIA LIMITED"
     },
     "NSE:ROSSTECH-EQ": {
@@ -6632,9 +7324,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RPOWER-EQ",
         "full_stock_name": "RELIANCE POWER LTD."
     },
-    "NSE:RPPINFRA-BE": {
-        "stock_name": "NSE:RPPINFRA-BE",
-        "full_stock_name": "R.P.P INFRA PROJECTS LTD."
+    "NSE:RPPINFRA-EQ": {
+        "stock_name": "NSE:RPPINFRA-EQ",
+        "full_stock_name": "R.P.P INFRA PROJECTS LTD"
     },
     "NSE:RPPL-EQ": {
         "stock_name": "NSE:RPPL-EQ",
@@ -6652,8 +7344,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RRKABEL-EQ",
         "full_stock_name": "R R KABEL LIMITED"
     },
-    "NSE:RSSOFTWARE-BE": {
-        "stock_name": "NSE:RSSOFTWARE-BE",
+    "NSE:RSSOFTWARE-EQ": {
+        "stock_name": "NSE:RSSOFTWARE-EQ",
         "full_stock_name": "R. S. SOFTWARE (INDIA) LI"
     },
     "NSE:RSWM-EQ": {
@@ -6676,6 +7368,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RUBFILA-EQ",
         "full_stock_name": "RUBFILA INTERNATIONAL LTD"
     },
+    "NSE:RUBICON-EQ": {
+        "stock_name": "NSE:RUBICON-EQ",
+        "full_stock_name": "RUBICON RESEARCH LIMITED"
+    },
     "NSE:RUBYMILLS-EQ": {
         "stock_name": "NSE:RUBYMILLS-EQ",
         "full_stock_name": "THE RUBY MILLS LTD"
@@ -6687,6 +7383,10 @@ export const totalstocks: TotalStocks = {
     "NSE:RUCHIRA-EQ": {
         "stock_name": "NSE:RUCHIRA-EQ",
         "full_stock_name": "RUCHIRA PAPERS LIMITED"
+    },
+    "NSE:RUDRA-EQ": {
+        "stock_name": "NSE:RUDRA-EQ",
+        "full_stock_name": "RUDRA GLOBAL INFRA PROD L"
     },
     "NSE:RUPA-EQ": {
         "stock_name": "NSE:RUPA-EQ",
@@ -6700,8 +7400,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:RUSTOMJEE-EQ",
         "full_stock_name": "KEYSTONE REALTORS LIMITED"
     },
-    "NSE:RVHL-BE": {
-        "stock_name": "NSE:RVHL-BE",
+    "NSE:RVHL-EQ": {
+        "stock_name": "NSE:RVHL-EQ",
         "full_stock_name": "RAVINDER HEIGHTS LIMITED"
     },
     "NSE:RVNL-EQ": {
@@ -6715,6 +7415,10 @@ export const totalstocks: TotalStocks = {
     "NSE:S&SPOWER-EQ": {
         "stock_name": "NSE:S&SPOWER-EQ",
         "full_stock_name": "S&S POWER SWITCHGEARS LTD"
+    },
+    "NSE:SAATVIKGL-EQ": {
+        "stock_name": "NSE:SAATVIKGL-EQ",
+        "full_stock_name": "SAATVIK GREEN ENERGY LTD"
     },
     "NSE:SABEVENTS-BE": {
         "stock_name": "NSE:SABEVENTS-BE",
@@ -6732,8 +7436,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SADBHIN-EQ",
         "full_stock_name": "SADBHAV INFRA PROJ LTD."
     },
-    "NSE:SADHNANIQ-BE": {
-        "stock_name": "NSE:SADHNANIQ-BE",
+    "NSE:SADHNANIQ-EQ": {
+        "stock_name": "NSE:SADHNANIQ-EQ",
         "full_stock_name": "SADHANA NITROCHEM LIMITED"
     },
     "NSE:SAFARI-EQ": {
@@ -6748,13 +7452,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SAGCEM-EQ",
         "full_stock_name": "SAGAR CEMENTS LIMITED"
     },
-    "NSE:SAGILITY-BE": {
-        "stock_name": "NSE:SAGILITY-BE",
-        "full_stock_name": "SAGILITY INDIA LIMITED"
-    },
-    "NSE:SAH-EQ": {
-        "stock_name": "NSE:SAH-EQ",
-        "full_stock_name": "SAH POLYMERS LIMITED"
+    "NSE:SAGILITY-EQ": {
+        "stock_name": "NSE:SAGILITY-EQ",
+        "full_stock_name": "SAGILITY LIMITED"
     },
     "NSE:SAHYADRI-EQ": {
         "stock_name": "NSE:SAHYADRI-EQ",
@@ -6780,8 +7480,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SAKSOFT-EQ",
         "full_stock_name": "SAKSOFT LIMITED"
     },
-    "NSE:SAKUMA-BE": {
-        "stock_name": "NSE:SAKUMA-BE",
+    "NSE:SAKUMA-EQ": {
+        "stock_name": "NSE:SAKUMA-EQ",
         "full_stock_name": "SAKUMA EXPORTS LIMITED"
     },
     "NSE:SALASAR-EQ": {
@@ -6792,8 +7492,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SALONA-EQ",
         "full_stock_name": "SALONA COTSPIN LTD."
     },
-    "NSE:SALSTEEL-EQ": {
-        "stock_name": "NSE:SALSTEEL-EQ",
+    "NSE:SALSTEEL-BE": {
+        "stock_name": "NSE:SALSTEEL-BE",
         "full_stock_name": "S.A.L. STEEL LTD."
     },
     "NSE:SALZERELEC-EQ": {
@@ -6804,6 +7504,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SAMBHAAV-BE",
         "full_stock_name": "SAMBHAAV MEDIA LTD"
     },
+    "NSE:SAMBHV-EQ": {
+        "stock_name": "NSE:SAMBHV-EQ",
+        "full_stock_name": "SAMBHV STEEL TUBES LTD"
+    },
     "NSE:SAMHI-EQ": {
         "stock_name": "NSE:SAMHI-EQ",
         "full_stock_name": "SAMHI HOTELS LIMITED"
@@ -6812,8 +7516,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SAMMAANCAP-EQ",
         "full_stock_name": "SAMMAAN CAPITAL LIMITED"
     },
-    "NSE:SAMPANN-BE": {
-        "stock_name": "NSE:SAMPANN-BE",
+    "NSE:SAMPANN-EQ": {
+        "stock_name": "NSE:SAMPANN-EQ",
         "full_stock_name": "SAMPANN UTPADAN INDIA LTD"
     },
     "NSE:SANATHAN-EQ": {
@@ -6884,8 +7588,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SAREGAMA-EQ",
         "full_stock_name": "SAREGAMA INDIA LIMITED"
     },
-    "NSE:SARLAPOLY-BE": {
-        "stock_name": "NSE:SARLAPOLY-BE",
+    "NSE:SARLAPOLY-EQ": {
+        "stock_name": "NSE:SARLAPOLY-EQ",
         "full_stock_name": "SARLA PERF. FIBERS LTD"
     },
     "NSE:SARVESHWAR-EQ": {
@@ -6908,10 +7612,6 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SATIN-EQ",
         "full_stock_name": "SATIN CREDIT NET LTD"
     },
-    "NSE:SATINDLTD-EQ": {
-        "stock_name": "NSE:SATINDLTD-EQ",
-        "full_stock_name": "SAT INDUSTRIES LIMITED"
-    },
     "NSE:SAURASHCEM-EQ": {
         "stock_name": "NSE:SAURASHCEM-EQ",
         "full_stock_name": "SAURASHTRA CEMENT LIMITED"
@@ -6931,6 +7631,10 @@ export const totalstocks: TotalStocks = {
     "NSE:SBGLP-EQ": {
         "stock_name": "NSE:SBGLP-EQ",
         "full_stock_name": "SURATWWALA BUS GROUP LTD"
+    },
+    "NSE:SBIBPB-EQ": {
+        "stock_name": "NSE:SBIBPB-EQ",
+        "full_stock_name": "SBIAMC - SBIBPB"
     },
     "NSE:SBICARD-EQ": {
         "stock_name": "NSE:SBICARD-EQ",
@@ -6968,6 +7672,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SCILAL-EQ",
         "full_stock_name": "SHIPPING CORP OF ILA LTD"
     },
+    "NSE:SCODATUBES-EQ": {
+        "stock_name": "NSE:SCODATUBES-EQ",
+        "full_stock_name": "SCODA TUBES LIMITED"
+    },
     "NSE:SCPL-EQ": {
         "stock_name": "NSE:SCPL-EQ",
         "full_stock_name": "SHEETAL COOL PRODUCTS LTD"
@@ -6988,25 +7696,25 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SECMARK-EQ",
         "full_stock_name": "SECMARK CONSULTANCY LTD"
     },
-    "NSE:SECURKLOUD-EQ": {
-        "stock_name": "NSE:SECURKLOUD-EQ",
+    "NSE:SECURKLOUD-BE": {
+        "stock_name": "NSE:SECURKLOUD-BE",
         "full_stock_name": "SECUREKLOUD TECH LIMITED"
     },
     "NSE:SEJALLTD-EQ": {
         "stock_name": "NSE:SEJALLTD-EQ",
         "full_stock_name": "SEJAL GLASS LIMITED"
     },
-    "NSE:SELAN-EQ": {
-        "stock_name": "NSE:SELAN-EQ",
-        "full_stock_name": "SELAN EXPLO. TECH LTD"
+    "NSE:SELECTIPO-EQ": {
+        "stock_name": "NSE:SELECTIPO-EQ",
+        "full_stock_name": "MIRAEAMC - SELECTIPO"
     },
-    "NSE:SELMC-EQ": {
-        "stock_name": "NSE:SELMC-EQ",
+    "NSE:SELMC-BE": {
+        "stock_name": "NSE:SELMC-BE",
         "full_stock_name": "SEL MANUFACTURING CO LTD"
     },
-    "NSE:SEMAC-BE": {
-        "stock_name": "NSE:SEMAC-BE",
-        "full_stock_name": "SEMAC CONSULTANTS LIMITED"
+    "NSE:SEMAC-EQ": {
+        "stock_name": "NSE:SEMAC-EQ",
+        "full_stock_name": "SEMAC CONSTRUCTION LTD"
     },
     "NSE:SENCO-EQ": {
         "stock_name": "NSE:SENCO-EQ",
@@ -7020,13 +7728,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SENSEXADD-EQ",
         "full_stock_name": "DSPAMC - DSPSENXETF"
     },
+    "NSE:SENSEXBETA-EQ": {
+        "stock_name": "NSE:SENSEXBETA-EQ",
+        "full_stock_name": "UTIAMC-SENSEXBETA"
+    },
     "NSE:SEPC-EQ": {
         "stock_name": "NSE:SEPC-EQ",
         "full_stock_name": "SEPC LIMITED"
-    },
-    "NSE:SEQUENT-EQ": {
-        "stock_name": "NSE:SEQUENT-EQ",
-        "full_stock_name": "SEQUENT SCIENTIFIC LTD."
     },
     "NSE:SERVOTECH-EQ": {
         "stock_name": "NSE:SERVOTECH-EQ",
@@ -7036,29 +7744,45 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SESHAPAPER-EQ",
         "full_stock_name": "SESHASAYEE PAPER & BOARDS"
     },
-    "NSE:SETCO-BE": {
-        "stock_name": "NSE:SETCO-BE",
+    "NSE:SETCO-EQ": {
+        "stock_name": "NSE:SETCO-EQ",
         "full_stock_name": "SETCO AUTOMOTIVE LTD"
+    },
+    "NSE:SETL-EQ": {
+        "stock_name": "NSE:SETL-EQ",
+        "full_stock_name": "STANDARD ENGNG TCNLGY LTD"
     },
     "NSE:SETUINFRA-BZ": {
         "stock_name": "NSE:SETUINFRA-BZ",
         "full_stock_name": "SETUBANDHAN INFRA LTD"
     },
+    "NSE:SEYAIND-BE": {
+        "stock_name": "NSE:SEYAIND-BE",
+        "full_stock_name": "SEYA INDUSTRIES LIMITED"
+    },
     "NSE:SFL-EQ": {
         "stock_name": "NSE:SFL-EQ",
         "full_stock_name": "SHEELA FOAM LIMITED"
     },
-    "NSE:SGIL-BE": {
-        "stock_name": "NSE:SGIL-BE",
+    "NSE:SGFIN-EQ": {
+        "stock_name": "NSE:SGFIN-EQ",
+        "full_stock_name": "SG FINSERVE LIMITED"
+    },
+    "NSE:SGIL-EQ": {
+        "stock_name": "NSE:SGIL-EQ",
         "full_stock_name": "SYNERGY GREEN IND. LTD"
     },
     "NSE:SGL-EQ": {
         "stock_name": "NSE:SGL-EQ",
         "full_stock_name": "STL GLOBAL LIMITED"
     },
-    "NSE:SGLTL-EQ": {
-        "stock_name": "NSE:SGLTL-EQ",
-        "full_stock_name": "STANDARD GLASS LIN TECH L"
+    "NSE:SGMART-EQ": {
+        "stock_name": "NSE:SGMART-EQ",
+        "full_stock_name": "SG MART LIMITED"
+    },
+    "NSE:SHADOWFAX-EQ": {
+        "stock_name": "NSE:SHADOWFAX-EQ",
+        "full_stock_name": "SHADOWFAX TECHNOLOGIES L"
     },
     "NSE:SHAH-EQ": {
         "stock_name": "NSE:SHAH-EQ",
@@ -7068,12 +7792,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHAHALLOYS-EQ",
         "full_stock_name": "SHAH ALLOYS LIMITED"
     },
-    "NSE:SHAILY-BE": {
-        "stock_name": "NSE:SHAILY-BE",
+    "NSE:SHAILY-EQ": {
+        "stock_name": "NSE:SHAILY-EQ",
         "full_stock_name": "SHAILY ENG PLASTICS LTD"
     },
-    "NSE:SHAKTIPUMP-BE": {
-        "stock_name": "NSE:SHAKTIPUMP-BE",
+    "NSE:SHAKTIPUMP-EQ": {
+        "stock_name": "NSE:SHAKTIPUMP-EQ",
         "full_stock_name": "SHAKTI PUMPS (I) LTD"
     },
     "NSE:SHALBY-EQ": {
@@ -7096,6 +7820,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHANTIGEAR-EQ",
         "full_stock_name": "SHANTHI GEARS LTD"
     },
+    "NSE:SHANTIGOLD-EQ": {
+        "stock_name": "NSE:SHANTIGOLD-EQ",
+        "full_stock_name": "SHANTI GOLD INTERNATION L"
+    },
     "NSE:SHARDACROP-EQ": {
         "stock_name": "NSE:SHARDACROP-EQ",
         "full_stock_name": "SHARDA CROPCHEM LTD."
@@ -7112,13 +7840,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHARIABEES-EQ",
         "full_stock_name": "NIP IND ETF SHARIAH BEES"
     },
-    "NSE:SHEKHAWATI-BE": {
-        "stock_name": "NSE:SHEKHAWATI-BE",
+    "NSE:SHEKHAWATI-EQ": {
+        "stock_name": "NSE:SHEKHAWATI-EQ",
         "full_stock_name": "SHEKHAWATI INDUSTRIES LTD"
     },
     "NSE:SHEMAROO-EQ": {
         "stock_name": "NSE:SHEMAROO-EQ",
         "full_stock_name": "SHEMAROO ENTER. LTD."
+    },
+    "NSE:SHILCTECH-EQ": {
+        "stock_name": "NSE:SHILCTECH-EQ",
+        "full_stock_name": "SHILCHAR TECHNOLOGIES LTD"
     },
     "NSE:SHILPAMED-EQ": {
         "stock_name": "NSE:SHILPAMED-EQ",
@@ -7140,6 +7872,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHIVATEX-EQ",
         "full_stock_name": "SHIVA TEXYARN LIMITED"
     },
+    "NSE:SHIVAUM-EQ": {
+        "stock_name": "NSE:SHIVAUM-EQ",
+        "full_stock_name": "SHIV AUM STEELS LIMITED"
+    },
     "NSE:SHK-EQ": {
         "stock_name": "NSE:SHK-EQ",
         "full_stock_name": "S H KELKAR AND CO. LTD."
@@ -7148,8 +7884,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHOPERSTOP-EQ",
         "full_stock_name": "SHOPPERS STOP LIMITED"
     },
-    "NSE:SHRADHA-BE": {
-        "stock_name": "NSE:SHRADHA-BE",
+    "NSE:SHRADHA-EQ": {
+        "stock_name": "NSE:SHRADHA-EQ",
         "full_stock_name": "SHRADHA INFRAPROJECTS LTD"
     },
     "NSE:SHREDIGCEM-EQ": {
@@ -7160,21 +7896,29 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHREECEM-EQ",
         "full_stock_name": "SHREE CEMENT LIMITED"
     },
+    "NSE:SHREEJISPG-EQ": {
+        "stock_name": "NSE:SHREEJISPG-EQ",
+        "full_stock_name": "SHREEJI SHIPPING GLOBAL L"
+    },
     "NSE:SHREEPUSHK-EQ": {
         "stock_name": "NSE:SHREEPUSHK-EQ",
         "full_stock_name": "SHRE PUSH CHEM & FERT LTD"
     },
-    "NSE:SHREERAMA-BE": {
-        "stock_name": "NSE:SHREERAMA-BE",
+    "NSE:SHREERAMA-EQ": {
+        "stock_name": "NSE:SHREERAMA-EQ",
         "full_stock_name": "SHREE RAMA MULTI TECH LTD"
     },
-    "NSE:SHRENIK-EQ": {
-        "stock_name": "NSE:SHRENIK-EQ",
+    "NSE:SHRENIK-BZ": {
+        "stock_name": "NSE:SHRENIK-BZ",
         "full_stock_name": "SHRENIK LIMITED"
     },
     "NSE:SHREYANIND-EQ": {
         "stock_name": "NSE:SHREYANIND-EQ",
         "full_stock_name": "SHREYANS INDUSTRIES LTD"
+    },
+    "NSE:SHRINGARMS-EQ": {
+        "stock_name": "NSE:SHRINGARMS-EQ",
+        "full_stock_name": "SHRINGAR HOU OF MANGALS L"
     },
     "NSE:SHRIPISTON-EQ": {
         "stock_name": "NSE:SHRIPISTON-EQ",
@@ -7188,16 +7932,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SHRIRAMPPS-EQ",
         "full_stock_name": "SHRIRAM PROPERTIES LTD"
     },
-    "NSE:SHYAMCENT-EQ": {
-        "stock_name": "NSE:SHYAMCENT-EQ",
+    "NSE:SHYAMCENT-BE": {
+        "stock_name": "NSE:SHYAMCENT-BE",
         "full_stock_name": "SHYAM CENTURY FERROUS LTD"
     },
     "NSE:SHYAMMETL-EQ": {
         "stock_name": "NSE:SHYAMMETL-EQ",
         "full_stock_name": "SHYAM METALICS AND ENGY L"
     },
-    "NSE:SHYAMTEL-BE": {
-        "stock_name": "NSE:SHYAMTEL-BE",
+    "NSE:SHYAMTEL-EQ": {
+        "stock_name": "NSE:SHYAMTEL-EQ",
         "full_stock_name": "SHYAM TELECOM LIMITED"
     },
     "NSE:SICALLOG-BE": {
@@ -7224,12 +7968,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SIGNATURE-EQ",
         "full_stock_name": "SIGNATUREGLOBAL INDIA LTD"
     },
-    "NSE:SIGNPOST-BE": {
-        "stock_name": "NSE:SIGNPOST-BE",
+    "NSE:SIGNPOST-EQ": {
+        "stock_name": "NSE:SIGNPOST-EQ",
         "full_stock_name": "SIGNPOST INDIA LIMITED"
     },
-    "NSE:SIKKO-EQ": {
-        "stock_name": "NSE:SIKKO-EQ",
+    "NSE:SIKKO-BE": {
+        "stock_name": "NSE:SIKKO-BE",
         "full_stock_name": "SIKKO INDUSTRIES LIMITED"
     },
     "NSE:SIL-EQ": {
@@ -7244,8 +7988,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SILINV-EQ",
         "full_stock_name": "SIL INVESTMENTS LIMITED"
     },
-    "NSE:SILLYMONKS-EQ": {
-        "stock_name": "NSE:SILLYMONKS-EQ",
+    "NSE:SILLYMONKS-BE": {
+        "stock_name": "NSE:SILLYMONKS-BE",
         "full_stock_name": "SILLY MONKS ENTERTAIN LTD"
     },
     "NSE:SILVER-EQ": {
@@ -7256,24 +8000,44 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SILVER1-EQ",
         "full_stock_name": "KOTAKMAMC - KOTAKSILVE"
     },
+    "NSE:SILVER360-EQ": {
+        "stock_name": "NSE:SILVER360-EQ",
+        "full_stock_name": "360ONEAMC - SILVER360"
+    },
     "NSE:SILVERADD-EQ": {
         "stock_name": "NSE:SILVERADD-EQ",
         "full_stock_name": "DSPAMC - DSPSILVETF"
+    },
+    "NSE:SILVERAG-EQ": {
+        "stock_name": "NSE:SILVERAG-EQ",
+        "full_stock_name": "MIRAEAMC - MASILVER"
     },
     "NSE:SILVERBEES-EQ": {
         "stock_name": "NSE:SILVERBEES-EQ",
         "full_stock_name": "NIPPONAMC - NETFSILVER"
     },
+    "NSE:SILVERBETA-EQ": {
+        "stock_name": "NSE:SILVERBETA-EQ",
+        "full_stock_name": "UTIAMC-SILVERBETA"
+    },
+    "NSE:SILVERBND-EQ": {
+        "stock_name": "NSE:SILVERBND-EQ",
+        "full_stock_name": "BANDHANAMC - SILVERBND"
+    },
+    "NSE:SILVERCASE-EQ": {
+        "stock_name": "NSE:SILVERCASE-EQ",
+        "full_stock_name": "ZERODHAAMC - SILVERCASE"
+    },
     "NSE:SILVERTUC-EQ": {
         "stock_name": "NSE:SILVERTUC-EQ",
         "full_stock_name": "SILVER TOUCH TECHNO LTD"
     },
-    "NSE:SIMBHALS-BE": {
-        "stock_name": "NSE:SIMBHALS-BE",
+    "NSE:SIMBHALS-BZ": {
+        "stock_name": "NSE:SIMBHALS-BZ",
         "full_stock_name": "SIMBHAOLI SUGARS LTD."
     },
-    "NSE:SIMPLEXINF-BE": {
-        "stock_name": "NSE:SIMPLEXINF-BE",
+    "NSE:SIMPLEXINF-EQ": {
+        "stock_name": "NSE:SIMPLEXINF-EQ",
         "full_stock_name": "SIMPLEX INFRASTRUCTURES L"
     },
     "NSE:SINCLAIR-EQ": {
@@ -7316,6 +8080,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SKFINDIA-EQ",
         "full_stock_name": "SKF INDIA LTD"
     },
+    "NSE:SKFINDUS-EQ": {
+        "stock_name": "NSE:SKFINDUS-EQ",
+        "full_stock_name": "SKF IND (INDUSTRIAL) LTD"
+    },
     "NSE:SKIPPER-EQ": {
         "stock_name": "NSE:SKIPPER-EQ",
         "full_stock_name": "SKIPPER LIMITED"
@@ -7324,33 +8092,45 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SKMEGGPROD-EQ",
         "full_stock_name": "SKM EGG PROD EXPORT(I) LT"
     },
-    "NSE:SKYGOLD-BE": {
-        "stock_name": "NSE:SKYGOLD-BE",
-        "full_stock_name": "SKY GOLD LIMITED"
+    "NSE:SKYGOLD-EQ": {
+        "stock_name": "NSE:SKYGOLD-EQ",
+        "full_stock_name": "SKY GOLD AND DIAMONDS LTD"
+    },
+    "NSE:SMALL250-EQ": {
+        "stock_name": "NSE:SMALL250-EQ",
+        "full_stock_name": "MIRAEAMC - SMALL250"
+    },
+    "NSE:SMALLADD-EQ": {
+        "stock_name": "NSE:SMALLADD-EQ",
+        "full_stock_name": "DSPAMC - SMALLADD"
     },
     "NSE:SMALLCAP-EQ": {
         "stock_name": "NSE:SMALLCAP-EQ",
         "full_stock_name": "MIRAEAMC - SMALLCAP"
     },
-    "NSE:SMARTLINK-BE": {
-        "stock_name": "NSE:SMARTLINK-BE",
+    "NSE:SMARTLINK-EQ": {
+        "stock_name": "NSE:SMARTLINK-EQ",
         "full_stock_name": "SMARTLINK HOLDINGS LTD"
+    },
+    "NSE:SMARTWORKS-EQ": {
+        "stock_name": "NSE:SMARTWORKS-EQ",
+        "full_stock_name": "SMARTWORKS COWORKING SP L"
     },
     "NSE:SMCGLOBAL-EQ": {
         "stock_name": "NSE:SMCGLOBAL-EQ",
         "full_stock_name": "SMC GLOBAL SECURITIES LTD"
     },
-    "NSE:SMLISUZU-EQ": {
-        "stock_name": "NSE:SMLISUZU-EQ",
-        "full_stock_name": "SML ISUZU LIMITED"
+    "NSE:SML100CASE-EQ": {
+        "stock_name": "NSE:SML100CASE-EQ",
+        "full_stock_name": "ZERODHAAMC - SML100CASE"
+    },
+    "NSE:SMLMAH-EQ": {
+        "stock_name": "NSE:SMLMAH-EQ",
+        "full_stock_name": "SML MAHINDRA LIMITED"
     },
     "NSE:SMLT-EQ": {
         "stock_name": "NSE:SMLT-EQ",
         "full_stock_name": "SARTHAK METALS LIMITED"
-    },
-    "NSE:SMSLIFE-BE": {
-        "stock_name": "NSE:SMSLIFE-BE",
-        "full_stock_name": "SMS LIFESCIENCES (I) LTD"
     },
     "NSE:SMSPHARMA-EQ": {
         "stock_name": "NSE:SMSPHARMA-EQ",
@@ -7360,12 +8140,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SNOWMAN-EQ",
         "full_stock_name": "SNOWMAN LOGISTICS LTD."
     },
+    "NSE:SNXT30BEES-EQ": {
+        "stock_name": "NSE:SNXT30BEES-EQ",
+        "full_stock_name": "NIPPONAMC - SNXT30BEES"
+    },
+    "NSE:SNXT50BETA-EQ": {
+        "stock_name": "NSE:SNXT50BETA-EQ",
+        "full_stock_name": "UTIAMC-SNXT50BETA"
+    },
     "NSE:SOBHA-EQ": {
         "stock_name": "NSE:SOBHA-EQ",
         "full_stock_name": "SOBHA LIMITED"
     },
-    "NSE:SOFTTECH-BE": {
-        "stock_name": "NSE:SOFTTECH-BE",
+    "NSE:SOFTTECH-EQ": {
+        "stock_name": "NSE:SOFTTECH-EQ",
         "full_stock_name": "SOFTTECH ENGINEERS LTD"
     },
     "NSE:SOLARA-EQ": {
@@ -7375,6 +8163,14 @@ export const totalstocks: TotalStocks = {
     "NSE:SOLARINDS-EQ": {
         "stock_name": "NSE:SOLARINDS-EQ",
         "full_stock_name": "SOLAR INDUSTRIES (I) LTD"
+    },
+    "NSE:SOLARWORLD-EQ": {
+        "stock_name": "NSE:SOLARWORLD-EQ",
+        "full_stock_name": "SOLARWORLD ENERGY SOL LTD"
+    },
+    "NSE:SOLEX-EQ": {
+        "stock_name": "NSE:SOLEX-EQ",
+        "full_stock_name": "SOLEX ENERGY LIMITED"
     },
     "NSE:SOMANYCERA-EQ": {
         "stock_name": "NSE:SOMANYCERA-EQ",
@@ -7408,8 +8204,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SOUTHBANK-EQ",
         "full_stock_name": "THE SOUTH INDIAN BANK LTD"
     },
-    "NSE:SOUTHWEST-EQ": {
-        "stock_name": "NSE:SOUTHWEST-EQ",
+    "NSE:SOUTHWEST-BE": {
+        "stock_name": "NSE:SOUTHWEST-BE",
         "full_stock_name": "SOUTH WEST PINNACLE LTD"
     },
     "NSE:SPAL-EQ": {
@@ -7424,13 +8220,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SPARC-EQ",
         "full_stock_name": "SUN PHARMA ADV.RES.CO.LTD"
     },
-    "NSE:SPCENET-BE": {
-        "stock_name": "NSE:SPCENET-BE",
+    "NSE:SPCENET-EQ": {
+        "stock_name": "NSE:SPCENET-EQ",
         "full_stock_name": "SPACENET ENTERS IND LTD"
     },
     "NSE:SPECIALITY-EQ": {
         "stock_name": "NSE:SPECIALITY-EQ",
         "full_stock_name": "SPECIALITY REST LTD"
+    },
+    "NSE:SPECTRUM-EQ": {
+        "stock_name": "NSE:SPECTRUM-EQ",
+        "full_stock_name": "SPECTRUM ELECTRIC IND LTD"
     },
     "NSE:SPENCERS-EQ": {
         "stock_name": "NSE:SPENCERS-EQ",
@@ -7448,8 +8248,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SPLPETRO-EQ",
         "full_stock_name": "SUPREME PETROCHEM LIMITED"
     },
-    "NSE:SPMLINFRA-BE": {
-        "stock_name": "NSE:SPMLINFRA-BE",
+    "NSE:SPMLINFRA-EQ": {
+        "stock_name": "NSE:SPMLINFRA-EQ",
         "full_stock_name": "SPML INFRA LIMITED"
     },
     "NSE:SPORTKING-EQ": {
@@ -7476,8 +8276,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SRHHYPOLTD-EQ",
         "full_stock_name": "SREE RAYALSEEMA HHP LTD."
     },
-    "NSE:SRM-BE": {
-        "stock_name": "NSE:SRM-BE",
+    "NSE:SRM-EQ": {
+        "stock_name": "NSE:SRM-EQ",
         "full_stock_name": "SRM CONTRACTORS LIMITED"
     },
     "NSE:SRPL-BZ": {
@@ -7544,6 +8344,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:STERTOOLS-EQ",
         "full_stock_name": "STERLING TOOLS LIMITED"
     },
+    "NSE:STLNETWORK-EQ": {
+        "stock_name": "NSE:STLNETWORK-EQ",
+        "full_stock_name": "STL NETWORKS LIMITED"
+    },
     "NSE:STLTECH-EQ": {
         "stock_name": "NSE:STLTECH-EQ",
         "full_stock_name": "STERLITE TECHNOLOGIES LTD"
@@ -7551,6 +8355,14 @@ export const totalstocks: TotalStocks = {
     "NSE:STOVEKRAFT-EQ": {
         "stock_name": "NSE:STOVEKRAFT-EQ",
         "full_stock_name": "STOVE KRAFT LIMITED"
+    },
+    "NSE:STUDDS-EQ": {
+        "stock_name": "NSE:STUDDS-EQ",
+        "full_stock_name": "STUDDS ACCESSORIES LTD"
+    },
+    "NSE:STYL-EQ": {
+        "stock_name": "NSE:STYL-EQ",
+        "full_stock_name": "SESHAASAI TECHNOLOGIES L"
     },
     "NSE:STYLAMIND-EQ": {
         "stock_name": "NSE:STYLAMIND-EQ",
@@ -7572,9 +8384,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SUBROS-EQ",
         "full_stock_name": "SUBROS LIMITED"
     },
+    "NSE:SUDARCOLOR-EQ": {
+        "stock_name": "NSE:SUDARCOLOR-EQ",
+        "full_stock_name": "SUDARSHAN COLORNT IND LTD"
+    },
     "NSE:SUDARSCHEM-EQ": {
         "stock_name": "NSE:SUDARSCHEM-EQ",
         "full_stock_name": "SUDARSHAN CHEMICAL INDS L"
+    },
+    "NSE:SUDEEPPHRM-EQ": {
+        "stock_name": "NSE:SUDEEPPHRM-EQ",
+        "full_stock_name": "SUDEEP PHARMA LIMITED"
     },
     "NSE:SUKHJITS-EQ": {
         "stock_name": "NSE:SUKHJITS-EQ",
@@ -7583,6 +8403,10 @@ export const totalstocks: TotalStocks = {
     "NSE:SULA-EQ": {
         "stock_name": "NSE:SULA-EQ",
         "full_stock_name": "SULA VINEYARDS LIMITED"
+    },
+    "NSE:SUMEETINDS-EQ": {
+        "stock_name": "NSE:SUMEETINDS-EQ",
+        "full_stock_name": "SUMEET IND LIMITED"
     },
     "NSE:SUMICHEM-EQ": {
         "stock_name": "NSE:SUMICHEM-EQ",
@@ -7608,20 +8432,20 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SUNDARMFIN-EQ",
         "full_stock_name": "SUNDARAM FINANCE LTD"
     },
-    "NSE:SUNDARMHLD-EQ": {
-        "stock_name": "NSE:SUNDARMHLD-EQ",
-        "full_stock_name": "SUNDARAM FINANCE HOLD LTD"
-    },
-    "NSE:SUNDRMBRAK-BE": {
-        "stock_name": "NSE:SUNDRMBRAK-BE",
-        "full_stock_name": "SUNDARAMBRAKE LININGS LTD"
+    "NSE:SUNDRMBRAK-EQ": {
+        "stock_name": "NSE:SUNDRMBRAK-EQ",
+        "full_stock_name": "SUNDARAM BRAK LININGS LTD"
     },
     "NSE:SUNDRMFAST-EQ": {
         "stock_name": "NSE:SUNDRMFAST-EQ",
         "full_stock_name": "SUNDRAM FASTENERS LTD"
     },
-    "NSE:SUNFLAG-BE": {
-        "stock_name": "NSE:SUNFLAG-BE",
+    "NSE:SUNDROP-EQ": {
+        "stock_name": "NSE:SUNDROP-EQ",
+        "full_stock_name": "SUNDROP BRANDS LIMITED"
+    },
+    "NSE:SUNFLAG-EQ": {
+        "stock_name": "NSE:SUNFLAG-EQ",
         "full_stock_name": "SUNFLAG IRON AND STEEL CO"
     },
     "NSE:SUNPHARMA-EQ": {
@@ -7651,10 +8475,6 @@ export const totalstocks: TotalStocks = {
     "NSE:SUPREME-EQ": {
         "stock_name": "NSE:SUPREME-EQ",
         "full_stock_name": "SUPREME HOLDIN N HOSP I L"
-    },
-    "NSE:SUPREMEENG-BE": {
-        "stock_name": "NSE:SUPREMEENG-BE",
-        "full_stock_name": "SUPREME ENGINEERING LTD"
     },
     "NSE:SUPREMEIND-EQ": {
         "stock_name": "NSE:SUPREMEIND-EQ",
@@ -7704,17 +8524,9 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SUTLEJTEX-EQ",
         "full_stock_name": "SUTLEJ TEXT & INDUS LTD"
     },
-    "NSE:SUULD-BZ": {
-        "stock_name": "NSE:SUULD-BZ",
-        "full_stock_name": "SUUMAYA INDUSTRIES LTD"
-    },
     "NSE:SUVEN-EQ": {
         "stock_name": "NSE:SUVEN-EQ",
         "full_stock_name": "SUVEN LIFE SCIENCES LTD"
-    },
-    "NSE:SUVENPHAR-EQ": {
-        "stock_name": "NSE:SUVENPHAR-EQ",
-        "full_stock_name": "SUVEN PHARMACEUTICALS LTD"
     },
     "NSE:SUVIDHAA-EQ": {
         "stock_name": "NSE:SUVIDHAA-EQ",
@@ -7728,17 +8540,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SUZLON-EQ",
         "full_stock_name": "SUZLON ENERGY LIMITED"
     },
-    "NSE:SVLL-BE": {
-        "stock_name": "NSE:SVLL-BE",
+    "NSE:SVLL-EQ": {
+        "stock_name": "NSE:SVLL-EQ",
         "full_stock_name": "SHREE VASU LOGISTICS LTD"
     },
     "NSE:SVPGLOB-BE": {
         "stock_name": "NSE:SVPGLOB-BE",
         "full_stock_name": "SVP GLOBAL TEXTILES LTD"
     },
-    "NSE:SWANENERGY-EQ": {
-        "stock_name": "NSE:SWANENERGY-EQ",
-        "full_stock_name": "SWAN ENERGY LIMITED"
+    "NSE:SWANCORP-EQ": {
+        "stock_name": "NSE:SWANCORP-EQ",
+        "full_stock_name": "SWAN CORP LIMITED"
     },
     "NSE:SWARAJENG-EQ": {
         "stock_name": "NSE:SWARAJENG-EQ",
@@ -7772,6 +8584,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:SYRMA-EQ",
         "full_stock_name": "SYRMA SGS TECHNOLOGY LTD"
     },
+    "NSE:SYSTMTXC-EQ": {
+        "stock_name": "NSE:SYSTMTXC-EQ",
+        "full_stock_name": "SYSTEMATIX CORP SERVICE L"
+    },
     "NSE:TAINWALCHM-EQ": {
         "stock_name": "NSE:TAINWALCHM-EQ",
         "full_stock_name": "TAINWALA CHEMICAL AND PLA"
@@ -7780,8 +8596,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TAJGVK-EQ",
         "full_stock_name": "TAJ GVK HOTELS & RESORTS"
     },
-    "NSE:TAKE-BZ": {
-        "stock_name": "NSE:TAKE-BZ",
+    "NSE:TAKE-BE": {
+        "stock_name": "NSE:TAKE-BE",
         "full_stock_name": "TAKE SOLUTIONS LTD"
     },
     "NSE:TALBROAUTO-EQ": {
@@ -7792,12 +8608,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TANLA-EQ",
         "full_stock_name": "TANLA PLATFORMS LIMITED"
     },
-    "NSE:TARACHAND-BE": {
-        "stock_name": "NSE:TARACHAND-BE",
+    "NSE:TARACHAND-EQ": {
+        "stock_name": "NSE:TARACHAND-EQ",
         "full_stock_name": "TARA CHAND INFRA SOLN LTD"
     },
-    "NSE:TARAPUR-BE": {
-        "stock_name": "NSE:TARAPUR-BE",
+    "NSE:TARAPUR-EQ": {
+        "stock_name": "NSE:TARAPUR-EQ",
         "full_stock_name": "TARAPUR TRANSFORMERS LTD"
     },
     "NSE:TARC-EQ": {
@@ -7819,6 +8635,10 @@ export const totalstocks: TotalStocks = {
     "NSE:TASTYBITE-EQ": {
         "stock_name": "NSE:TASTYBITE-EQ",
         "full_stock_name": "TASTY BITE EATABLES LTD"
+    },
+    "NSE:TATACAP-EQ": {
+        "stock_name": "NSE:TATACAP-EQ",
+        "full_stock_name": "TATA CAPITAL LIMITED"
     },
     "NSE:TATACHEM-EQ": {
         "stock_name": "NSE:TATACHEM-EQ",
@@ -7843,10 +8663,6 @@ export const totalstocks: TotalStocks = {
     "NSE:TATAINVEST-EQ": {
         "stock_name": "NSE:TATAINVEST-EQ",
         "full_stock_name": "TATA INVESTMENT CORP LTD"
-    },
-    "NSE:TATAMOTORS-EQ": {
-        "stock_name": "NSE:TATAMOTORS-EQ",
-        "full_stock_name": "TATA MOTORS LIMITED"
     },
     "NSE:TATAPOWER-EQ": {
         "stock_name": "NSE:TATAPOWER-EQ",
@@ -7900,6 +8716,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TDPOWERSYS-EQ",
         "full_stock_name": "TD POWER SYSTEMS LTD."
     },
+    "NSE:TEAMGTY-EQ": {
+        "stock_name": "NSE:TEAMGTY-EQ",
+        "full_stock_name": "TEAM INDIA GUARANTY LTD"
+    },
     "NSE:TEAMLEASE-EQ": {
         "stock_name": "NSE:TEAMLEASE-EQ",
         "full_stock_name": "TEAMLEASE SERVICES LTD."
@@ -7928,12 +8748,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TEJASNET-EQ",
         "full_stock_name": "TEJAS NETWORKS LIMITED"
     },
-    "NSE:TEMBO-BE": {
-        "stock_name": "NSE:TEMBO-BE",
+    "NSE:TEMBO-EQ": {
+        "stock_name": "NSE:TEMBO-EQ",
         "full_stock_name": "TEMBO GLOBAL IND LTD"
     },
-    "NSE:TERASOFT-BE": {
-        "stock_name": "NSE:TERASOFT-BE",
+    "NSE:TENNIND-EQ": {
+        "stock_name": "NSE:TENNIND-EQ",
+        "full_stock_name": "TENNECO CLEAN AIR INDIA L"
+    },
+    "NSE:TERASOFT-EQ": {
+        "stock_name": "NSE:TERASOFT-EQ",
         "full_stock_name": "TERA SOFTWARE LIMITED"
     },
     "NSE:TEXINFRA-EQ": {
@@ -7952,8 +8776,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TFCILTD-EQ",
         "full_stock_name": "TOURISM FINANCE CORP. OF"
     },
-    "NSE:TFL-BE": {
-        "stock_name": "NSE:TFL-BE",
+    "NSE:TFL-EQ": {
+        "stock_name": "NSE:TFL-EQ",
         "full_stock_name": "TRANSWARRANTY FIN. LTD."
     },
     "NSE:TGBHOTELS-EQ": {
@@ -7972,6 +8796,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:THEJO-EQ",
         "full_stock_name": "THEJO ENGINEERING LIMITED"
     },
+    "NSE:THELEELA-EQ": {
+        "stock_name": "NSE:THELEELA-EQ",
+        "full_stock_name": "LEELA PALACES HOTEL LTD"
+    },
     "NSE:THEMISMED-EQ": {
         "stock_name": "NSE:THEMISMED-EQ",
         "full_stock_name": "THEMIS MEDICARE LTD."
@@ -7984,8 +8812,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:THOMASCOOK-EQ",
         "full_stock_name": "THOMAS COOK (INDIA) LTD"
     },
-    "NSE:THOMASCOTT-BE": {
-        "stock_name": "NSE:THOMASCOTT-BE",
+    "NSE:THOMASCOTT-EQ": {
+        "stock_name": "NSE:THOMASCOTT-EQ",
         "full_stock_name": "THOMAS SCOTT (INDIA) LTD"
     },
     "NSE:THYROCARE-EQ": {
@@ -7996,9 +8824,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TI-EQ",
         "full_stock_name": "TILAKNAGAR INDUSTRIES LTD"
     },
-    "NSE:TICL-EQ": {
-        "stock_name": "NSE:TICL-EQ",
+    "NSE:TICL-BE": {
+        "stock_name": "NSE:TICL-BE",
         "full_stock_name": "TWAMEV CONS AND INFRA LTD"
+    },
+    "NSE:TIGERLOGS-EQ": {
+        "stock_name": "NSE:TIGERLOGS-EQ",
+        "full_stock_name": "TIGER LOGISTICS (INDIA) L"
     },
     "NSE:TIIL-EQ": {
         "stock_name": "NSE:TIIL-EQ",
@@ -8008,17 +8840,13 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TIINDIA-EQ",
         "full_stock_name": "TUBE INVEST OF INDIA LTD"
     },
-    "NSE:TIJARIA-BE": {
-        "stock_name": "NSE:TIJARIA-BE",
+    "NSE:TIJARIA-EQ": {
+        "stock_name": "NSE:TIJARIA-EQ",
         "full_stock_name": "TIJARIA POLYPIPES LTD"
     },
     "NSE:TIL-EQ": {
         "stock_name": "NSE:TIL-EQ",
         "full_stock_name": "TIL LTD"
-    },
-    "NSE:TIMESGTY-BE": {
-        "stock_name": "NSE:TIMESGTY-BE",
-        "full_stock_name": "TIMES GUARANTY LIMITED"
     },
     "NSE:TIMETECHNO-EQ": {
         "stock_name": "NSE:TIMETECHNO-EQ",
@@ -8028,8 +8856,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TIMKEN-EQ",
         "full_stock_name": "TIMKEN INDIA LTD."
     },
-    "NSE:TIPSFILMS-BE": {
-        "stock_name": "NSE:TIPSFILMS-BE",
+    "NSE:TINNARUBR-EQ": {
+        "stock_name": "NSE:TINNARUBR-EQ",
+        "full_stock_name": "TINNA RUBBER AND INFR LTD"
+    },
+    "NSE:TIPSFILMS-EQ": {
+        "stock_name": "NSE:TIPSFILMS-EQ",
         "full_stock_name": "TIPS FILMS LIMITED"
     },
     "NSE:TIPSMUSIC-EQ": {
@@ -8040,8 +8872,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TIRUMALCHM-EQ",
         "full_stock_name": "THIRUMALAI CHEMICALS LTD"
     },
-    "NSE:TIRUPATIFL-BE": {
-        "stock_name": "NSE:TIRUPATIFL-BE",
+    "NSE:TIRUPATIFL-EQ": {
+        "stock_name": "NSE:TIRUPATIFL-EQ",
         "full_stock_name": "TIRUPATI FORGE LIMITED"
     },
     "NSE:TITAGARH-EQ": {
@@ -8056,6 +8888,14 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TMB-EQ",
         "full_stock_name": "TAMILNAD MERCA BANK LTD"
     },
+    "NSE:TMCV-EQ": {
+        "stock_name": "NSE:TMCV-EQ",
+        "full_stock_name": "TATA MOTORS LIMITED"
+    },
+    "NSE:TMPV-EQ": {
+        "stock_name": "NSE:TMPV-EQ",
+        "full_stock_name": "TATA MOTORS PASS VEH LTD"
+    },
     "NSE:TNPETRO-EQ": {
         "stock_name": "NSE:TNPETRO-EQ",
         "full_stock_name": "TAMILNADU PETROPRODUCTS L"
@@ -8064,8 +8904,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TNPL-EQ",
         "full_stock_name": "TAMILNADU NEWSPRT & PAPER"
     },
-    "NSE:TNTELE-BE": {
-        "stock_name": "NSE:TNTELE-BE",
+    "NSE:TNTELE-EQ": {
+        "stock_name": "NSE:TNTELE-EQ",
         "full_stock_name": "TAMILNADU TELECOMMUNICATI"
     },
     "NSE:TOKYOPLAST-EQ": {
@@ -8084,6 +8924,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TOP10ADD-EQ",
         "full_stock_name": "DSPAMC - TOP10ADD"
     },
+    "NSE:TOP20-EQ": {
+        "stock_name": "NSE:TOP20-EQ",
+        "full_stock_name": "MIRAEAMC - TOP20"
+    },
     "NSE:TORNTPHARM-EQ": {
         "stock_name": "NSE:TORNTPHARM-EQ",
         "full_stock_name": "TORRENT PHARMACEUTICALS L"
@@ -8100,8 +8944,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TOUCHWOOD-EQ",
         "full_stock_name": "TOUCHWOOD ENTERTAIN LTD."
     },
-    "NSE:TPHQ-BE": {
-        "stock_name": "NSE:TPHQ-BE",
+    "NSE:TPHQ-EQ": {
+        "stock_name": "NSE:TPHQ-EQ",
         "full_stock_name": "TEAMO PRODUCTIONS HQ LTD"
     },
     "NSE:TPLPLASTEH-EQ": {
@@ -8120,12 +8964,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TRANSWORLD-EQ",
         "full_stock_name": "TRANSWORLD SHIP LINES LTD"
     },
+    "NSE:TRAVELFOOD-EQ": {
+        "stock_name": "NSE:TRAVELFOOD-EQ",
+        "full_stock_name": "TRAVEL FOOD SERVICES LTD"
+    },
     "NSE:TREEHOUSE-EQ": {
         "stock_name": "NSE:TREEHOUSE-EQ",
         "full_stock_name": "TREE HOUSE EDU LTD"
     },
-    "NSE:TREJHARA-EQ": {
-        "stock_name": "NSE:TREJHARA-EQ",
+    "NSE:TREJHARA-BE": {
+        "stock_name": "NSE:TREJHARA-BE",
         "full_stock_name": "TREJHARA SOLUTIONS LTD"
     },
     "NSE:TREL-EQ": {
@@ -8156,9 +9004,17 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TRIVENI-EQ",
         "full_stock_name": "TRIVENI ENGG. & INDS. LTD"
     },
-    "NSE:TRU-BE": {
-        "stock_name": "NSE:TRU-BE",
+    "NSE:TRU-EQ": {
+        "stock_name": "NSE:TRU-EQ",
         "full_stock_name": "TRUCAP FINANCE LIMITED"
+    },
+    "NSE:TRUALT-EQ": {
+        "stock_name": "NSE:TRUALT-EQ",
+        "full_stock_name": "TRUALT BIOENERGY LIMITED"
+    },
+    "NSE:TSFINV-EQ": {
+        "stock_name": "NSE:TSFINV-EQ",
+        "full_stock_name": "TSF INVESTMENTS LIMITED"
     },
     "NSE:TTKHLTCARE-EQ": {
         "stock_name": "NSE:TTKHLTCARE-EQ",
@@ -8168,16 +9024,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:TTKPRESTIG-EQ",
         "full_stock_name": "TTK PRESTIGE LTD"
     },
-    "NSE:TTL-BE": {
-        "stock_name": "NSE:TTL-BE",
+    "NSE:TTL-EQ": {
+        "stock_name": "NSE:TTL-EQ",
         "full_stock_name": "T T LIMITED"
     },
     "NSE:TTML-EQ": {
         "stock_name": "NSE:TTML-EQ",
         "full_stock_name": "TATA TELESERV(MAHARASTRA)"
     },
-    "NSE:TVSELECT-EQ": {
-        "stock_name": "NSE:TVSELECT-EQ",
+    "NSE:TVSELECT-BE": {
+        "stock_name": "NSE:TVSELECT-BE",
         "full_stock_name": "TVS ELECTRONICS LTD"
     },
     "NSE:TVSHLTD-EQ": {
@@ -8208,21 +9064,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:UBL-EQ",
         "full_stock_name": "UNITED BREWERIES LTD"
     },
-    "NSE:UCAL-BE": {
-        "stock_name": "NSE:UCAL-BE",
+    "NSE:UCAL-EQ": {
+        "stock_name": "NSE:UCAL-EQ",
         "full_stock_name": "UCAL LIMITED"
     },
     "NSE:UCOBANK-EQ": {
         "stock_name": "NSE:UCOBANK-EQ",
         "full_stock_name": "UCO BANK"
     },
-    "NSE:UDAICEMENT-EQ": {
-        "stock_name": "NSE:UDAICEMENT-EQ",
-        "full_stock_name": "UDAIPUR CEMENT WORKS LTD"
-    },
     "NSE:UDS-EQ": {
         "stock_name": "NSE:UDS-EQ",
         "full_stock_name": "UPDATER SERVICES LIMITED"
+    },
+    "NSE:UFBL-EQ": {
+        "stock_name": "NSE:UFBL-EQ",
+        "full_stock_name": "UNITED FOODBRANDS LIMITED"
     },
     "NSE:UFLEX-EQ": {
         "stock_name": "NSE:UFLEX-EQ",
@@ -8251,10 +9107,6 @@ export const totalstocks: TotalStocks = {
     "NSE:UMAEXPORTS-EQ": {
         "stock_name": "NSE:UMAEXPORTS-EQ",
         "full_stock_name": "UMA EXPORTS LIMITED"
-    },
-    "NSE:UMANGDAIRY-BE": {
-        "stock_name": "NSE:UMANGDAIRY-BE",
-        "full_stock_name": "UMANG DAIRIES LIMITED"
     },
     "NSE:UMESLTD-EQ": {
         "stock_name": "NSE:UMESLTD-EQ",
@@ -8288,6 +9140,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:UNIONBANK-EQ",
         "full_stock_name": "UNION BANK OF INDIA"
     },
+    "NSE:UNIONGOLD-EQ": {
+        "stock_name": "NSE:UNIONGOLD-EQ",
+        "full_stock_name": "UNIONAMC - UNIONGOLD"
+    },
     "NSE:UNIPARTS-EQ": {
         "stock_name": "NSE:UNIPARTS-EQ",
         "full_stock_name": "UNIPARTS INDIA LIMITED"
@@ -8296,28 +9152,28 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:UNITDSPR-EQ",
         "full_stock_name": "UNITED SPIRITS LIMITED"
     },
-    "NSE:UNITECH-BZ": {
-        "stock_name": "NSE:UNITECH-BZ",
-        "full_stock_name": "UNITECH LIMITED"
+    "NSE:UNITECH-EQ": {
+        "stock_name": "NSE:UNITECH-EQ",
+        "full_stock_name": "UNITECH LTD"
     },
-    "NSE:UNITEDPOLY-EQ": {
-        "stock_name": "NSE:UNITEDPOLY-EQ",
+    "NSE:UNITEDPOLY-BE": {
+        "stock_name": "NSE:UNITEDPOLY-BE",
         "full_stock_name": "UNITED POLYFAB GUJ. LTD."
     },
     "NSE:UNITEDTEA-EQ": {
         "stock_name": "NSE:UNITEDTEA-EQ",
         "full_stock_name": "UNITED NILGIRI TEA LTD"
     },
-    "NSE:UNIVASTU-BE": {
-        "stock_name": "NSE:UNIVASTU-BE",
+    "NSE:UNIVASTU-EQ": {
+        "stock_name": "NSE:UNIVASTU-EQ",
         "full_stock_name": "UNIVASTU INDIA LIMITED"
     },
     "NSE:UNIVCABLES-EQ": {
         "stock_name": "NSE:UNIVCABLES-EQ",
         "full_stock_name": "UNIVERSAL CABLES LTD"
     },
-    "NSE:UNIVPHOTO-BE": {
-        "stock_name": "NSE:UNIVPHOTO-BE",
+    "NSE:UNIVPHOTO-EQ": {
+        "stock_name": "NSE:UNIVPHOTO-EQ",
         "full_stock_name": "UNIVERSUS IMAGINGS LTD"
     },
     "NSE:UNOMINDA-EQ": {
@@ -8332,8 +9188,12 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:URAVIDEF-EQ",
         "full_stock_name": "URAVI DEFENCE &TECH LTD"
     },
-    "NSE:URJA-BE": {
-        "stock_name": "NSE:URJA-BE",
+    "NSE:URBANCO-EQ": {
+        "stock_name": "NSE:URBANCO-EQ",
+        "full_stock_name": "URBAN COMPANY LIMITED"
+    },
+    "NSE:URJA-EQ": {
+        "stock_name": "NSE:URJA-EQ",
         "full_stock_name": "URJA GLOBAL LIMITED"
     },
     "NSE:USHAMART-EQ": {
@@ -8348,28 +9208,24 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:UTIAMC-EQ",
         "full_stock_name": "UTI ASSET MNGMT CO LTD"
     },
-    "NSE:UTINEXT50-EQ": {
-        "stock_name": "NSE:UTINEXT50-EQ",
-        "full_stock_name": "UTIAMC - UTINEXT50"
-    },
-    "NSE:UTISXN50-EQ": {
-        "stock_name": "NSE:UTISXN50-EQ",
-        "full_stock_name": "UTIAMC - UTISXN50"
-    },
     "NSE:UTKARSHBNK-EQ": {
         "stock_name": "NSE:UTKARSHBNK-EQ",
         "full_stock_name": "UTKARSH SMALL FIN BANK L"
+    },
+    "NSE:UTLSOLAR-EQ": {
+        "stock_name": "NSE:UTLSOLAR-EQ",
+        "full_stock_name": "FUJIYAMA POWER SYSTEMS L"
     },
     "NSE:UTTAMSUGAR-EQ": {
         "stock_name": "NSE:UTTAMSUGAR-EQ",
         "full_stock_name": "UTTAM SUGAR MILLS LTD."
     },
-    "NSE:UYFINCORP-EQ": {
-        "stock_name": "NSE:UYFINCORP-EQ",
+    "NSE:UYFINCORP-BE": {
+        "stock_name": "NSE:UYFINCORP-BE",
         "full_stock_name": "U. Y. FINCORP LIMITED"
     },
-    "NSE:V2RETAIL-BE": {
-        "stock_name": "NSE:V2RETAIL-BE",
+    "NSE:V2RETAIL-EQ": {
+        "stock_name": "NSE:V2RETAIL-EQ",
         "full_stock_name": "V2 RETAIL LIMITED"
     },
     "NSE:VADILALIND-EQ": {
@@ -8400,8 +9256,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VARDHACRLC-EQ",
         "full_stock_name": "VARDHAMAN ACRYLICS LTD"
     },
-    "NSE:VARDMNPOLY-BE": {
-        "stock_name": "NSE:VARDMNPOLY-BE",
+    "NSE:VARDMNPOLY-EQ": {
+        "stock_name": "NSE:VARDMNPOLY-EQ",
         "full_stock_name": "VARDHMAN POLYTEX LTD."
     },
     "NSE:VARROC-EQ": {
@@ -8420,8 +9276,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VBL-EQ",
         "full_stock_name": "VARUN BEVERAGES LIMITED"
     },
-    "NSE:VCL-EQ": {
-        "stock_name": "NSE:VCL-EQ",
+    "NSE:VCL-BE": {
+        "stock_name": "NSE:VCL-BE",
         "full_stock_name": "VAXTEX COTFAB LIMITED"
     },
     "NSE:VEDL-EQ": {
@@ -8444,16 +9300,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VENUSPIPES-EQ",
         "full_stock_name": "VENUS PIPES & TUBES LTD"
     },
-    "NSE:VENUSREM-EQ": {
-        "stock_name": "NSE:VENUSREM-EQ",
+    "NSE:VENUSREM-BE": {
+        "stock_name": "NSE:VENUSREM-BE",
         "full_stock_name": "VENUS REMEDIES LIMITED"
     },
     "NSE:VERANDA-EQ": {
         "stock_name": "NSE:VERANDA-EQ",
         "full_stock_name": "VERANDA LEARNING SOL LTD"
     },
-    "NSE:VERTOZ-BE": {
-        "stock_name": "NSE:VERTOZ-BE",
+    "NSE:VERTOZ-EQ": {
+        "stock_name": "NSE:VERTOZ-EQ",
         "full_stock_name": "VERTOZ LIMITED"
     },
     "NSE:VESUVIUS-EQ": {
@@ -8463,6 +9319,10 @@ export const totalstocks: TotalStocks = {
     "NSE:VETO-EQ": {
         "stock_name": "NSE:VETO-EQ",
         "full_stock_name": "VETO SWITCHGEAR CABLE LTD"
+    },
+    "NSE:VGL-EQ": {
+        "stock_name": "NSE:VGL-EQ",
+        "full_stock_name": "VARVEE GLOBAL LIMITED"
     },
     "NSE:VGUARD-EQ": {
         "stock_name": "NSE:VGUARD-EQ",
@@ -8480,12 +9340,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VIDHIING-EQ",
         "full_stock_name": "VIDHI SPCLTY F INGRDNTS L"
     },
+    "NSE:VIDYAWIRES-EQ": {
+        "stock_name": "NSE:VIDYAWIRES-EQ",
+        "full_stock_name": "VIDYA WIRES LIMITED"
+    },
     "NSE:VIJAYA-EQ": {
         "stock_name": "NSE:VIJAYA-EQ",
         "full_stock_name": "VIJAYA DIAGNOSTIC CEN LTD"
     },
-    "NSE:VIJIFIN-BE": {
-        "stock_name": "NSE:VIJIFIN-BE",
+    "NSE:VIJIFIN-EQ": {
+        "stock_name": "NSE:VIJIFIN-EQ",
         "full_stock_name": "VIJI FINANCE LIMITED"
     },
     "NSE:VIKASECO-EQ": {
@@ -8495,6 +9359,14 @@ export const totalstocks: TotalStocks = {
     "NSE:VIKASLIFE-EQ": {
         "stock_name": "NSE:VIKASLIFE-EQ",
         "full_stock_name": "VIKAS LIFECARE LIMITED"
+    },
+    "NSE:VIKRAMSOLR-EQ": {
+        "stock_name": "NSE:VIKRAMSOLR-EQ",
+        "full_stock_name": "VIKRAM SOLAR LIMITED"
+    },
+    "NSE:VIKRAN-EQ": {
+        "stock_name": "NSE:VIKRAN-EQ",
+        "full_stock_name": "VIKRAN ENGINEERING LTD"
     },
     "NSE:VIMTALABS-EQ": {
         "stock_name": "NSE:VIMTALABS-EQ",
@@ -8516,8 +9388,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VINEETLAB-EQ",
         "full_stock_name": "VINEET LABORATORIES LTD"
     },
-    "NSE:VINNY-BE": {
-        "stock_name": "NSE:VINNY-BE",
+    "NSE:VINNY-EQ": {
+        "stock_name": "NSE:VINNY-EQ",
         "full_stock_name": "VINNY OVERSEAS LIMITED"
     },
     "NSE:VINYLINDIA-EQ": {
@@ -8544,6 +9416,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VISAKAIND-EQ",
         "full_stock_name": "VISAKA INDUSTRIES LIMITED"
     },
+    "NSE:VISASTEEL-EQ": {
+        "stock_name": "NSE:VISASTEEL-EQ",
+        "full_stock_name": "VISA STEEL LIMITED"
+    },
     "NSE:VISHNU-EQ": {
         "stock_name": "NSE:VISHNU-EQ",
         "full_stock_name": "VISHNU CHEMICALS LIMITED"
@@ -8556,8 +9432,16 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:VIVIDHA-EQ",
         "full_stock_name": "VISAGAR POLYTEX LTD"
     },
-    "NSE:VLEGOV-BE": {
-        "stock_name": "NSE:VLEGOV-BE",
+    "NSE:VIVIMEDLAB-EQ": {
+        "stock_name": "NSE:VIVIMEDLAB-EQ",
+        "full_stock_name": "VIVIMED LABS LIMITED"
+    },
+    "NSE:VIYASH-EQ": {
+        "stock_name": "NSE:VIYASH-EQ",
+        "full_stock_name": "VIYASH SCIENTIFIC LIMITED"
+    },
+    "NSE:VLEGOV-EQ": {
+        "stock_name": "NSE:VLEGOV-EQ",
         "full_stock_name": "VL E GOV AND IT SOL LTD"
     },
     "NSE:VLSFINANCE-EQ": {
@@ -8571,6 +9455,10 @@ export const totalstocks: TotalStocks = {
     "NSE:VMM-EQ": {
         "stock_name": "NSE:VMM-EQ",
         "full_stock_name": "VISHAL MEGA MART LIMITED"
+    },
+    "NSE:VMSTMT-EQ": {
+        "stock_name": "NSE:VMSTMT-EQ",
+        "full_stock_name": "VMS TMT LIMITED"
     },
     "NSE:VOLTAMP-EQ": {
         "stock_name": "NSE:VOLTAMP-EQ",
@@ -8616,9 +9504,21 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:WAAREEENER-EQ",
         "full_stock_name": "WAAREE ENERGIES LIMITED"
     },
+    "NSE:WAAREEINDO-BE": {
+        "stock_name": "NSE:WAAREEINDO-BE",
+        "full_stock_name": "INDOSOLAR LIMITED"
+    },
+    "NSE:WAAREERTL-EQ": {
+        "stock_name": "NSE:WAAREERTL-EQ",
+        "full_stock_name": "WAAREE RENEWABLE TECH LTD"
+    },
     "NSE:WABAG-EQ": {
         "stock_name": "NSE:WABAG-EQ",
         "full_stock_name": "VA TECH WABAG LTD"
+    },
+    "NSE:WAKEFIT-EQ": {
+        "stock_name": "NSE:WAKEFIT-EQ",
+        "full_stock_name": "WAKEFIT INNOVATIONS LTD"
     },
     "NSE:WALCHANNAG-EQ": {
         "stock_name": "NSE:WALCHANNAG-EQ",
@@ -8636,8 +9536,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:WEALTH-EQ",
         "full_stock_name": "WEALTH FRST PORT. MG. LTD"
     },
-    "NSE:WEBELSOLAR-BE": {
-        "stock_name": "NSE:WEBELSOLAR-BE",
+    "NSE:WEBELSOLAR-EQ": {
+        "stock_name": "NSE:WEBELSOLAR-EQ",
         "full_stock_name": "WEBSOL ENERGY SYSTEM LTD"
     },
     "NSE:WEIZMANIND-EQ": {
@@ -8676,6 +9576,10 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:WEWIN-EQ",
         "full_stock_name": "WE WIN LIMITED"
     },
+    "NSE:WEWORK-EQ": {
+        "stock_name": "NSE:WEWORK-EQ",
+        "full_stock_name": "WEWORK INDIA MANAGEMENT L"
+    },
     "NSE:WHEELS-EQ": {
         "stock_name": "NSE:WHEELS-EQ",
         "full_stock_name": "WHEELS INDIA LTD"
@@ -8700,8 +9604,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:WINSOME-BZ",
         "full_stock_name": "WINSOME YARNS LIMITED"
     },
-    "NSE:WIPL-BE": {
-        "stock_name": "NSE:WIPL-BE",
+    "NSE:WIPL-EQ": {
+        "stock_name": "NSE:WIPL-EQ",
         "full_stock_name": "THE WESTERN INDIA PLY LTD"
     },
     "NSE:WIPRO-EQ": {
@@ -8716,8 +9620,8 @@ export const totalstocks: TotalStocks = {
         "stock_name": "NSE:WONDERLA-EQ",
         "full_stock_name": "WONDERLA HOLIDAYS LTD."
     },
-    "NSE:WORTH-EQ": {
-        "stock_name": "NSE:WORTH-EQ",
+    "NSE:WORTHPERI-EQ": {
+        "stock_name": "NSE:WORTHPERI-EQ",
         "full_stock_name": "WORTH PERIPHERALS LIMITED"
     },
     "NSE:WSI-EQ": {
@@ -8743,10 +9647,6 @@ export const totalstocks: TotalStocks = {
     "NSE:XTGLOBAL-EQ": {
         "stock_name": "NSE:XTGLOBAL-EQ",
         "full_stock_name": "XTGLOBAL INFOTECH LIMITED"
-    },
-    "NSE:YAARI-BE": {
-        "stock_name": "NSE:YAARI-BE",
-        "full_stock_name": "YAARI DIGI INT SER LTD"
     },
     "NSE:YASHO-EQ": {
         "stock_name": "NSE:YASHO-EQ",
@@ -8815,10 +9715,6 @@ export const totalstocks: TotalStocks = {
     "NSE:ZODIACLOTH-EQ": {
         "stock_name": "NSE:ZODIACLOTH-EQ",
         "full_stock_name": "ZODIAC CLOTHING CO. LTD."
-    },
-    "NSE:ZOMATO-EQ": {
-        "stock_name": "NSE:ZOMATO-EQ",
-        "full_stock_name": "ZOMATO LIMITED"
     },
     "NSE:ZOTA-EQ": {
         "stock_name": "NSE:ZOTA-EQ",

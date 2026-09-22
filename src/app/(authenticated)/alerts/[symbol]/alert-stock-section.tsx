@@ -11,12 +11,12 @@ import { CalendarIcon } from 'lucide-react'
 import { getAlertsBySymbol } from '@/lib/supabaseDB/supabase_alerts'
 import { AlertModel } from '@/datamodels/alerts_model'
 import { getSentimentStyles } from '../helper-sentiment-styles'
-import { StockAlertSingleItem } from '../stock-alert-single'
 import EmptyState from '../../atlas/atlas-empty-result'
 import { FallbackImage } from '@/components/custom/cust_fallback_image'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
+import StockAlertSingleItem from '../stock-alert-single'
 
 interface StockAlertsPageProps {
   symbol: string
@@ -261,7 +261,13 @@ export default function StockAlertsSection({ symbol }: StockAlertsPageProps) {
           {filteredAlerts.map((alert, index) => {
             const styles = getSentimentStyles(alert.sentiment)
             const alertDate = new Date(alert.created_at)
-            return StockAlertSingleItem(alert, styles, index, alertDate)
+            return <StockAlertSingleItem
+                            key={alert.id}
+                            alert={alert}
+                            styles={styles}
+                            index={index}
+                            alertDatetime={alertDate}
+                          />
           })}
         </div>
       ) : (

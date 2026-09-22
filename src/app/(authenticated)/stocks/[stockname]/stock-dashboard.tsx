@@ -1,35 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { fetchHistoricalData } from '@/lib/supabaseDB/supabase_historical';
 import { StockDataPoint } from '@/datamodels/stock_historical';
-import { AreaChart, type AreaChartEventProps } from '@/components/chart/chart-tremor';
 import { LoadingSkeletonChart } from './stock-chart-loading';
 import { StockSummary } from './stock-summary';
 import { Button } from '@/components/ui/button';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { StockAreaChart } from '@/components/chart/chart-area-chart';
 
-// Define available timeframes
-type Timeframe = '1m'|'3m'|'6m' | '1y' | '3y' | '5y';
-
-// Define the type for formatted data
-type FormattedDataPoint = {
-  Date: string;
-  Price: number;
-  Volume: number;
-  SMA20: number | null;
-  SMA50: number | null;
-  [key: string]: string | number | null; // Index signature
-};
+type Timeframe = '1m' | '3m' | '6m' | '1y' | '3y' | '5y';
 
 export default function StockDashboard({ stockName }: { stockName: string }) {
   const [stockData, setStockData] = useState<StockDataPoint[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedTimeframe, setSelectedTimeframe] = useState<Timeframe>('1y');
-  const [hiddenCategories, setHiddenCategories] = useState<Set<string>>(new Set());
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
+    let cancelled = false;
     async function loadData() {
       setIsLoading(true);
       setError(null);
@@ -39,72 +30,41 @@ export default function StockDashboard({ stockName }: { stockName: string }) {
           selectedTimeframe
         );
         if (historicalError) throw historicalError;
-        setStockData(historicalData || []);
+        if (!cancelled) setStockData(historicalData || []);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
+        if (!cancelled) setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     }
-
     loadData();
+    return () => { cancelled = true; };
   }, [stockName, selectedTimeframe]);
 
-  // Function to calculate SMA
-  function calculateSMA(data: StockDataPoint[], windowSize: number) {
-    return data.map((_, idx) => {
-      if (idx < windowSize - 1) return null;
-      const windowSlice = data.slice(idx - windowSize + 1, idx + 1);
-      const sma = windowSlice.reduce((sum, item) => sum + item.price, 0) / windowSize;
-      return sma;
-    });
-  }
-
-  const sma20 = calculateSMA(stockData, 20);
-  const sma50 = calculateSMA(stockData, 50);
-
-  // Format data for the chart
-  const formattedData: FormattedDataPoint[] = stockData.map((item, idx) => ({
-    Date: item.date,
-    Price: item.price,
-    Volume: item.volume,
-    SMA20: sma20[idx],
-    SMA50: sma50[idx],
-  }));
-
-  // Filter data based on hidden categories
-  const filteredData = formattedData.map((item) => {
-    const newItem = { ...item };
-    hiddenCategories.forEach((category) => {
-      newItem[category] = null; // No more TypeScript error
-    });
-    return newItem;
-  });
-
-  // Value formatter for the chart
-  const valueFormatter = (number: number) => `₹${Intl.NumberFormat("en-IN").format(number).toString()}`;
-
-  // Handle legend item clicks
-  const handleValueChange = (event: AreaChartEventProps) => {
-    if (event?.eventType === "category") {
-      const category = event.categoryClicked;
-      setHiddenCategories((prev) => {
-        const newHiddenCategories = new Set(prev);
-        if (newHiddenCategories.has(category)) {
-          newHiddenCategories.delete(category);
-        } else {
-          newHiddenCategories.add(category);
-        }
-        return newHiddenCategories;
+  const chartData = useMemo(() => {
+    const sma = (window: number) =>
+      stockData.map((_, idx) => {
+        if (idx < window - 1) return null;
+        const slice = stockData.slice(idx - window + 1, idx + 1);
+        return slice.reduce((sum, item) => sum + item.price, 0) / window;
       });
-    }
-  };
 
-  // Time period selector component
+    const sma20 = sma(20);
+    const sma50 = sma(50);
+
+    return stockData.map((item, idx) => ({
+      Date: item.date,
+      Price: item.price,
+      SMA20: sma20[idx],
+      SMA50: sma50[idx],
+    }));
+  }, [stockData]);
+
+  const valueFormatter = (n: number) => `₹${Intl.NumberFormat("en-IN").format(n)}`;
+
   const TimeframeSelector = () => (
     <div className="flex space-x-2 flex-wrap md:flex-nowrap">
       {[
-        // { label: '1M', value: '1m' },
         { label: '3M', value: '3m' },
         { label: '6M', value: '6m' },
         { label: '1Y', value: '1y' },
@@ -126,80 +86,35 @@ export default function StockDashboard({ stockName }: { stockName: string }) {
 
   return (
     <div className="max-w-7xl mx-auto space-y-6 bg-background">
-      {/* Stock Summary Section */}
       <StockSummary stockName={stockName} />
 
-      {/* Chart Section for Desktop */}
-      <Card className="hidden md:block overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
-        <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-6">
-          <div className="flex justify-between items-center flex-wrap gap-4">
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
+      <Card className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
+        <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-4 md:p-6">
+          <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-3 md:gap-4">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
             <TimeframeSelector />
           </div>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-4 md:p-6">
           {isLoading ? (
             <LoadingSkeletonChart />
           ) : error ? (
             <div className="text-lg text-red-500">Error: {error}</div>
           ) : (
-            <AreaChart
-              className="h-96"
-              data={filteredData}
+            <StockAreaChart
+              data={chartData}
               index="Date"
-              categories={["Price", "SMA20", "SMA50"]}
+              height={isDesktop ? 384 : 288}
               valueFormatter={valueFormatter}
-              showLegend={true}
-              showGridLines={true}
-              showXAxis={true}
-              showYAxis={true}
-              connectNulls={true}
-              enableLegendSlider={true}
-              xAxisLabel="Date"
-              yAxisLabel="Price"
-              onValueChange={handleValueChange}
-              // colors={["blue", "green", "orange"]}
+              series={[
+                { key: "Price", label: "Price", color: "#6366f1", kind: "area" },
+                { key: "SMA20", label: "SMA 20", color: "#f59e0b", kind: "line", dashed: true },
+                { key: "SMA50", label: "SMA 50", color: "#10b981", kind: "line", dashed: true },
+              ]}
             />
           )}
         </CardContent>
       </Card>
-
-      {/* Chart Section for Mobile */}
-      <div className="block md:hidden">
-        <Card className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
-          <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-4">
-            <div className="space-y-3">
-              <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
-              <TimeframeSelector />
-            </div>
-          </CardHeader>
-          <CardContent className="p-4">
-            {isLoading ? (
-              <LoadingSkeletonChart />
-            ) : error ? (
-              <div className="text-lg text-red-500">Error: {error}</div>
-            ) : (
-              <AreaChart
-                className="h-72"
-                data={filteredData}
-                index="Date"
-                categories={["Price", "SMA20", "SMA50"]}
-                valueFormatter={valueFormatter}
-                showLegend={true}
-                showGridLines={true}
-                showXAxis={true}
-                showYAxis={true}
-                connectNulls={true}
-                enableLegendSlider={true}
-                xAxisLabel="Date"
-                yAxisLabel="Price"
-                onValueChange={handleValueChange}
-                // colors={["blue", "green", "orange"]}
-              />
-            )}
-          </CardContent>
-        </Card>
-      </div>
     </div>
   );
 }

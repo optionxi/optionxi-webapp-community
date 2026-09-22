@@ -4,14 +4,15 @@ import { ModeToggle } from "@/components/mode-toggle";
 import { UserNav } from "@/components/admin-panel/user-nav";
 import { SearchBarCustom } from "@/app/(authenticated)/dashboard/search-bar";
 import { SheetMenu } from "./sheet-menu";
-import { usePathname } from 'next/navigation'; // Import usePathname
+import { usePathname } from 'next/navigation';
+// import { GitHubButton } from "./github-button";
 
 interface NavbarProps {
   title: string;
 }
 
 export function Navbar({ }: NavbarProps) {
-  const pathname = usePathname(); // Get the current route
+  const pathname = usePathname();
 
   // Check if the current route is not '/dashboard'
   const isSearchBarVisible = pathname !== '/dashboard';
@@ -23,9 +24,12 @@ export function Navbar({ }: NavbarProps) {
           <SheetMenu />
         </div>
         <div className="w-full p-2">
-          {isSearchBarVisible && <SearchBarCustom />} {/* Conditionally render SearchBarCustom */}
+          {isSearchBarVisible && <SearchBarCustom />}
         </div>
-        <div className="flex items-center justify-end space-x-4">
+        <div className="flex items-center justify-end space-x-2">
+          {/* Simple GitHub Button without API call */}
+          {/* <GitHubButton/> */}
+          
           <ModeToggle />
           <UserNav />
         </div>

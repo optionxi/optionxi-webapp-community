@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '@/lib/supabase/client';
 import { BollingerBreakoutModel, BollingerResponse } from '@/datamodels/bollinger_model'
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-)
 
 export async function getBollingerBreakouts(
   page = 1, 

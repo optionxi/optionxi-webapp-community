@@ -1,10 +1,6 @@
 import { DataStockModel } from '@/datamodels/stock_model';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export async function fetchLiveStockData(): Promise<DataStockModel[]> {
   try {

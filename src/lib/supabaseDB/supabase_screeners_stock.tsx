@@ -1,10 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { Screener } from '@/datamodels/screeners_model';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export const fetchScreenersForStock = async (category: 'bullish' | 'bearish', stockSymbol: string) => {
   // Clean up the stock symbol for flexible matching

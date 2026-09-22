@@ -1,11 +1,7 @@
 import { AtlasOutput } from '@/datamodels/atlas_model';
-import { createClient } from '@supabase/supabase-js';
+import { supabase } from '@/lib/supabase/client';
 import { endOfDay, startOfDay } from 'date-fns';
   
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
 
 export async function getAtlasOutputs(
   page = 1, 

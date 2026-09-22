@@ -25,7 +25,7 @@ const NoStockData = () => {
         <AlertCircle className="h-5 w-5" />
         <AlertTitle>Something went wrong</AlertTitle>
         <AlertDescription>
-            Please contact the admin, optionxi24@gmail.com
+            Please contact the admin, support@optionxi.com
         </AlertDescription>
       </Alert>
     </div>

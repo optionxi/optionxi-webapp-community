@@ -6,11 +6,11 @@ import { Skeleton } from '@/components/ui/skeleton'
 import { getAlertsBySymbol } from '@/lib/supabaseDB/supabase_alerts'
 import { AlertModel } from '@/datamodels/alerts_model'
 import EmptyState from '../../atlas/atlas-empty-result'
-import { StockAlertSingleItem } from '../../alerts/stock-alert-single'
 import { getSentimentStyles } from '../../alerts/helper-sentiment-styles'
 import { CardTitle } from '@/components/ui/card'
 import { Bell } from 'lucide-react'
 import Link from 'next/link'
+import StockAlertSingleItem from '../../alerts/stock-alert-single'
 
 interface StockAlertsPageProps {
   symbol: string
@@ -75,11 +75,19 @@ export default function StockAlertsSectionSub({ symbol }: StockAlertsPageProps) 
           {alerts.map((alert, index) => {
             const styles = getSentimentStyles(alert.sentiment)
             const alertDate = new Date(alert.created_at)
+
             return (
-              StockAlertSingleItem(alert, styles, index, alertDate)
+              <StockAlertSingleItem
+                key={alert.id}
+                alert={alert}
+                styles={styles}
+                index={index}
+                alertDatetime={alertDate}
+              />
             )
           })}
         </div>
+
       ):(<EmptyState message={`No alerts found for ${symbol}`}/>)}
     </div>
   )

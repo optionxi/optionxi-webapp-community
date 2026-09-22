@@ -12,6 +12,7 @@ import {
   ScanLine,
   Zap,
   User,
+  Brain,
 } from "lucide-react";
 
 type Submenu = {
@@ -64,6 +65,22 @@ export function getMenuListNavbar(): Menu[] {
           label: "Heatmap",
           icon: ChartArea,
         },
+        
+        {
+          href: "ai-nifty",
+          label: "Nifty AI",
+          icon: Brain,
+        },
+        {
+          href: "/ai-stocks",
+          label: "Stocks AI",
+          icon: Brain,
+        },
+        {
+          href: "/stock-performance",
+          label: "Performance",
+          icon: ChartArea,
+        },
       ],
     },
     {
@@ -100,12 +117,6 @@ export function getMenuListNavbar(): Menu[] {
       label: "Trend",
       icon: GaugeCircle,
       submenus: [],
-    },
-    {
-      href: "/profile",
-      label: "Profile",
-      icon: User,
-      submenus: [],
-    },
+    }
   ];
 }

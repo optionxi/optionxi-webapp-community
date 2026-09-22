@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { signIn } from "next-auth/react"
+import { useSearchParams } from "next/navigation"
 
 const catchyPhrases = [
   "Trade Smarter, Not Harder",
@@ -17,9 +18,16 @@ const catchyPhrases = [
 export default function SignInCard() {
   const [isHovered, setIsHovered] = useState(false)
 
+
+  const searchParams = useSearchParams();
+
+  // Get callback URL from search params
+  const callbackUrl = searchParams?.get('callbackUrl');
+
   const handleGoogleSignIn = () => {
-    signIn('google', { callbackUrl: '/dashboard' })
-  }
+  const decodedUrl = callbackUrl ? decodeURIComponent(callbackUrl) : '/dashboard';
+  signIn('google', { callbackUrl: decodedUrl });
+}
 
   return (
     <motion.div

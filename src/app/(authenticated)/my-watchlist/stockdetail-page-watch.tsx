@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { totalstocks } from '@/datamodels/constants';
 import StockDashboardWatchlist from '../stocks/[stockname]/stock-dashboard_watchlist';
 import { StockExternalLinksWatchlist } from '../stocks/[stockname]/stock-external-links_watchlist';
-import AISummary from './ai-summary';
+import AISummaryFloatingButton from './ai-summary';
 import StockFinancials from '@/components/db_component/cust_financials';
 
 
@@ -38,7 +38,7 @@ export default function StockDetailPageWatchList({ stockname }: {stockname:strin
       <br/>
       <StockFinancials stockname={decodedStockName}/>
       <br/>
-      <AISummary/>
+      <AISummaryFloatingButton  symbol={decodedStockName}/>
       <br/>
       <StockExternalLinksWatchlist stockName={decodedStockName} />
       <br/>

@@ -32,7 +32,7 @@ export default function SignInLandingPage() {
               </span>
             </h1>
             <p className="text-xl text-muted-foreground">
-              Experience the future of trading with our cutting-edge platform.
+              India&apos;s first open source trading platform
             </p>
             <div className="grid grid-cols-2 gap-4">
               

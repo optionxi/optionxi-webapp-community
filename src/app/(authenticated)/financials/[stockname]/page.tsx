@@ -7,12 +7,11 @@ import Link from 'next/link'
 
 interface PageProps {
   params: Promise<{
-    symbol: string;
+    stockname: string;
   }>;
 }
 export default async function StockFinancialPage({ params }: PageProps) {
-    const { symbol } = await params;
-    const stockname = decodeURIComponent(symbol)
+    const { stockname } = await params;
     const data = await fetchStockDataFinancialTables(stockname)
   
     if (!data) {
@@ -71,17 +70,18 @@ export async function generateMetadata({ params }: PageProps) {
   //     description: 'The requested stock information could not be found.',
   //   };
   // }
-  const { symbol } = await params;
+  
+  const { stockname } = await params;
 
-  const decodedStockName = decodeURIComponent(symbol);
+  const decodedStockName = decodeURIComponent(stockname);
   
   return {
     title: `${decodedStockName} Financials - OptionXi`,
-    description: `Financial information for ${symbol} including assets, debt, and equity data.`,
+    description: `Financial information for ${stockname} including assets, debt, and equity data.`,
     openGraph: {
       title: `${decodedStockName} Analysis - OptionXi`,
-      description: `Financial information for ${symbol} including assets, debt, and equity data.`,
-      url: `https://app.optionxi.com/financials/${symbol}`,
+      description: `Financial information for ${stockname} including assets, debt, and equity data.`,
+      url: `https://app.optionxi.com/financials/${stockname}`,
       images: [
         {
           url: '/metadata/opengraph-image.jpg',
@@ -94,7 +94,7 @@ export async function generateMetadata({ params }: PageProps) {
     twitter: {
       card: 'summary_large_image',
       title: `${decodedStockName} Financials - OptionXi`,
-      description: `Financial information for ${symbol} including assets, debt, and equity data.`,
+      description: `Financial information for ${stockname} including assets, debt, and equity data.`,
       images: [
         {
           url: '/metadata/twitter-image.jpg',

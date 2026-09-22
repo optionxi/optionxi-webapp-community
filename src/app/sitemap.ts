@@ -51,12 +51,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/profile`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/scanners`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
@@ -126,6 +120,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.9,
   }))
 
+   // Generate general stock-specific routes
+   const stockalertsRoutes = stockNames.map(stock => ({
+    url: `${baseUrl}/alerts/${stock.toUpperCase()}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.9,
+  }))
+
   // Combine all routes together
-  return [...routes, ...nifty50Routes, ...nifty200Routes, ...stockRoutes, ...stockfinancialRoutes]
+  return [...routes, ...nifty50Routes, ...nifty200Routes, ...stockRoutes, ...stockfinancialRoutes,...stockalertsRoutes]
 }

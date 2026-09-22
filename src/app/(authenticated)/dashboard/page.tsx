@@ -10,7 +10,15 @@ import {
 } from "@/components/ui/breadcrumb"
 import HeroSection from "./hero-section";
 import ToggleTools from "./tools-section";
-import TopStocksHeatMap from "./screeners-top-stocks";
+import IndicesGlance from "./cust_market_glance";
+import MarketMovers from "./cust_market_movers";
+import MarketInsightsGrid from "./cust_market_sentiments";
+import TopStocksTabs from "./cust_market_trend_stocks";
+import AnalyticsToolsSection from "./analytics-section";
+import MarketNewsBanner from "./market-news-section";
+import AiStockPicksCard from "./ai-stock-picked-section";
+import MarketSentimentCard from "./ai-index-picked-section";
+import StockPerformanceSectionHome from "./cust_stock_performance";
 
 export default function DashboardPage() {
   return (
@@ -30,19 +38,44 @@ export default function DashboardPage() {
             </BreadcrumbList>
           </Breadcrumb>
         </nav> 
+        <IndicesGlance/>
+        <br/>
        
         <HeroSection/>
         {/* <WatchListCTA/> */}
         <ToggleTools/>
-        <TopStocksHeatMap category="bullish" limit={10} />
+       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <AiStockPicksCard />
+          <MarketSentimentCard />
+        </div>
         <br/>
-        <TopStocksHeatMap category="bearish" limit={10} />
+        <StockPerformanceSectionHome />
+        <br/>
+        <AnalyticsToolsSection />
+        <br/>
+        <MarketNewsBanner />
+
+
+        {/* Tools */}
+        <TopStocksTabs limit={10} />
+        <br/>
+        <MarketMovers/>
+        <br/>
+        <br/>
+        <MarketInsightsGrid/>
+        <br/>
+
+        {/* <TopStocksHeatMap category="bullish" limit={10} /> */}
+        <br/>
+        {/* <TopStocksHeatMap category="bearish" limit={10} /> */}
         {/* <AnalyticsToolsSection/> */}
-        <br/>
-        <br/>
+        {/* <br/>
+        <br/> */}
         {/* <TradingHero/> */}
-        <br/>
+        {/* <br/> */}
         {/* <ScrollCarousel/> */}
+        {/* <MarketTrendsSection/> */}
+        
       </ContentLayout>
     </div>
   )

@@ -1,10 +1,5 @@
 import { RawStockData as StockDataHistorical, StockDataPoint } from '@/datamodels/stock_historical';
-import { createClient } from '@supabase/supabase-js';
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-);
+import { supabase } from '@/lib/supabase/client';
 
 type TimeframeOption ='1m'|'3m'|'6m' | '1y' | '3y' | '5y';
 

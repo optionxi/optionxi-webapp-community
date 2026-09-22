@@ -42,23 +42,19 @@ export const FirebaseAuthProvider: React.FC<{ children: React.ReactNode }> = ({ 
         setLoading(false);
       } else {
         setLoading(false);
-        if (session?.firebaseToken) {
-          console.log('Attempting to sign in to Firebase app1 as user signedout...');
-          const success1 = await signInFirebaseWithNextAuthSession(
-            session as SessionWithFirebaseToken,
-            app
-          );
+         if (session?.firebaseToken) {
+            console.log('Attempting to sign in to Firebase app1 as user signedout...');
+            const success1 = await signInFirebaseWithNextAuthSession(
+              session as SessionWithFirebaseToken,
+              app
+            );
 
-          if (success1) {
-            console.log('Firebase RE sign-in successful');
-            return true;
-          } else {
-            console.error('Firebase RE sign-in failed');
-            return false;
-          }
-        } else {
-          console.error('No firebase token found for resignin app1');
-        }
+            if (success1) {
+              console.log('Firebase RE sign-in successful');
+            } else {
+              console.warn('Firebase RE sign-in failed');
+            }
+          } 
       }
     });
 
@@ -82,8 +78,6 @@ export const FirebaseAuthProvider: React.FC<{ children: React.ReactNode }> = ({ 
             console.error('Firebase RE sign-in failed');
             return false;
           }
-        } else {
-          console.error('No firebase token found for resignin app2');
         }
       }
     });

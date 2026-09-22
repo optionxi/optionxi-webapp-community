@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import AISummary from "@/app/(authenticated)/my-watchlist/ai-summary";
+import AISummaryFloatingButton from "@/app/(authenticated)/my-watchlist/ai-summary";
 import StockDashboardSideBar from "@/app/(authenticated)/stocks/[stockname]/stock-dashboard_sidebar";
 import { StockExternalLinksSideBar } from "@/app/(authenticated)/stocks/[stockname]/stock-external-links-sidebar";
 import StockFinancialsSideBar from "../db_component/cust_financials_sidebar";
@@ -36,7 +36,7 @@ export default function StockDetailSideBarPage({ stockname }: { stockname: strin
       <br/>
       <StockFinancialsSideBar stockname={stockname.split(":")[1].split("-")[0].toUpperCase()}/>
       <br />
-      <AISummary />
+      <AISummaryFloatingButton symbol={stockname.split(":")[1].split("-")[0].toUpperCase()} />
       <br />
       <StockExternalLinksSideBar stockName={stockname.split(":")[1].split("-")[0].toUpperCase()} />
     </>

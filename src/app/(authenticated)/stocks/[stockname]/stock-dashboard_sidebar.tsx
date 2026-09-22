@@ -1,10 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { fetchHistoricalData } from '@/lib/supabaseDB/supabase_historical';
 import { StockDataPoint } from '@/datamodels/stock_historical';
-import { AreaChart } from '@/components/chart/chart-tremor';
 import { LoadingSkeletonChart } from './stock-chart-loading';
 import { FallbackImage } from '@/components/custom/cust_fallback_image';
 import { cn } from '@/lib/utils';
@@ -12,51 +11,54 @@ import StockSummarySideBar from './stock-summary-sidebar';
 import StockSummarySideBarSkeleton from './stock-summary-sidebar-skelton';
 import NoStockData from '@/components/custom/cust_error_page';
 import Link from 'next/link';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import { StockAreaChart } from '@/components/chart/chart-area-chart';
 
 export default function StockDashboardSideBar({ stockName }: { stockName: string }) {
   const [stockData, setStockData] = useState<StockDataPoint[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const isDesktop = useMediaQuery('(min-width: 768px)');
 
   useEffect(() => {
+    let cancelled = false;
     async function loadData() {
       setIsLoading(true);
       setError(null);
       try {
         const { data: historicalData, error: historicalError } = await fetchHistoricalData(`${stockName}.NS`);
         if (historicalError) throw historicalError;
-        setStockData(historicalData || []);
+        if (!cancelled) setStockData(historicalData || []);
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'An error occurred');
+        if (!cancelled) setError(err instanceof Error ? err.message : 'An error occurred');
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
     }
-
     loadData();
+    return () => { cancelled = true; };
   }, [stockName]);
 
-  function calculateSMA(data: StockDataPoint[], windowSize: number) {
-    return data.map((_, idx) => {
-      if (idx < windowSize - 1) return null;
-      const windowSlice = data.slice(idx - windowSize + 1, idx + 1);
-      const sma = windowSlice.reduce((sum, item) => sum + item.price, 0) / windowSize;
-      return sma;
-    });
-  }
+  const chartData = useMemo(() => {
+    const sma = (window: number) =>
+      stockData.map((_, idx) => {
+        if (idx < window - 1) return null;
+        const slice = stockData.slice(idx - window + 1, idx + 1);
+        return slice.reduce((sum, item) => sum + item.price, 0) / window;
+      });
 
-  const sma20 = calculateSMA(stockData, 20);
-  const sma50 = calculateSMA(stockData, 50);
+    const sma20 = sma(20);
+    const sma50 = sma(50);
 
-  const formattedData = stockData.map((item, idx) => ({
-    Date: item.date,
-    Price: item.price,
-    Volume: item.volume,
-    SMA20: sma20[idx],
-    SMA50: sma50[idx],
-  }));
+    return stockData.map((item, idx) => ({
+      Date: item.date,
+      Price: item.price,
+      SMA20: sma20[idx],
+      SMA50: sma50[idx],
+    }));
+  }, [stockData]);
 
-  const valueFormatter = (number: number) => `₹${Intl.NumberFormat("en-IN").format(number).toString()}`;
+  const valueFormatter = (n: number) => `₹${Intl.NumberFormat("en-IN").format(n)}`;
 
   if (stockData.length < 2 && !isLoading) {
     return <NoStockData />;
@@ -67,7 +69,6 @@ export default function StockDashboardSideBar({ stockName }: { stockName: string
       {/* Modern header section with glass effect */}
       <div className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-lg rounded-2xl p-6 shadow-lg">
         <div className="flex flex-col justify-between items-start sm:items-center gap-6">
-          {/* Stock info section */}
           <div className="flex items-center gap-6">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl blur opacity-20"></div>
@@ -95,34 +96,33 @@ export default function StockDashboardSideBar({ stockName }: { stockName: string
             </div>
           </div>
 
-          {/* Action buttons */}
           <div className="flex flex-col sm:flex-row w-full sm:w-auto gap-3">
-            <a
-              href={`https://in.tradingview.com/chart/?symbol=${stockName}`}
+            
+            <a href={`https://in.tradingview.com/chart/?symbol=${stockName}`}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto"
             >
               <button className="w-full group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 transition-all duration-300 shadow-md hover:shadow-lg text-white">
                 <span className="text-sm font-medium">View Chart</span>
-                <svg 
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                 </svg>
               </button>
             </a>
-            
+
             <Link href={`/stocks/${stockName}`} className="w-full sm:w-auto">
               <button className="w-full group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700 transition-all duration-300 shadow-md hover:shadow-lg text-white">
                 <span className="text-sm font-medium">View Full Overview</span>
-                <svg 
-                  className="w-4 h-4 transition-transform group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
+                <svg
+                  className="w-4 h-4 transition-transform group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
@@ -146,12 +146,12 @@ export default function StockDashboardSideBar({ stockName }: { stockName: string
         )}
       </div>
 
-      {/* Chart Section for Desktop */}
-      <Card className="hidden md:block overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
-        <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
+      {/* Chart Section (responsive, single instance) */}
+      <Card className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
+        <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-4 md:p-6">
+          <h2 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-4 md:p-6">
           {isLoading ? (
             <LoadingSkeletonChart />
           ) : error ? (
@@ -159,59 +159,21 @@ export default function StockDashboardSideBar({ stockName }: { stockName: string
               Error: {error}
             </div>
           ) : (
-            <AreaChart
-              className="h-96"
-              data={formattedData}
+            <StockAreaChart
+              data={chartData}
               index="Date"
-              categories={["Price"]}
+              height={isDesktop ? 384 : 288}
               valueFormatter={valueFormatter}
-              showLegend={false}
-              showGridLines={true}
-              showXAxis={true}
-              showYAxis={true}
-              connectNulls={true}
-              enableLegendSlider={true}
-              xAxisLabel="Year"
-              yAxisLabel="Price"
+              series={[
+                { key: "Price", label: "Price", color: "#6366f1", kind: "area" },
+                { key: "SMA20", label: "SMA 20", color: "#f59e0b", kind: "line", dashed: true },
+                { key: "SMA50", label: "SMA 50", color: "#10b981", kind: "line", dashed: true },
+              ]}
             />
           )}
         </CardContent>
       </Card>
 
-      {/* Chart Section for Mobile */}
-      <div className="block md:hidden">
-        <Card className="overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 shadow-lg">
-          <CardHeader className="bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 p-4">
-            <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">Price History</h2>
-          </CardHeader>
-          <CardContent className="p-4">
-            {isLoading ? (
-              <LoadingSkeletonChart />
-            ) : error ? (
-              <div className="p-4 rounded-lg bg-red-50 dark:bg-red-900/10 text-red-600 dark:text-red-400">
-                Error: {error}
-              </div>
-            ) : (
-              <AreaChart
-                className="h-72"
-                data={formattedData}
-                index="Date"
-                categories={["Price"]}
-                valueFormatter={valueFormatter}
-                showLegend={false}
-                showGridLines={true}
-                showXAxis={true}
-                showYAxis={true}
-                connectNulls={true}
-                enableLegendSlider={true}
-                xAxisLabel="Year"
-                yAxisLabel="Price"
-              />
-            )}
-          </CardContent>
-        </Card>
-      </div>
-      
       {/* View Full Overview Section with gradient background */}
       <div className="overflow-hidden relative rounded-xl group">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-pink-500/20 dark:from-indigo-500/10 dark:to-pink-500/10 transform group-hover:scale-105 transition-all duration-500"></div>

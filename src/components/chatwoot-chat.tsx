@@ -1,7 +1,7 @@
 'use client'
 import { useEffect } from 'react'
 
-export default function ChatwootWidget(): JSX.Element | null {
+export default function ChatwootWidget(): React.JSX.Element | null {
   useEffect(() => {
     const baseUrl = process.env.NEXT_PUBLIC_CHATWOOT_BASE_URL
     const token = process.env.NEXT_PUBLIC_CHATWOOT_TOKEN

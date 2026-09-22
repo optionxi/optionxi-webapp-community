@@ -19,8 +19,7 @@ import { AxisDomain } from "recharts/types/util/types"
 
 
 import { cx } from "class-variance-authority"
-import { getYAxisDomain } from "@/lib/chart-utlis"
-import { AvailableChartColorsKeys, AvailableChartColors, constructCategoryColors, getColorClassName } from "./chart-utils"
+import { AvailableChartColors, AvailableChartColorsKeys, constructCategoryColors, getColorClassName, getYAxisDomain } from "@/lib/chart-utlis"
 
 //#region SparkAreaChart
 
@@ -84,7 +83,7 @@ const SparkAreaChart = React.forwardRef<HTMLDivElement, SparkAreaChartProps>(
         tremor-id="tremor-raw"
         {...other}
       >
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <RechartsAreaChart
             data={data}
             margin={{
@@ -195,7 +194,7 @@ const SparkLineChart = React.forwardRef<HTMLDivElement, SparkLineChartProps>(
         tremor-id="tremor-raw"
         {...other}
       >
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <RechartsLineChart
             data={data}
             margin={{
@@ -280,7 +279,7 @@ const SparkBarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
         tremor-id="tremor-raw"
         {...other}
       >
-        <ResponsiveContainer>
+        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
           <RechartsBarChart
             data={data}
             margin={{

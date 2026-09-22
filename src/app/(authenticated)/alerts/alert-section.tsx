@@ -12,11 +12,11 @@ import { AlertModel } from '@/datamodels/alerts_model'
 import { getAlerts, subscribeToAlerts } from '@/lib/supabaseDB/supabase_alerts'
 import Link from 'next/link'
 import { getSentimentStyles } from './helper-sentiment-styles'
-import { StockAlertSingleItem } from './stock-alert-single'
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 import EmptyState from '../atlas/atlas-empty-result'
 import { totalstocks } from '@/datamodels/constants'
 import { cn } from '@/lib/utils' // Ensure you have this utility for conditional classNames
+import StockAlertSingleItem from './stock-alert-single'
 
 const PAGE_SIZE = 20
 type SentimentFilter = 'all' | 'bullish' | 'bearish'
@@ -317,7 +317,13 @@ export default function AlertsPage() {
                     href={`/alerts/${alert.symbol}`}
                     className="block hover:scale-[1.01] transition-transform"
                   >
-                    {StockAlertSingleItem(alert, styles, index, alertDate)}
+                    {<StockAlertSingleItem
+                                                key={alert.id}
+                                                alert={alert}
+                                                styles={styles}
+                                                index={index}
+                                                alertDatetime={alertDate}
+                                              />}
                   </Link>
                 )
               })
