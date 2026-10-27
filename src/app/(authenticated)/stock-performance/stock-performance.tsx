@@ -1,9 +1,27 @@
 "use client";
 
-import { useState, useEffect, useCallback, useRef } from "react";
-import { supabase } from '@/lib/supabase/client';
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+/**
+ * Stock Dashboard — redesigned around PROGRESSIVE DISCLOSURE
+ *
+ *   Level 1  Table      → only what you scan: name, price, change (for the chosen period),
+ *                          52W position, volume. RSI shows up only when it's notable.
+ *   Level 2  Drawer     → click a row: returns grid, day range, trend verdict.
+ *   Level 3  Accordions → inside the drawer: momentum, moving averages, weekly/monthly candles.
+ *   Level 4  Full page  → "View full analysis".
+ *
+ * Animation toolkit (no libraries):
+ *   - Sliding segmented control : one indicator, moved with transform: translateX()
+ *   - Count-up numbers          : requestAnimationFrame + ease-out cubic
+ *   - Staggered rows            : CSS keyframe + per-row animation-delay
+ *   - Drawer                    : mounts off-screen, next frame flips a class → CSS transition
+ *   - Accordions                : grid-template-rows 0fr → 1fr (animates to "auto" height)
+ *   - Range / breadth bars      : width / left transitions
+ */
 
+import { Suspense, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { supabase } from "@/lib/supabase/client";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface StockPerformance {
@@ -15,7 +33,7 @@ interface StockPerformance {
   low: number;
   close: number;
   vol: number;
-  pcnt_1d: number | null;   // ← NEW
+  pcnt_1d: number | null;
   pcnt_1w: number | null;
   pcnt_1m: number | null;
   pcnt_3m: number | null;
@@ -41,38 +59,23 @@ interface StockPerformance {
   updated_at: string;
 }
 
-interface SectorStat {
-  sec: string;
-  avg_1d: number;
-  avg_1w: number;
-  avg_1m: number;
-  count: number;
-}
-
-type SortCol =
-  | "pcnt_1d" | "pcnt_1w" | "pcnt_1m" | "pcnt_3m" | "pcnt_6m" | "pcnt_1y" 
-  | "pcnt_2y" | "pcnt_3y"  // ← Add these
-  | "close" | "vol" | "rsi14" | "stckname";
+type PeriodMode = "1d" | "1w" | "1m" | "3m" | "6m" | "1y" | "2y" | "3y";
+type PctCol = "pcnt_1d" | "pcnt_1w" | "pcnt_1m" | "pcnt_3m" | "pcnt_6m" | "pcnt_1y" | "pcnt_2y" | "pcnt_3y";
+type SortKey = "change" | "close" | "vol" | "rsi14" | "stckname";
 type SortDir = "asc" | "desc";
-type RsiMode = "all" | "overbought" | "oversold" | "neutral";
+type RsiMode = "all" | "overbought" | "neutral" | "oversold";
 type TrendMode = "all" | "bullish" | "bearish";
-type PeriodMode = "1d" | "1w" | "1m" | "3m" | "6m" | "1y" | "2y" | "3y";  // ← Add "2y" 
-type DetailTab = "overview" | "technicals" | "periodic";
+
+interface SectorRow extends Record<PctCol, number | null> { sec: string | null }
+interface SectorStat { sec: string; avg: number; count: number }
 
 const PAGE_SIZE = 25;
-
-
-
-const PERIOD_COL: Record<PeriodMode, SortCol> = {
-  "1d": "pcnt_1d",
-  "1w": "pcnt_1w",
-  "1m": "pcnt_1m",
-  "3m": "pcnt_3m",
-  "6m": "pcnt_6m",
-  "1y": "pcnt_1y",
-  "2y": "pcnt_2y",  // ← Add
-  "3y": "pcnt_3y",  // ← Add
+const PERIODS: PeriodMode[] = ["1d", "1w", "1m", "3m", "6m", "1y", "2y", "3y"];
+const PERIOD_COL: Record<PeriodMode, PctCol> = {
+  "1d": "pcnt_1d", "1w": "pcnt_1w", "1m": "pcnt_1m", "3m": "pcnt_3m",
+  "6m": "pcnt_6m", "1y": "pcnt_1y", "2y": "pcnt_2y", "3y": "pcnt_3y",
 };
+const MA_LENGTHS = [10, 20, 50, 100, 150, 200] as const;
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 const fmt = (n: number | null | undefined, d = 2) =>
@@ -86,932 +89,1005 @@ const fmtVol = (n: number | null) => {
   return n.toString();
 };
 
-const ticker = (s: string) =>
-  s.replace(/^NSE:|BSE:/, "").replace(/-EQ$|-BE$|-SM$/, "");
+const ticker = (s: string) => s.replace(/^(NSE|BSE):/, "").replace(/-(EQ|BE|SM)$/, "");
+const cleanSlug = (s: string) => ticker(s).toLowerCase().replace(/[^a-z0-9]/g, "-");
+const signed = (v: number, d = 1) => `${v > 0 ? "+" : ""}${v.toFixed(d)}%`;
+const tone = (v: number | null) =>
+  v == null || v === 0 ? "text-zinc-400" : v > 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400";
 
-const getCleanStockName = (s: string) =>
-  ticker(s).toLowerCase().replace(/[^a-z0-9]/g, "-");
+const maOf = (s: StockPerformance, kind: "ema" | "sma", n: number) =>
+  s[`${kind}${n}` as keyof StockPerformance] as number | null;
 
-const getRsiLabel = (v: number | null) => {
-  if (v == null) return { label: "—", cls: "text-zinc-400" };
-  if (v >= 70) return { label: "Overbought", cls: "text-red-500 dark:text-red-400" };
-  if (v <= 30) return { label: "Oversold", cls: "text-emerald-500 dark:text-emerald-400" };
-  return { label: "Neutral", cls: "text-zinc-400" };
-};
+// ─── Animation hooks ──────────────────────────────────────────────────────────
+/** Smoothly tweens a number toward `target` (ease-out cubic). */
+function useCountUp(target: number, duration = 500) {
+  const [value, setValue] = useState(target);
+  const from = useRef(target);
+  useEffect(() => {
+    const start = performance.now();
+    const begin = from.current;
+    let raf = 0;
+    const tick = (t: number) => {
+      const p = Math.min((t - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = begin + (target - begin) * eased;
+      from.current = v;
+      setValue(v);
+      if (p < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [target, duration]);
+  return value;
+}
 
-// ─── Micro components ─────────────────────────────────────────────────────────
-function PctBadge({ value }: { value: number | null }) {
-  if (value == null) return <span className="text-xs text-zinc-400">—</span>;
-  const base = "inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-xs font-bold tabular-nums";
-  const pos = value > 0;
-  const zero = value === 0;
-  const color = zero
-    ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-500"
-    : pos
-    ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400"
-    : "bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-400";
+const AnimStyles = () => (
+  <style>{`
+    @keyframes sd-fade-up { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+    @keyframes sd-pop     { from { opacity: 0; transform: translateY(-6px) scale(.97) } to { opacity: 1; transform: none } }
+    @keyframes sd-grow    { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+    .sd-row  { animation: sd-fade-up .35s ease-out both }
+    .sd-pop  { animation: sd-pop .18s ease-out both; transform-origin: top right }
+    .sd-fade { animation: sd-fade-up .3s ease-out both }
+    .sd-grow { animation: sd-grow .6s cubic-bezier(.2,.8,.2,1) both; transform-origin: left }
+    @media (prefers-reduced-motion: reduce) {
+      .sd-row, .sd-pop, .sd-fade, .sd-grow { animation: none }
+      * { transition-duration: 0s !important }
+    }
+  `}</style>
+);
+
+// ─── Small building blocks ────────────────────────────────────────────────────
+function PctBadge({ value, big = false }: { value: number | null; big?: boolean }) {
+  if (value == null) return <span className="text-xs text-zinc-300 dark:text-zinc-600">—</span>;
+  const color =
+    value === 0
+      ? "bg-zinc-100 dark:bg-zinc-800 text-zinc-500"
+      : value > 0
+      ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400"
+      : "bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-400";
   return (
-    <span className={`${base} ${color}`}>
-      {pos ? "▲" : value < 0 ? "▼" : ""}
+    <span
+      className={`inline-flex items-center gap-1 rounded-md font-bold tabular-nums ${color} ${
+        big ? "px-2.5 py-1 text-sm" : "px-2 py-0.5 text-xs"
+      }`}
+    >
+      <span className="text-[8px]">{value > 0 ? "▲" : value < 0 ? "▼" : ""}</span>
       {Math.abs(value).toFixed(2)}%
     </span>
   );
 }
 
-function RsiBar({ value }: { value: number | null }) {
-  const { label, cls } = getRsiLabel(value);
-  const pos = Math.min(Math.max(value ?? 50, 0), 100);
-  const barColor =
-    (value ?? 50) >= 70 ? "bg-red-500"
-    : (value ?? 50) <= 30 ? "bg-emerald-500"
-    : "bg-blue-500";
+/** Segmented control with a single sliding indicator. */
+function Segmented<T extends string>({
+  options, value, onChange, className = "",
+}: {
+  options: { value: T; label: string }[];
+  value: T;
+  onChange: (v: T) => void;
+  className?: string;
+}) {
+  const n = options.length;
+  const idx = Math.max(0, options.findIndex((o) => o.value === value));
   return (
-    <div className="flex flex-col gap-1 min-w-[80px]">
-      <div className="flex justify-between items-center">
-        <span className="font-mono text-xs font-semibold text-zinc-700 dark:text-zinc-300">
-          {value?.toFixed(1) ?? "—"}
+    <div
+      className={`relative grid rounded-xl bg-zinc-100 dark:bg-zinc-800 p-1 ${className}`}
+      style={{ gridTemplateColumns: `repeat(${n}, minmax(0, 1fr))` }}
+    >
+      {/* The indicator never remounts — only its translateX changes, so the CSS transition animates it. */}
+      <span
+        aria-hidden
+        className="absolute top-1 bottom-1 left-1 rounded-lg bg-white dark:bg-zinc-600 shadow-sm transition-transform duration-300 ease-out"
+        style={{ width: `calc((100% - 8px) / ${n})`, transform: `translateX(${idx * 100}%)` }}
+      />
+      {options.map((o) => (
+        <button
+          key={o.value}
+          onClick={() => onChange(o.value)}
+          className={`relative z-10 px-2.5 py-1.5 text-xs font-bold transition-colors ${
+            o.value === value ? "text-zinc-900 dark:text-white" : "text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300"
+          }`}
+        >
+          {o.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+/** Height-animating accordion (grid-template-rows trick). */
+function Collapse({
+  title, hint, defaultOpen = false, children,
+}: { title: string; hint?: string; defaultOpen?: boolean; children: React.ReactNode }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div className="rounded-xl border border-zinc-200 dark:border-zinc-800">
+      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between px-3.5 py-3 text-left">
+        <span>
+          <span className="block text-xs font-bold text-zinc-800 dark:text-zinc-100">{title}</span>
+          {hint && <span className="block text-[11px] text-zinc-400">{hint}</span>}
         </span>
-        <span className={`text-[10px] font-bold ${cls}`}>{label}</span>
+        <svg
+          className={`h-4 w-4 text-zinc-400 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+      <div className={`grid transition-[grid-template-rows] duration-300 ease-out ${open ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
+        <div className="overflow-hidden">
+          <div className="px-3.5 pb-3.5">{children}</div>
+        </div>
       </div>
-      <div className="h-1 rounded-full bg-zinc-200 dark:bg-zinc-700 overflow-hidden">
-        <div
-          className={`h-full rounded-full transition-all duration-500 ${barColor}`}
-          style={{ width: `${pos}%` }}
+    </div>
+  );
+}
+
+function RangeBar({ close, low, high, label }: { close: number; low: number | null; high: number | null; label?: string }) {
+  const pct = high != null && low != null && high !== low ? Math.min(Math.max(((close - low) / (high - low)) * 100, 0), 100) : null;
+  return (
+    <div className="w-full">
+      {label && <p className="mb-1 text-[10px] font-bold uppercase tracking-widest text-zinc-400">{label}</p>}
+      <div className="relative h-1.5 rounded-full bg-gradient-to-r from-red-300 via-zinc-200 to-emerald-300 dark:from-red-900 dark:via-zinc-700 dark:to-emerald-900">
+        {pct != null && (
+          <span
+            className="absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 -translate-x-1/2 rounded-full border-2 border-white bg-blue-600 shadow transition-all duration-700 ease-out dark:border-zinc-900"
+            style={{ left: `${pct}%` }}
+          />
+        )}
+      </div>
+      <div className="mt-1 flex justify-between text-[10px] tabular-nums text-zinc-400">
+        <span>₹{fmt(low)}</span>
+        <span>₹{fmt(high)}</span>
+      </div>
+    </div>
+  );
+}
+
+function RsiMeter({ value }: { value: number | null }) {
+  const v = value ?? 50;
+  const label = value == null ? "—" : v >= 70 ? "Overbought" : v <= 30 ? "Oversold" : "Neutral";
+  return (
+    <div>
+      <div className="mb-1 flex items-baseline justify-between">
+        <span className="font-mono text-sm font-bold text-zinc-800 dark:text-zinc-100">{value?.toFixed(1) ?? "—"}</span>
+        <span className={`text-[11px] font-bold ${v >= 70 ? "text-red-500" : v <= 30 ? "text-emerald-500" : "text-zinc-400"}`}>{label}</span>
+      </div>
+      <div className="relative h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-700">
+        {/* zones: 0–30 oversold, 70–100 overbought */}
+        <span className="absolute inset-y-0 left-0 w-[30%] rounded-l-full bg-emerald-200/70 dark:bg-emerald-900/60" />
+        <span className="absolute inset-y-0 right-0 w-[30%] rounded-r-full bg-red-200/70 dark:bg-red-900/60" />
+        <span
+          className="absolute top-1/2 h-3 w-3 -translate-y-1/2 -translate-x-1/2 rounded-full border-2 border-white bg-blue-600 shadow transition-all duration-700 dark:border-zinc-900"
+          style={{ left: `${Math.min(Math.max(v, 0), 100)}%` }}
         />
       </div>
     </div>
   );
 }
 
-function Week52Bar({ close, high, low }: { close: number; high: number | null; low: number | null }) {
-  const pct = high && low && high !== low ? ((close - low) / (high - low)) * 100 : null;
-  return (
-    <div className="flex flex-col gap-1 min-w-[100px]">
-      <div className="flex justify-between text-[10px] text-zinc-400 tabular-nums">
-        <span>{fmt(low)}</span>
-        <span>{fmt(high)}</span>
-      </div>
-      <div className="relative h-1 rounded-full bg-zinc-200 dark:bg-zinc-700">
-        {pct != null && (
-          <div
-            className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-blue-500 border-2 border-white dark:border-zinc-900 shadow"
-            style={{ left: `calc(${pct}% - 5px)` }}
-          />
-        )}
-      </div>
-    </div>
-  );
-}
-
-function EmaChip({ label, price, ema }: { label: string; price: number; ema: number | null }) {
-  if (!ema) return null;
-  const above = price > ema;
-  return (
-    <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold font-mono ${
-      above
-        ? "bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-400"
-        : "bg-red-50 dark:bg-red-950/60 text-red-700 dark:text-red-400"
-    }`}>
-      {label} {above ? "▲" : "▼"}
-    </span>
-  );
-}
-
-function Skeleton() {
-  return (
-    <tr className="border-b border-zinc-100 dark:border-zinc-800">
-      {Array.from({ length: 14 }).map((_, i) => (
-        <td key={i} className="px-4 py-3.5">
-          <div className="h-3 rounded bg-zinc-100 dark:bg-zinc-800 animate-pulse" style={{ animationDelay: `${i * 60}ms` }} />
-        </td>
-      ))}
-    </tr>
-  );
-}
-
-// ─── Sector Card ──────────────────────────────────────────────────────────────
-function SectorCard({ stat, active, onClick }: { stat: SectorStat; active: boolean; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className={`group flex-shrink-0 text-left rounded-xl p-3 border transition-all duration-150 cursor-pointer w-[160px]
-        ${active
-          ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30 ring-1 ring-blue-500/30"
-          : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 hover:border-zinc-300 dark:hover:border-zinc-700"
-        }`}
-    >
-      {/* Sector name: wrap up to 2 lines, then ellipsis */}
-      <p
-        className="text-[10px] font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2 leading-tight"
-        style={{
-          display: "-webkit-box",
-          WebkitLineClamp: 2,
-          WebkitBoxOrient: "vertical",
-          overflow: "hidden",
-          minHeight: "2.2em",
-        }}
-      >
-        {stat.sec}
-      </p>
-      <div className="flex items-center justify-between gap-2 mb-1.5">
-        <div>
-          <p className="text-[9px] text-zinc-400 mb-0.5">1D</p>
-          <PctBadge value={stat.avg_1d} />
-        </div>
-        <div className="text-right">
-          <p className="text-[9px] text-zinc-400 mb-0.5">1W</p>
-          <PctBadge value={stat.avg_1w} />
-        </div>
-      </div>
-      <p className="text-[10px] text-zinc-400">{stat.count} stocks</p>
-    </button>
-  );
-}
-
-// ─── Bottom Sheet Detail Panel (Mobile) ──────────────────────────────────────
-function DRow({ label, value, valueClass }: { label: string; value: string; valueClass?: string }) {
-  return (
-    <div className="flex justify-between items-center py-1.5 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
-      <span className="text-xs text-zinc-400">{label}</span>
-      <span className={`text-xs font-mono font-semibold ${valueClass ?? "text-zinc-800 dark:text-zinc-100"}`}>{value}</span>
-    </div>
-  );
-}
-
-function DSection({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <h4 className="text-[9px] font-bold uppercase tracking-[0.15em] text-zinc-400 mb-2">{title}</h4>
-      <div className="bg-zinc-50 dark:bg-zinc-800/50 rounded-lg px-3 py-1">
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function DetailPanelContent({ stock, tab }: { stock: StockPerformance; tab: DetailTab }) {
-  return (
-    <>
-      {tab === "overview" && (
-        <>
-          <DSection title="OHLCV">
-            <DRow label="Open" value={`₹${fmt(stock.open)}`} />
-            <DRow label="High" value={`₹${fmt(stock.high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <DRow label="Close" value={`₹${fmt(stock.close)}`} valueClass="text-zinc-800 dark:text-zinc-100 font-mono font-bold" />
-            <DRow label="Volume" value={fmtVol(stock.vol)} />
-          </DSection>
-          <DSection title="52-WEEK RANGE">
-            <DRow label="High" value={`₹${fmt(stock.week52_high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.week52_low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <div className="pt-2 pb-1">
-              <Week52Bar close={stock.close} high={stock.week52_high} low={stock.week52_low} />
-            </div>
-          </DSection>
-          <DSection title="PERFORMANCE">
-            {([
-              ["1D", stock.pcnt_1d],
-              ["1W", stock.pcnt_1w],
-              ["1M", stock.pcnt_1m],
-              ["3M", stock.pcnt_3m],
-              ["6M", stock.pcnt_6m],
-              ["1Y", stock.pcnt_1y],
-              ["2Y", stock.pcnt_2y],
-              ["3Y", stock.pcnt_3y],
-            ] as [string, number | null][]).map(([l, v]) => (
-              <div key={l} className="flex justify-between items-center py-1.5 border-b border-zinc-100 dark:border-zinc-800 last:border-0">
-                <span className="text-xs text-zinc-400">{l}</span>
-                <PctBadge value={v} />
-              </div>
-            ))}
-          </DSection>
-        </>
-      )}
-
-      {tab === "technicals" && (
-        <>
-          <DSection title="RSI (14)">
-            <div className="py-2">
-              <RsiBar value={stock.rsi14} />
-            </div>
-          </DSection>
-          <DSection title="EMA SIGNALS">
-            <div className="flex flex-wrap gap-1.5 py-2">
-              {[10, 20, 50, 100, 150, 200].map((n) => (
-                <EmaChip key={n} label={`EMA${n}`} price={stock.close}
-                  ema={stock[`ema${n}` as keyof StockPerformance] as number | null} />
-              ))}
-            </div>
-          </DSection>
-          <DSection title="EMA VALUES">
-            {[10, 20, 50, 100, 150, 200].map((n) => {
-              const v = stock[`ema${n}` as keyof StockPerformance] as number | null;
-              return <DRow key={n} label={`EMA ${n}`} value={v ? `₹${fmt(v)}` : "—"} />;
-            })}
-          </DSection>
-          <DSection title="SMA VALUES">
-            {[10, 20, 50, 100, 150, 200].map((n) => {
-              const v = stock[`sma${n}` as keyof StockPerformance] as number | null;
-              return <DRow key={n} label={`SMA ${n}`} value={v ? `₹${fmt(v)}` : "—"} />;
-            })}
-          </DSection>
-        </>
-      )}
-
-      {tab === "periodic" && (
-        <>
-          <DSection title="CURRENT WEEK">
-            <DRow label="Open" value={`₹${fmt(stock.curr_week_open)}`} />
-            <DRow label="High" value={`₹${fmt(stock.curr_week_high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.curr_week_low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <DRow label="Close" value={`₹${fmt(stock.curr_week_close)}`} />
-            <DRow label="Volume" value={fmtVol(stock.curr_week_vol)} />
-          </DSection>
-          <DSection title="PREV WEEK">
-            <DRow label="Open" value={`₹${fmt(stock.prev_week_open)}`} />
-            <DRow label="High" value={`₹${fmt(stock.prev_week_high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.prev_week_low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <DRow label="Close" value={`₹${fmt(stock.prev_week_close)}`} />
-          </DSection>
-          <DSection title="CURRENT MONTH">
-            <DRow label="Open" value={`₹${fmt(stock.curr_month_open)}`} />
-            <DRow label="High" value={`₹${fmt(stock.curr_month_high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.curr_month_low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <DRow label="Close" value={`₹${fmt(stock.curr_month_close)}`} />
-            <DRow label="Volume" value={fmtVol(stock.curr_month_vol)} />
-          </DSection>
-          <DSection title="PREV MONTH">
-            <DRow label="Open" value={`₹${fmt(stock.prev_month_open)}`} />
-            <DRow label="High" value={`₹${fmt(stock.prev_month_high)}`} valueClass="text-emerald-600 dark:text-emerald-400 font-mono font-semibold" />
-            <DRow label="Low" value={`₹${fmt(stock.prev_month_low)}`} valueClass="text-red-600 dark:text-red-400 font-mono font-semibold" />
-            <DRow label="Close" value={`₹${fmt(stock.prev_month_close)}`} />
-          </DSection>
-        </>
-      )}
-    </>
-  );
-}
-
-function DetailHeader({
-  stock,
-  onClose,
-  onMoreDetails,
+// ─── Detail drawer (right side on desktop, bottom sheet on mobile) ────────────
+function Drawer({
+  stock, period, onClose, onNavigate, onPickSector,
 }: {
   stock: StockPerformance;
+  period: PeriodMode;
   onClose: () => void;
-  onMoreDetails: () => void;
+  onNavigate: (delta: number) => void;
+  onPickSector: (sec: string) => void;
 }) {
-  return (
-    <div className="px-4 py-4 bg-zinc-50 dark:bg-zinc-800/60 border-b border-zinc-100 dark:border-zinc-800">
-      <div className="flex justify-between items-start mb-3">
-        <div>
-          <h2 className="font-mono font-black text-lg text-blue-600 dark:text-blue-400 tracking-tight">
-            {ticker(stock.stckname)}
-          </h2>
-          <p className="text-[11px] text-zinc-400 mt-0.5">{stock.sym_key}</p>
-        </div>
-        <button
-          onClick={onClose}
-          className="w-7 h-7 rounded-lg bg-zinc-100 dark:bg-zinc-700 hover:bg-zinc-200 dark:hover:bg-zinc-600 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200 transition-colors flex items-center justify-center text-base font-bold"
-        >
-          ×
-        </button>
-      </div>
-      <div className="flex items-end gap-2 mb-3">
-        <span className="font-mono font-black text-2xl text-zinc-800 dark:text-zinc-100">₹{fmt(stock.close)}</span>
-        <PctBadge value={stock.pcnt_1d} />
-        <PctBadge value={stock.pcnt_1w} />
-      </div>
-      <button
-        onClick={onMoreDetails}
-        className="w-full px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-xs font-bold rounded-lg hover:from-blue-700 hover:to-blue-600 transition-all duration-200 shadow-lg shadow-blue-500/20 flex items-center justify-center gap-1.5"
-      >
-        <span>More Details</span>
-        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-        </svg>
-      </button>
-      {stock.sec && (
-        <span className="inline-block mt-2 text-[10px] px-2.5 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-700 text-zinc-500 dark:text-zinc-400 font-medium">
-          {stock.sec}
-        </span>
-      )}
-    </div>
-  );
-}
-
-// ─── Bottom Sheet (Mobile) ────────────────────────────────────────────────────
-function BottomSheet({ stock, onClose }: { stock: StockPerformance; onClose: () => void }) {
-  const [tab, setTab] = useState<DetailTab>("overview");
   const router = useRouter();
-  const handleMoreDetails = () => router.push(`/stocks/${getCleanStockName(stock.stckname)}`);
+  const [shown, setShown] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  return (
+  // Only render the portal after mount (SSR safety).
+  useEffect(() => { setMounted(true); }, []);
+
+  // Mount off-screen, then flip on the next frame so the CSS transition has a start state.
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setShown(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
+
+  // Lock background scroll while the drawer is open.
+  useEffect(() => {
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = prev; };
+  }, []);
+
+  const close = useCallback(() => {
+    setShown(false);
+    setTimeout(onClose, 250); // wait for the slide-out before unmounting
+  }, [onClose]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (t && ["INPUT", "SELECT", "TEXTAREA"].includes(t.tagName)) return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowDown") { e.preventDefault(); onNavigate(1); }
+      if (e.key === "ArrowUp") { e.preventDefault(); onNavigate(-1); }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [close, onNavigate]);
+
+  // Trend verdict from how many moving averages price sits above
+  const mas = MA_LENGTHS.map((n) => maOf(stock, "ema", n)).filter((v): v is number => v != null);
+  const above = mas.filter((v) => stock.close > v).length;
+  const ratio = mas.length ? above / mas.length : null;
+  const verdict =
+    ratio == null ? null
+    : ratio >= 0.83 ? { text: "Strong uptrend", cls: "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400" }
+    : ratio >= 0.5 ? { text: "Leaning up", cls: "bg-emerald-50/60 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400" }
+    : ratio >= 0.17 ? { text: "Leaning down", cls: "bg-red-50/60 text-red-600 dark:bg-red-950/40 dark:text-red-400" }
+    : { text: "Strong downtrend", cls: "bg-red-50 text-red-700 dark:bg-red-950/60 dark:text-red-400" };
+
+  const price = useCountUp(stock.close, 450);
+
+  const returns: [string, number | null][] = [
+    ["1D", stock.pcnt_1d], ["1W", stock.pcnt_1w], ["1M", stock.pcnt_1m], ["3M", stock.pcnt_3m],
+    ["6M", stock.pcnt_6m], ["1Y", stock.pcnt_1y], ["2Y", stock.pcnt_2y], ["3Y", stock.pcnt_3y],
+  ];
+
+  const candles: [string, (number | null)[], number | null][] = [
+    ["This week", [stock.curr_week_open, stock.curr_week_high, stock.curr_week_low, stock.curr_week_close], stock.curr_week_vol],
+    ["Last week", [stock.prev_week_open, stock.prev_week_high, stock.prev_week_low, stock.prev_week_close], null],
+    ["This month", [stock.curr_month_open, stock.curr_month_high, stock.curr_month_low, stock.curr_month_close], stock.curr_month_vol],
+    ["Last month", [stock.prev_month_open, stock.prev_month_high, stock.prev_month_low, stock.prev_month_close], null],
+  ];
+
+  if (!mounted) return null;
+
+  return createPortal(
     <>
-      <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 md:hidden" onClick={onClose} />
-      <div className="fixed inset-x-0 bottom-0 z-50 md:hidden bg-white dark:bg-zinc-900 rounded-t-2xl shadow-2xl max-h-[85vh] flex flex-col">
-        <div className="flex justify-center pt-3 pb-2">
-          <div className="w-10 h-1 rounded-full bg-zinc-300 dark:bg-zinc-600" />
+      <div
+        onClick={close}
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity duration-300 ${shown ? "opacity-100" : "opacity-0"}`}
+      />
+      <aside
+        role="dialog"
+        aria-label={`${ticker(stock.stckname)} details`}
+        className={`fixed z-50 flex flex-col bg-white shadow-2xl transition-transform duration-300 ease-out dark:bg-zinc-900
+          inset-x-0 bottom-0 max-h-[88vh] rounded-t-2xl border-t border-zinc-200 dark:border-zinc-800
+          md:inset-x-auto md:top-0 md:right-0 md:bottom-0 md:max-h-none md:w-[440px] md:rounded-none md:border-t-0 md:border-l
+          ${shown ? "translate-y-0 md:translate-x-0" : "translate-y-full md:translate-y-0 md:translate-x-full"}`}
+      >
+        <div className="flex justify-center pt-2.5 md:hidden">
+          <span className="h-1 w-10 rounded-full bg-zinc-300 dark:bg-zinc-600" />
         </div>
-        <DetailHeader stock={stock} onClose={onClose} onMoreDetails={handleMoreDetails} />
-        <div className="flex border-b border-zinc-100 dark:border-zinc-800 px-4">
-          {(["overview", "technicals", "periodic"] as DetailTab[]).map((t) => (
-            <button
-              key={t}
-              onClick={() => setTab(t)}
-              className={`flex-1 py-2.5 text-[11px] font-bold capitalize tracking-wide transition-all
-                ${tab === t ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-500" : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"}`}
-            >
-              {t}
-            </button>
-          ))}
+
+        {/* Header */}
+        <div className="flex items-start justify-between gap-3 border-b border-zinc-100 px-5 pb-4 pt-4 dark:border-zinc-800">
+          <div className="min-w-0">
+            <div className="flex items-center gap-2">
+              <h2 className="truncate font-mono text-xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">{ticker(stock.stckname)}</h2>
+              {verdict && <span className={`rounded-full px-2 py-0.5 text-[10px] font-bold ${verdict.cls}`}>{verdict.text}</span>}
+            </div>
+            {stock.sec && (
+              <button
+                onClick={() => { onPickSector(stock.sec!); close(); }}
+                className="mt-1 text-[11px] text-zinc-400 underline-offset-2 hover:text-blue-600 hover:underline"
+              >
+                {stock.sec} · see sector
+              </button>
+            )}
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
+            <button onClick={() => onNavigate(-1)} title="Previous (↑)" className="h-8 w-8 rounded-lg text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800">↑</button>
+            <button onClick={() => onNavigate(1)} title="Next (↓)" className="h-8 w-8 rounded-lg text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800">↓</button>
+            <button onClick={close} title="Close (Esc)" className="h-8 w-8 rounded-lg text-lg text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800">×</button>
+          </div>
         </div>
-        <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4">
-          <DetailPanelContent stock={stock} tab={tab} />
+
+        {/* Body — keyed so content fades when you step to another stock */}
+        <div key={stock.id} className="sd-fade flex-1 space-y-4 overflow-y-auto px-5 py-4">
+          <div className="flex items-end gap-3">
+            <span className="font-mono text-3xl font-black tabular-nums text-zinc-900 dark:text-zinc-50">₹{fmt(price)}</span>
+            <PctBadge value={stock.pcnt_1d} big />
+            <span className="mb-1 text-[11px] text-zinc-400">today</span>
+          </div>
+
+          {/* Returns */}
+          <section>
+            <h3 className="mb-2 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Returns</h3>
+            <div className="grid grid-cols-4 gap-2">
+              {returns.map(([l, v]) => {
+                const active = l.toLowerCase() === period;
+                return (
+                  <div
+                    key={l}
+                    className={`rounded-lg border px-2 py-2 text-center ${
+                      active ? "border-blue-500 bg-blue-50 dark:bg-blue-950/30" : "border-zinc-100 dark:border-zinc-800"
+                    }`}
+                  >
+                    <p className="text-[10px] font-bold text-zinc-400">{l}</p>
+                    <p className={`font-mono text-xs font-bold tabular-nums ${tone(v)}`}>{v == null ? "—" : signed(v)}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* Ranges */}
+          <section className="space-y-4 rounded-xl bg-zinc-50 p-4 dark:bg-zinc-800/50">
+            <RangeBar label="52-week range" close={stock.close} low={stock.week52_low} high={stock.week52_high} />
+            <RangeBar label="Today's range" close={stock.close} low={stock.low} high={stock.high} />
+            <div className="grid grid-cols-3 gap-2 text-center">
+              {[["Open", `₹${fmt(stock.open)}`], ["Prev stats", `Vol ${fmtVol(stock.vol)}`], ["Close", `₹${fmt(stock.close)}`]].map(([k, v]) => (
+                <div key={k}>
+                  <p className="text-[10px] text-zinc-400">{k}</p>
+                  <p className="font-mono text-xs font-semibold text-zinc-700 dark:text-zinc-200">{v}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* Level 3: accordions */}
+          <Collapse title="Momentum" hint="RSI and where price sits vs EMAs" defaultOpen>
+            <div className="space-y-4">
+              <RsiMeter value={stock.rsi14} />
+              <div>
+                <p className="mb-1.5 text-[11px] text-zinc-400">
+                  Above {above} of {mas.length} EMAs
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {MA_LENGTHS.map((n) => {
+                    const v = maOf(stock, "ema", n);
+                    if (!v) return null;
+                    const up = stock.close > v;
+                    return (
+                      <span
+                        key={n}
+                        className={`rounded px-1.5 py-0.5 font-mono text-[10px] font-bold ${
+                          up ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/60 dark:text-emerald-400"
+                             : "bg-red-50 text-red-700 dark:bg-red-950/60 dark:text-red-400"
+                        }`}
+                      >
+                        EMA{n} {up ? "▲" : "▼"}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </Collapse>
+
+          <Collapse title="Moving averages" hint="Exact EMA & SMA values">
+            <table className="w-full text-xs">
+              <thead>
+                <tr className="text-[10px] uppercase tracking-widest text-zinc-400">
+                  <th className="pb-1 text-left font-bold">Length</th>
+                  <th className="pb-1 text-right font-bold">EMA</th>
+                  <th className="pb-1 text-right font-bold">SMA</th>
+                </tr>
+              </thead>
+              <tbody className="font-mono">
+                {MA_LENGTHS.map((n) => {
+                  const e = maOf(stock, "ema", n), s = maOf(stock, "sma", n);
+                  return (
+                    <tr key={n} className="border-t border-zinc-100 dark:border-zinc-800">
+                      <td className="py-1.5 text-zinc-400">{n}</td>
+                      <td className={`py-1.5 text-right ${e ? (stock.close > e ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400") : ""}`}>{e ? fmt(e) : "—"}</td>
+                      <td className={`py-1.5 text-right ${s ? (stock.close > s ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400") : ""}`}>{s ? fmt(s) : "—"}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </Collapse>
+
+          <Collapse title="Weekly & monthly candles" hint="Open · High · Low · Close · Volume">
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="text-[10px] uppercase tracking-widest text-zinc-400">
+                    <th className="pb-1 text-left font-bold" />
+                    {["O", "H", "L", "C", "Vol"].map((h) => <th key={h} className="pb-1 text-right font-bold">{h}</th>)}
+                  </tr>
+                </thead>
+                <tbody className="font-mono">
+                  {candles.map(([label, [o, h, l, c], v]) => (
+                    <tr key={label} className="border-t border-zinc-100 dark:border-zinc-800">
+                      <td className="whitespace-nowrap py-1.5 pr-2 font-sans text-zinc-400">{label}</td>
+                      <td className="py-1.5 text-right">{fmt(o)}</td>
+                      <td className="py-1.5 text-right text-emerald-600 dark:text-emerald-400">{fmt(h)}</td>
+                      <td className="py-1.5 text-right text-red-600 dark:text-red-400">{fmt(l)}</td>
+                      <td className="py-1.5 text-right font-bold">{fmt(c)}</td>
+                      <td className="py-1.5 text-right text-zinc-400">{v ? fmtVol(v) : "—"}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </Collapse>
         </div>
-        <div className="px-4 py-2 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/60">
+
+        {/* Footer CTA */}
+        <div className="flex items-center justify-between gap-3 border-t border-zinc-100 bg-zinc-50 px-5 py-3 dark:border-zinc-800 dark:bg-zinc-800/60">
           <p className="text-[10px] text-zinc-400">
             Updated {new Date(stock.updated_at).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}
           </p>
-        </div>
-      </div>
-    </>
-  );
-}
-
-// ─── Side Panel (Desktop) — sticky relative to viewport ──────────────────────
-// navbarHeight: the height of your outer sticky navbar so the panel starts below it
-const NAVBAR_HEIGHT = 64; // px — adjust to match your actual navbar height
-
-function DetailPanel({
-  stock,
-  onClose,
-}: {
-  stock: StockPerformance;
-  onClose: () => void;
-}) {
-  const [tab, setTab] = useState<DetailTab>("overview");
-  const router = useRouter();
-  const handleMoreDetails = () => router.push(`/stocks/${getCleanStockName(stock.stckname)}`);
-
-  return (
-    <div
-      className="hidden md:flex w-80 flex-shrink-0 flex-col bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-xl overflow-hidden"
-      style={{
-        // Sticky: sticks BELOW the navbar
-        position: "sticky",
-        top: NAVBAR_HEIGHT + 20, // 20px gap below navbar
-        // Max height so it doesn't overflow viewport; internal content scrolls
-        maxHeight: `calc(100vh - ${NAVBAR_HEIGHT + 40}px)`,
-        alignSelf: "flex-start",
-      }}
-    >
-      <DetailHeader stock={stock} onClose={onClose} onMoreDetails={handleMoreDetails} />
-      {/* Tabs */}
-      <div className="flex border-b border-zinc-100 dark:border-zinc-800">
-        {(["overview", "technicals", "periodic"] as DetailTab[]).map((t) => (
           <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`flex-1 py-2.5 text-[11px] font-bold capitalize tracking-wide transition-all
-              ${tab === t ? "text-blue-600 dark:text-blue-400 border-b-2 border-blue-500" : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"}`}
+            onClick={() => router.push(`/stocks/${cleanSlug(stock.stckname)}`)}
+            className="rounded-lg bg-blue-600 px-4 py-2 text-xs font-bold text-white shadow-lg shadow-blue-500/20 transition hover:bg-blue-700"
           >
-            {t}
+            View full analysis →
           </button>
-        ))}
-      </div>
-      {/* Scrollable body */}
-      <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-4 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-700">
-        <DetailPanelContent stock={stock} tab={tab} />
-      </div>
-      <div className="px-4 py-2 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/60">
-        <p className="text-[10px] text-zinc-400">
-          Updated {new Date(stock.updated_at).toLocaleString("en-IN", { dateStyle: "medium", timeStyle: "short" })}
-        </p>
-      </div>
-    </div>
-  );
-}
-
-// ─── Filter Pill ──────────────────────────────────────────────────────────────
-function Pill({
-  children, active, onClick, activeClass = "bg-blue-600 text-white",
-}: {
-  children: React.ReactNode;
-  active: boolean;
-  onClick: () => void;
-  activeClass?: string;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 font-mono
-        ${active ? activeClass : "bg-transparent text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200"}`}
-    >
-      {children}
-    </button>
-  );
-}
-
-// ─── Sort Header ──────────────────────────────────────────────────────────────
-function SortTh({
-  label, col, current, dir, onSort,
-}: {
-  label: string; col: SortCol; current: SortCol; dir: SortDir; onSort: (c: SortCol) => void;
-}) {
-  const active = current === col;
-  return (
-    <th
-      onClick={() => onSort(col)}
-      className={`px-3 py-3 text-left text-[10px] font-bold uppercase tracking-widest cursor-pointer select-none whitespace-nowrap
-        bg-zinc-50 dark:bg-zinc-800/80 border-b border-zinc-200 dark:border-zinc-700 transition-colors
-        ${active ? "text-blue-600 dark:text-blue-400" : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"}`}
-    >
-      {label} {active ? (dir === "asc" ? "↑" : "↓") : <span className="opacity-30">↕</span>}
-    </th>
+        </div>
+      </aside>
+    </>,
+    document.body
   );
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
-export default function StockDashboard() {
-  const [stocks, setStocks] = useState<StockPerformance[]>([]);
-  const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [sectors, setSectors] = useState<SectorStat[]>([]);
-  const [sectorList, setSectorList] = useState<string[]>(["All"]);
-  const [search, setSearch] = useState("");
-  const [rsiMode, setRsiMode] = useState<RsiMode>("all");
-  const [trendMode, setTrendMode] = useState<TrendMode>("all");
-  const [sortCol, setSortCol] = useState<SortCol>("pcnt_1d");
-  const [sortDir, setSortDir] = useState<SortDir>("desc");
-  const [period, setPeriod] = useState<PeriodMode>("1d");
-  const [selected, setSelected] = useState<StockPerformance | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  const searchTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const tableRef = useRef<HTMLDivElement>(null);
-  const sectorScrollRef = useRef<HTMLDivElement>(null);
-
+function StockDashboard() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // seed the filter straight from the URL on first render
+  // data
+  const [stocks, setStocks] = useState<StockPerformance[]>([]);
+  const [total, setTotal] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [version, setVersion] = useState(0); // bumps every successful fetch → rows re-animate
+  const [reloadKey, setReloadKey] = useState(0);
+  const [sectorRows, setSectorRows] = useState<SectorRow[]>([]);
+
+  // filters (all server-side)
+  const [search, setSearch] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [sector, setSector] = useState(() => searchParams?.get("sector") || "All");
+  const [period, setPeriod] = useState<PeriodMode>("1d");
+  const [rsiMode, setRsiMode] = useState<RsiMode>("all");
+  const [trendMode, setTrendMode] = useState<TrendMode>("all");
+  const [sortKey, setSortKey] = useState<SortKey>("change");
+  const [sortDir, setSortDir] = useState<SortDir>("desc");
+  const [page, setPage] = useState(0);
 
+  // ui
+  const [selected, setSelected] = useState<StockPerformance | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [sectorsExpanded, setSectorsExpanded] = useState(false);
+  const [showHint, setShowHint] = useState(false);
+
+  const searchRef = useRef<HTMLInputElement>(null);
+  const filterWrapRef = useRef<HTMLDivElement>(null);
+  const reqId = useRef(0);
+
+  // one-time tip
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
-    check();
-    window.addEventListener("resize", check);
-    return () => window.removeEventListener("resize", check);
+    try { if (!localStorage.getItem("sd-hint-dismissed")) setShowHint(true); } catch { setShowHint(true); }
   }, []);
-
-  interface FetchOpts {
-    search: string; sector: string; rsiMode: RsiMode; trendMode: TrendMode;
-    sortCol: SortCol; sortDir: SortDir; period: PeriodMode;
-  }
-
-  // ── Sector analytics ────────────────────────────────────────────────────
-  const fetchSectors = useCallback(async () => {
-    try {
-      const { data, error } = await supabase
-        .from("stock_performance")
-        .select("sec, pcnt_1d, pcnt_1w, pcnt_1m")
-        .not("sec", "is", null)
-        .not("pcnt_1w", "is", null);
-
-      if (error) throw error;
-      if (!data) return;
-
-      const map: Record<string, { s1d: number; s1w: number; s1m: number; cnt: number }> = {};
-      for (const r of data) {
-        if (!r.sec) continue;
-        if (!map[r.sec]) map[r.sec] = { s1d: 0, s1w: 0, s1m: 0, cnt: 0 };
-        map[r.sec].s1d += r.pcnt_1d ?? 0;
-        map[r.sec].s1w += r.pcnt_1w ?? 0;
-        map[r.sec].s1m += r.pcnt_1m ?? 0;
-        map[r.sec].cnt += 1;
-      }
-
-      const sorted: SectorStat[] = Object.entries(map)
-        .map(([sec, v]) => ({
-          sec,
-          avg_1d: parseFloat((v.s1d / v.cnt).toFixed(2)),
-          avg_1w: parseFloat((v.s1w / v.cnt).toFixed(2)),
-          avg_1m: parseFloat((v.s1m / v.cnt).toFixed(2)),
-          count: v.cnt,
-        }))
-        .sort((a, b) => b.avg_1d - a.avg_1d);
-
-      setSectors(sorted);
-      setSectorList(["All", ...sorted.map((s) => s.sec)]);
-    } catch (e) {
-      console.error("Sectors fetch error:", e);
-    }
-  }, []);
-
-  // ── Stock fetch ─────────────────────────────────────────────────────────
-  const fetchStocks = useCallback(async (pageNum: number, opts: FetchOpts) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const from = pageNum * PAGE_SIZE;
-      const to = from + PAGE_SIZE - 1;
-      const periodCol = PERIOD_COL[opts.period];
-
-      let q = supabase.from("stock_performance").select("*", { count: "exact" });
-
-      if (opts.search.trim()) {
-        q = q.or(`stckname.ilike.%${opts.search.trim()}%,sec.ilike.%${opts.search.trim()}%`);
-      }
-      if (opts.sector !== "All") q = q.eq("sec", opts.sector);
-
-      if (opts.rsiMode === "overbought") q = q.gte("rsi14", 70);
-      else if (opts.rsiMode === "oversold") q = q.lte("rsi14", 30);
-      else if (opts.rsiMode === "neutral") q = q.gt("rsi14", 30).lt("rsi14", 70);
-
-      if (opts.trendMode === "bullish") q = q.gt(periodCol, 0);
-      else if (opts.trendMode === "bearish") q = q.lt(periodCol, 0);
-
-      if (opts.sortCol !== "stckname") q = q.not(opts.sortCol, "is", null);
-
-      q = q
-        .order(opts.sortCol, { ascending: opts.sortDir === "asc", nullsFirst: false })
-        .range(from, to);
-
-      const { data, count, error: fetchError } = await q;
-      if (fetchError) throw fetchError;
-
-      setStocks((data as StockPerformance[]) ?? []);
-      setTotal(count ?? 0);
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : "Failed to load stocks";
-      setError(msg);
-      setStocks([]);
-      setTotal(0);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchSectors();
-    fetchStocks(0, {
-      search: "", sector, rsiMode: "all", trendMode: "all",
-      sortCol: "pcnt_1d", sortDir: "desc", period: "1d",
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fetchSectors, fetchStocks]);
-
-  const refetch = useCallback(
-    (p: number, overrides: Partial<FetchOpts> = {}) => {
-      fetchStocks(p, { search, sector, rsiMode, trendMode, sortCol, sortDir, period, ...overrides });
-    },
-    [fetchStocks, search, sector, rsiMode, trendMode, sortCol, sortDir, period]
-  );
-
-  const handleSearch = (v: string) => {
-    setSearch(v); setPage(0);
-    if (searchTimer.current) clearTimeout(searchTimer.current);
-    searchTimer.current = setTimeout(() => refetch(0, { search: v }), 350);
+  const dismissHint = () => {
+    setShowHint(false);
+    try { localStorage.setItem("sd-hint-dismissed", "1"); } catch { /* ignore */ }
   };
 
-  const handleSector = (v: string) => {
-    setSector(v); setPage(0); setSelected(null);
-    refetch(0, { sector: v });
+  // debounce search
+  useEffect(() => {
+    const t = setTimeout(() => { setDebouncedSearch(search); setPage(0); }, 300);
+    return () => clearTimeout(t);
+  }, [search]);
 
+  // "/" focuses search
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const t = e.target as HTMLElement;
+      if (e.key === "/" && !["INPUT", "SELECT", "TEXTAREA"].includes(t.tagName)) {
+        e.preventDefault();
+        searchRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  // close filter popover on outside click
+  useEffect(() => {
+    if (!filtersOpen) return;
+    const onDown = (e: MouseEvent) => {
+      if (filterWrapRef.current && !filterWrapRef.current.contains(e.target as Node)) setFiltersOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    return () => document.removeEventListener("mousedown", onDown);
+  }, [filtersOpen]);
+
+  // ── Sector + market breadth source (fetched once) ──────────────────────────
+  useEffect(() => {
+    (async () => {
+      try {
+        const { data, error } = await supabase
+          .from("stock_performance")
+          .select("sec, pcnt_1d, pcnt_1w, pcnt_1m, pcnt_3m, pcnt_6m, pcnt_1y, pcnt_2y, pcnt_3y")
+          .limit(5000);
+        if (error) throw error;
+        setSectorRows((data as SectorRow[]) ?? []);
+      } catch (e) {
+        console.error("Sector fetch error:", e);
+      }
+    })();
+  }, []);
+
+  const sectorStats: SectorStat[] = useMemo(() => {
+    const col = PERIOD_COL[period];
+    const map = new Map<string, { sum: number; n: number }>();
+    for (const r of sectorRows) {
+      const v = r[col];
+      if (!r.sec || v == null) continue;
+      const m = map.get(r.sec) ?? { sum: 0, n: 0 };
+      m.sum += v; m.n += 1;
+      map.set(r.sec, m);
+    }
+    return [...map.entries()]
+      .map(([sec, m]) => ({ sec, avg: m.sum / m.n, count: m.n }))
+      .sort((a, b) => b.avg - a.avg);
+  }, [sectorRows, period]);
+
+  const breadth = useMemo(() => {
+    let up = 0, down = 0, flat = 0;
+    for (const r of sectorRows) {
+      const v = r.pcnt_1d;
+      if (v == null) continue;
+      if (v > 0) up++; else if (v < 0) down++; else flat++;
+    }
+    const t = up + down + flat;
+    return { up, down, flat, upPct: t ? (up / t) * 100 : 50 };
+  }, [sectorRows]);
+
+  // ── Stock fetch: one effect, driven by state. A request id drops stale responses. ──
+  useEffect(() => {
+    const id = ++reqId.current;
+    setLoading(true);
+    setError(null);
+    (async () => {
+      try {
+        const from = page * PAGE_SIZE;
+        const periodCol = PERIOD_COL[period];
+        const sortCol = sortKey === "change" ? periodCol : sortKey;
+
+        let q = supabase.from("stock_performance").select("*", { count: "exact" });
+
+        const term = debouncedSearch.replace(/[,()%*]/g, " ").trim();
+        if (term) q = q.or(`stckname.ilike.%${term}%,sec.ilike.%${term}%`);
+        if (sector !== "All") q = q.eq("sec", sector);
+
+        if (rsiMode === "overbought") q = q.gte("rsi14", 70);
+        else if (rsiMode === "oversold") q = q.lte("rsi14", 30);
+        else if (rsiMode === "neutral") q = q.gt("rsi14", 30).lt("rsi14", 70);
+
+        if (trendMode === "bullish") q = q.gt(periodCol, 0);
+        else if (trendMode === "bearish") q = q.lt(periodCol, 0);
+
+        if (sortCol !== "stckname") q = q.not(sortCol, "is", null);
+
+        q = q
+          .order(sortCol, { ascending: sortDir === "asc", nullsFirst: false })
+          .range(from, from + PAGE_SIZE - 1);
+
+        const { data, count, error: err } = await q;
+        if (id !== reqId.current) return;
+        if (err) throw err;
+        setStocks((data as StockPerformance[]) ?? []);
+        setTotal(count ?? 0);
+        setVersion((v) => v + 1);
+      } catch (e) {
+        if (id !== reqId.current) return;
+        setError(e instanceof Error ? e.message : "Failed to load stocks");
+        setStocks([]);
+        setTotal(0);
+      } finally {
+        if (id === reqId.current) setLoading(false);
+      }
+    })();
+  }, [debouncedSearch, sector, period, rsiMode, trendMode, sortKey, sortDir, page, reloadKey]);
+
+  // ── Handlers ────────────────────────────────────────────────────────────────
+  const pickSector = (v: string) => {
+    setSector(v); setPage(0); setSelected(null);
     const params = new URLSearchParams(searchParams?.toString() ?? "");
-    if (v === "All") params.delete("sector");
-    else params.set("sector", v);
+    if (v === "All") params.delete("sector"); else params.set("sector", v);
     const qs = params.toString();
     const path = pathname ?? "/stock-performance";
     router.replace(qs ? `${path}?${qs}` : path, { scroll: false });
   };
 
-  const handleRsi = (v: RsiMode) => { setRsiMode(v); setPage(0); refetch(0, { rsiMode: v }); };
-  const handleTrend = (v: TrendMode) => { setTrendMode(v); setPage(0); refetch(0, { trendMode: v }); };
-
-  const handlePeriod = (v: PeriodMode) => {
-    const col = PERIOD_COL[v];
-    setPeriod(v); setSortCol(col); setSortDir("desc"); setPage(0);
-    refetch(0, { period: v, sortCol: col, sortDir: "desc" });
+  const pickPeriod = (p: PeriodMode) => {
+    setPeriod(p); setPage(0);
+    setSortKey("change"); setSortDir("desc"); // switching period = "show me the top movers in this period"
   };
 
-  const handleSort = (col: SortCol) => {
-    const dir: SortDir = sortCol === col && sortDir === "desc" ? "asc" : "desc";
-    setSortCol(col); setSortDir(dir); setPage(0);
-    refetch(0, { sortCol: col, sortDir: dir });
+  const toggleSort = (key: SortKey) => {
+    if (sortKey === key) setSortDir(sortDir === "desc" ? "asc" : "desc");
+    else { setSortKey(key); setSortDir(key === "stckname" ? "asc" : "desc"); }
+    setPage(0);
   };
 
-  const handlePage = (p: number) => {
-    setPage(p); refetch(p);
-    tableRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+  const clearAll = () => {
+    setSearch(""); setDebouncedSearch(""); setRsiMode("all"); setTrendMode("all");
+    pickSector("All");
   };
 
-  const totalPages = Math.ceil(total / PAGE_SIZE);
+  const navigateSelected = useCallback(
+    (delta: number) => {
+      setSelected((cur) => {
+        if (!cur) return cur;
+        const i = stocks.findIndex((s) => s.id === cur.id);
+        return stocks[i + delta] ?? cur;
+      });
+    },
+    [stocks]
+  );
 
-  const pageNums = (): number[] => {
-    const tot = totalPages;
-    if (tot <= 7) return Array.from({ length: tot }, (_, i) => i);
-    if (page < 4) return [0, 1, 2, 3, 4, -1, tot - 1];
-    if (page > tot - 5) return [0, -1, tot - 5, tot - 4, tot - 3, tot - 2, tot - 1];
-    return [0, -1, page - 1, page, page + 1, -2, tot - 1];
+  const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+  const animatedTotal = Math.round(useCountUp(total, 450));
+  const filterCount = (rsiMode !== "all" ? 1 : 0) + (trendMode !== "all" ? 1 : 0);
+  const hasAnyFilter = filterCount > 0 || sector !== "All" || debouncedSearch.trim() !== "";
+
+  const SortTh = ({ label, k, className = "" }: { label: string; k: SortKey; className?: string }) => {
+    const active = sortKey === k;
+    return (
+      <th
+        onClick={() => toggleSort(k)}
+        className={`cursor-pointer select-none whitespace-nowrap px-3 py-3 text-left text-[10px] font-bold uppercase tracking-widest transition-colors ${
+          active ? "text-blue-600 dark:text-blue-400" : "text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300"
+        } ${className}`}
+      >
+        {label} <span className={active ? "" : "opacity-30"}>{active ? (sortDir === "asc" ? "↑" : "↓") : "↕"}</span>
+      </th>
+    );
   };
 
-  const scrollSectors = (dir: "left" | "right") => {
-    sectorScrollRef.current?.scrollBy({ left: dir === "left" ? -200 : 200, behavior: "smooth" });
-  };
+  const visibleSectors = sectorStats;
 
   return (
     <div className="min-h-screen">
-      <div className="max-w-screen-2xl mx-auto py-4 px-2 sm:px-4 flex flex-col gap-4">
+      <AnimStyles />
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-3 py-5 sm:px-4">
 
-        {/* ── Sector Scroll ─────────────────────────────────────────────── */}
-        {sectors.length > 0 && (
+        {/* ── Header: title + market breadth ─────────────────────────────── */}
+        <header className="flex flex-wrap items-end justify-between gap-4">
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-[10px] font-bold uppercase tracking-[0.15em] text-zinc-400">
-                Sectors
-                <span className="font-normal opacity-60 ml-1 hidden sm:inline">· click to filter</span>
-              </p>
-              <div className="flex items-center gap-1">
-                {/* Clear sector */}
-                {sector !== "All" && (
-                  <button
-                    onClick={() => handleSector("All")}
-                    className="flex items-center gap-1 px-2 py-1 rounded-lg text-[10px] font-bold bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-950/50 transition-colors mr-1"
-                  >
-                    <span>Clear</span>
-                    <span>×</span>
-                  </button>
-                )}
-                <button
-                  onClick={() => scrollSectors("left")}
-                  className="w-6 h-6 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-                >‹</button>
-                <button
-                  onClick={() => scrollSectors("right")}
-                  className="w-6 h-6 rounded-lg bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 flex items-center justify-center text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-                >›</button>
+            <h1 className="text-xl font-black tracking-tight text-zinc-900 dark:text-zinc-50">Market performance</h1>
+            <p className="text-xs text-zinc-400">
+              <span className="font-mono">{animatedTotal.toLocaleString("en-IN")}</span> stocks
+              {sector !== "All" && <> in <b className="text-zinc-600 dark:text-zinc-300">{sector}</b></>}
+            </p>
+          </div>
+
+          {breadth.up + breadth.down > 0 && (
+            <div className="w-full sm:w-64">
+              <div className="mb-1 flex justify-between text-[11px] font-bold tabular-nums">
+                <span className="text-emerald-600 dark:text-emerald-400">▲ {breadth.up.toLocaleString("en-IN")}</span>
+                <span className="text-[10px] font-medium uppercase tracking-widest text-zinc-400">Today</span>
+                <span className="text-red-600 dark:text-red-400">{breadth.down.toLocaleString("en-IN")} ▼</span>
+              </div>
+              <div className="flex h-1.5 overflow-hidden rounded-full bg-red-400/80">
+                <div className="h-full bg-emerald-500 transition-all duration-700 ease-out" style={{ width: `${breadth.upPct}%` }} />
               </div>
             </div>
-            <div
-              ref={sectorScrollRef}
-              className="flex gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-zinc-200 dark:scrollbar-thumb-zinc-700 scrollbar-track-transparent"
-            >
-              {sectors.map((s) => (
-                <SectorCard
-                  key={s.sec}
-                  stat={s}
-                  active={sector === s.sec}
-                  onClick={() => handleSector(sector === s.sec ? "All" : s.sec)}
-                />
-              ))}
+          )}
+        </header>
+
+        {/* ── Controls ───────────────────────────────────────────────────── */}
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <div className="relative flex-1">
+              <svg className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+              </svg>
+              <input
+                ref={searchRef}
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search stock or sector"
+                className="w-full rounded-xl border border-zinc-200 bg-white py-2.5 pl-9 pr-10 text-sm text-zinc-800 placeholder-zinc-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+              />
+              <kbd className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border border-zinc-200 px-1.5 text-[10px] text-zinc-400 dark:border-zinc-700 sm:block">/</kbd>
+            </div>
+
+            {/* Filters popover */}
+            <div ref={filterWrapRef} className="relative">
+              <button
+                onClick={() => setFiltersOpen((o) => !o)}
+                className={`flex items-center gap-2 rounded-xl border px-3.5 py-2.5 text-sm font-semibold transition-colors ${
+                  filterCount || filtersOpen
+                    ? "border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-300"
+                    : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+                }`}
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 6h18M7 12h10M10 18h4" />
+                </svg>
+                Filters
+                {filterCount > 0 && <span className="rounded-full bg-blue-600 px-1.5 text-[10px] font-bold text-white">{filterCount}</span>}
+              </button>
+
+              {filtersOpen && (
+                <div className="sd-pop absolute right-0 z-30 mt-2 w-[300px] space-y-4 rounded-xl border border-zinc-200 bg-white p-4 shadow-xl dark:border-zinc-700 dark:bg-zinc-900">
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400">RSI zone</p>
+                    <Segmented<RsiMode>
+                      value={rsiMode}
+                      onChange={(v) => { setRsiMode(v); setPage(0); }}
+                      options={[
+                        { value: "all", label: "All" },
+                        { value: "oversold", label: "≤ 30" },
+                        { value: "neutral", label: "Mid" },
+                        { value: "overbought", label: "≥ 70" },
+                      ]}
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400">
+                      Trend ({period.toUpperCase()})
+                    </p>
+                    <Segmented<TrendMode>
+                      value={trendMode}
+                      onChange={(v) => { setTrendMode(v); setPage(0); }}
+                      options={[
+                        { value: "all", label: "All" },
+                        { value: "bullish", label: "▲ Gainers" },
+                        { value: "bearish", label: "▼ Losers" },
+                      ]}
+                    />
+                  </div>
+                  <div>
+                    <p className="mb-1.5 text-[10px] font-bold uppercase tracking-widest text-zinc-400">Sort by</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {([["change", `${period.toUpperCase()} change`], ["close", "Price"], ["vol", "Volume"], ["rsi14", "RSI"], ["stckname", "Name"]] as [SortKey, string][]).map(([k, l]) => (
+                        <button
+                          key={k}
+                          onClick={() => toggleSort(k)}
+                          className={`rounded-lg border px-2.5 py-1 text-xs font-semibold transition-colors ${
+                            sortKey === k
+                              ? "border-blue-500 bg-blue-50 text-blue-700 dark:bg-blue-950/30 dark:text-blue-300"
+                              : "border-zinc-200 text-zinc-500 hover:border-zinc-300 dark:border-zinc-700"
+                          }`}
+                        >
+                          {l} {sortKey === k && (sortDir === "asc" ? "↑" : "↓")}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
-        )}
 
-        {/* ── Filters ───────────────────────────────────────────────────── */}
-        <div className="flex flex-wrap gap-2 items-center">
-          {/* Search */}
-          <div className="relative flex-1 min-w-[160px] max-w-xs">
-            <svg className="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-zinc-400"
-              fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
-            </svg>
-            <input
-              value={search}
-              onChange={(e) => handleSearch(e.target.value)}
-              placeholder="Search…"
-              className="w-full pl-8 pr-3 py-2 text-sm bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-800 dark:text-zinc-100 placeholder-zinc-400 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500"
+          {/* Period — the main control, so it's always visible */}
+          <div className="overflow-x-auto">
+            <Segmented<PeriodMode>
+              className="min-w-[360px] sm:max-w-md"
+              value={period}
+              onChange={pickPeriod}
+              options={PERIODS.map((p) => ({ value: p, label: p.toUpperCase() }))}
             />
           </div>
 
-          {/* Period */}
-          <div className="flex items-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 gap-0.5 overflow-x-auto">
-            {(["1d", "1w", "1m", "3m", "6m", "1y", "2y", "3y"] as PeriodMode[]).map((p) => (
-              <Pill key={p} active={period === p} onClick={() => handlePeriod(p)}>
-                {p.toUpperCase()}
-              </Pill>
-            ))}
-          </div>
-
-          {/* Sector select (mobile fallback) */}
-          <select
-            value={sector}
-            onChange={(e) => handleSector(e.target.value)}
-            className="py-2 px-3 text-sm bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg text-zinc-700 dark:text-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500/50 max-w-[180px] hidden sm:block"
-          >
-            {sectorList.map((s) => <option key={s}>{s}</option>)}
-          </select>
-
-          {/* RSI */}
-          <div className="flex items-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 gap-0.5 overflow-x-auto">
-            <span className="text-[10px] text-zinc-400 font-bold px-2 uppercase tracking-wider">RSI</span>
-            {([["all", "All"], ["oversold", "≤30"], ["neutral", "Mid"], ["overbought", "≥70"]] as [RsiMode, string][]).map(([v, l]) => (
-              <Pill key={v} active={rsiMode === v} onClick={() => handleRsi(v)}
-                activeClass={v === "overbought" ? "bg-red-600 text-white" : v === "oversold" ? "bg-emerald-600 text-white" : "bg-blue-600 text-white"}>
-                {l}
-              </Pill>
-            ))}
-          </div>
-
-          {/* Trend */}
-          <div className="flex items-center bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-700 rounded-lg p-1 gap-0.5">
-            {([["all", "All"], ["bullish", "▲"], ["bearish", "▼"]] as [TrendMode, string][]).map(([v, l]) => (
-              <Pill key={v} active={trendMode === v} onClick={() => handleTrend(v)}
-                activeClass={v === "bullish" ? "bg-emerald-600 text-white" : v === "bearish" ? "bg-red-600 text-white" : "bg-blue-600 text-white"}>
-                {l}
-              </Pill>
-            ))}
-          </div>
-
-          {/* Result count */}
-          <span className="text-xs font-mono text-zinc-400 ml-auto hidden sm:block">
-            {total.toLocaleString("en-IN")} results
-          </span>
-        </div>
-
-        {/* ── Error ─────────────────────────────────────────────────────── */}
-        {error && (
-          <div className="rounded-lg bg-red-50 dark:bg-red-950/30 border border-red-200 dark:border-red-900 px-4 py-3 text-sm text-red-700 dark:text-red-400 flex items-center gap-2">
-            <span>⚠</span><span>{error}</span>
-            <button onClick={() => refetch(page)} className="ml-auto text-xs underline">Retry</button>
-          </div>
-        )}
-
-        {/* ── Table + Panel ─────────────────────────────────────────────── */}
-        {/*
-          The outer flex container does NOT have overflow:hidden so that the
-          sticky panel can stick relative to the viewport.
-        */}
-        <div className="flex gap-4 items-start">
-          {/* Table */}
-          <div className="flex-1 min-w-0 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col">
-            <div ref={tableRef} className="overflow-x-auto">
-              <table className="w-full text-sm border-collapse">
-                <thead className="sticky top-0 z-10">
-                  <tr>
-                    <SortTh label="Symbol" col="stckname" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="Close ₹" col="close" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="1D" col="pcnt_1d" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="1W" col="pcnt_1w" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="1M" col="pcnt_1m" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="3M" col="pcnt_3m" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="6M" col="pcnt_6m" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="1Y" col="pcnt_1y" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="2Y" col="pcnt_2y" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="3Y" col="pcnt_3y" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="RSI" col="rsi14" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <SortTh label="Vol" col="vol" current={sortCol} dir={sortDir} onSort={handleSort} />
-                    <th className="px-3 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400 bg-zinc-50 dark:bg-zinc-800/80 border-b border-zinc-200 dark:border-zinc-700 whitespace-nowrap">
-                      52W Range
-                    </th>
-                    <th className="px-3 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400 bg-zinc-50 dark:bg-zinc-800/80 border-b border-zinc-200 dark:border-zinc-700">
-                      Sector
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {loading && stocks.length === 0
-                    ? Array.from({ length: 15 }).map((_, i) => <Skeleton key={i} />)
-                    : stocks.length === 0
-                    ? (
-                      <tr>
-                        <td colSpan={16} className="text-center py-20 text-zinc-400 text-sm">
-                          {error ? "Failed to load data." : "No stocks match your filters."}
-                        </td>
-                      </tr>
-                    )
-                    : stocks.map((s) => (
-                      <tr
-                        key={s.id}
-                        onClick={() => setSelected(selected?.id === s.id ? null : s)}
-                        className={`border-b border-zinc-100 dark:border-zinc-800 cursor-pointer transition-colors
-                          ${selected?.id === s.id
-                            ? "bg-blue-50 dark:bg-blue-950/20"
-                            : "hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
-                          }`}
-                      >
-                        {/* Symbol */}
-                        <td className="px-3 py-2.5">
-                          <div className="flex flex-col gap-0.5">
-                            <span className="font-mono font-black text-sm text-blue-600 dark:text-blue-400">
-                              {ticker(s.stckname)}
-                            </span>
-                            <span className="text-[10px] text-zinc-400">
-                              {s.sym_key?.replace(".NS", "") ?? ""}
-                            </span>
-                          </div>
-                        </td>
-                        {/* Close */}
-                        <td className="px-3 py-2.5">
-                          <div className="font-mono font-bold text-sm text-zinc-800 dark:text-zinc-100">
-                            ₹{fmt(s.close)}
-                          </div>
-                          <div className="text-[10px] text-zinc-400 hidden sm:block">
-                            H:{fmt(s.high)} L:{fmt(s.low)}
-                          </div>
-                        </td>
-                         {/* 1D */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_1d} /></td>
-                        {/* 1W */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_1w} /></td>
-                        {/* 1M */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_1m} /></td>
-                        {/* 3M */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_3m} /></td>
-                        {/* 6M */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_6m} /></td>
-                        {/* 1Y */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_1y} /></td>
-                        {/* 2Y */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_2y} /></td>
-                        {/* 3Y */}
-                        <td className="px-3 py-2.5"><PctBadge value={s.pcnt_3y} /></td>
-                        {/* RSI */}
-                        <td className="px-3 py-2.5"><RsiBar value={s.rsi14} /></td>
-                        {/* Vol */}
-                        <td className="px-3 py-2.5">
-                          <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
-                            {fmtVol(s.vol)}
-                          </span>
-                        </td>
-                        {/* 52W */}
-                        <td className="px-3 py-2.5">
-                          <Week52Bar close={s.close} high={s.week52_high} low={s.week52_low} />
-                        </td>
-                        {/* Sector */}
-                        <td className="px-3 py-2.5">
-                          <span
-                            className="text-[10px] px-2 py-0.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 font-medium cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              if (s.sec) handleSector(s.sec);
-                            }}
-                          >
-                            {s.sec ?? "—"}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* Pagination */}
-            {totalPages > 1 && (
-              <div className="flex items-center justify-between px-4 py-3 border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-800/40">
-                <span className="text-xs font-mono text-zinc-400">
-                  {(page * PAGE_SIZE + 1).toLocaleString("en-IN")}–
-                  {Math.min((page + 1) * PAGE_SIZE, total).toLocaleString("en-IN")} / {total.toLocaleString("en-IN")}
-                </span>
-                <div className="flex items-center gap-1">
+          {/* Sector chips: 2 rows, expand on demand. Averages follow the chosen period. */}
+          {visibleSectors.length > 0 && (
+            <div>
+              <div
+                className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+                style={{ maxHeight: sectorsExpanded ? 600 : 64 }}
+              >
+                <div className="flex flex-wrap gap-2">
                   <button
-                    disabled={page === 0}
-                    onClick={() => handlePage(page - 1)}
-                    className="w-7 h-7 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-500 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-bold transition-colors"
-                  >‹</button>
-                  {pageNums().map((p, i) =>
-                    p < 0 ? (
-                      <span key={`e${i}`} className="w-7 text-center text-zinc-400 text-sm">…</span>
-                    ) : (
-                      <button
-                        key={p}
-                        onClick={() => handlePage(p)}
-                        className={`w-7 h-7 rounded-md border text-xs font-bold font-mono transition-colors
-                          ${p === page
-                            ? "bg-blue-600 border-blue-600 text-white"
-                            : "border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-500 hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                          }`}
-                      >
-                        {p + 1}
-                      </button>
-                    )
-                  )}
-                  <button
-                    disabled={page >= totalPages - 1}
-                    onClick={() => handlePage(page + 1)}
-                    className="w-7 h-7 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-900 text-zinc-500 disabled:opacity-30 disabled:cursor-not-allowed hover:bg-zinc-100 dark:hover:bg-zinc-800 text-sm font-bold transition-colors"
-                  >›</button>
+                    onClick={() => pickSector("All")}
+                    className={`rounded-full border px-3 py-1 text-xs font-bold transition-colors ${
+                      sector === "All" ? "border-blue-600 bg-blue-600 text-white" : "border-zinc-200 text-zinc-600 hover:border-zinc-300 dark:border-zinc-700 dark:text-zinc-300"
+                    }`}
+                  >
+                    All sectors
+                  </button>
+                  {visibleSectors.map((s) => (
+                    <button
+                      key={s.sec}
+                      onClick={() => pickSector(sector === s.sec ? "All" : s.sec)}
+                      title={`${s.count} stocks`}
+                      className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                        sector === s.sec
+                          ? "border-blue-600 bg-blue-600 text-white"
+                          : "border-zinc-200 bg-white text-zinc-600 hover:border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+                      }`}
+                    >
+                      <span className="max-w-[150px] truncate">{s.sec}</span>
+                      <span className={`font-mono text-[11px] tabular-nums ${sector === s.sec ? "text-white/90" : tone(s.avg)}`}>{signed(s.avg)}</span>
+                    </button>
+                  ))}
                 </div>
               </div>
-            )}
-          </div>
+              {visibleSectors.length > 8 && (
+                <button
+                  onClick={() => setSectorsExpanded((e) => !e)}
+                  className="mt-1.5 text-[11px] font-bold text-blue-600 hover:underline dark:text-blue-400"
+                >
+                  {sectorsExpanded ? "Show fewer" : `Show all ${visibleSectors.length} sectors`}
+                </button>
+              )}
+            </div>
+          )}
 
-          {/* Detail panel - Desktop only, sticky */}
-          {selected && !isMobile && (
-            <DetailPanel stock={selected} onClose={() => setSelected(null)} />
+          {/* Active filter chips */}
+          {hasAnyFilter && (
+            <div className="sd-fade flex flex-wrap items-center gap-2">
+              {sector !== "All" && <ActiveChip label={sector} onClear={() => pickSector("All")} />}
+              {debouncedSearch.trim() && <ActiveChip label={`“${debouncedSearch.trim()}”`} onClear={() => { setSearch(""); setDebouncedSearch(""); }} />}
+              {rsiMode !== "all" && <ActiveChip label={`RSI ${rsiMode}`} onClear={() => setRsiMode("all")} />}
+              {trendMode !== "all" && <ActiveChip label={trendMode === "bullish" ? "Gainers" : "Losers"} onClear={() => setTrendMode("all")} />}
+              <button onClick={clearAll} className="text-[11px] font-bold text-zinc-400 underline-offset-2 hover:text-zinc-600 hover:underline">
+                Clear all
+              </button>
+            </div>
           )}
         </div>
 
-        {/* Bottom Sheet - Mobile only */}
-        {selected && isMobile && (
-          <BottomSheet stock={selected} onClose={() => setSelected(null)} />
+        {showHint && (
+          <div className="sd-fade flex items-center justify-between gap-3 rounded-xl border border-blue-100 bg-blue-50 px-4 py-2.5 text-xs text-blue-700 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-300">
+            <span>Tip: click any stock for details · <b>↑ ↓</b> to browse · <b>Esc</b> to close · <b>/</b> to search</span>
+            <button onClick={dismissHint} className="font-bold opacity-70 hover:opacity-100">Got it</button>
+          </div>
         )}
+
+        {error && (
+          <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700 dark:border-red-900 dark:bg-red-950/30 dark:text-red-400">
+            <span>⚠ {error}</span>
+            <button onClick={() => setReloadKey((k) => k + 1)} className="ml-auto text-xs font-bold underline">Retry</button>
+          </div>
+        )}
+
+        {/* ── Table ──────────────────────────────────────────────────────── */}
+        <div className="overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
+          <div className="overflow-x-auto">
+            <table className={`w-full border-collapse text-sm transition-opacity duration-200 ${loading && stocks.length ? "opacity-50" : "opacity-100"}`}>
+              <thead>
+                <tr className="border-b border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-800/80">
+                  <SortTh label="Stock" k="stckname" className="pl-4" />
+                  <SortTh label="Price" k="close" />
+                  <SortTh label={`${period.toUpperCase()} change`} k="change" />
+                  <th className="hidden px-3 py-3 text-left text-[10px] font-bold uppercase tracking-widest text-zinc-400 md:table-cell">52W range</th>
+                  <SortTh label="Volume" k="vol" className="hidden lg:table-cell" />
+                </tr>
+              </thead>
+              <tbody>
+                {loading && stocks.length === 0 ? (
+                  Array.from({ length: 10 }).map((_, i) => (
+                    <tr key={i} className="border-b border-zinc-100 dark:border-zinc-800">
+                      {Array.from({ length: 5 }).map((__, j) => (
+                        <td key={j} className={`px-3 py-4 ${j === 3 ? "hidden md:table-cell" : ""} ${j === 4 ? "hidden lg:table-cell" : ""}`}>
+                          <div className="h-3 animate-pulse rounded bg-zinc-100 dark:bg-zinc-800" style={{ animationDelay: `${i * 50 + j * 30}ms` }} />
+                        </td>
+                      ))}
+                    </tr>
+                  ))
+                ) : stocks.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="py-20 text-center">
+                      <p className="text-sm text-zinc-400">{error ? "Couldn't load data." : "No stocks match these filters."}</p>
+                      {hasAnyFilter && (
+                        <button onClick={clearAll} className="mt-2 text-xs font-bold text-blue-600 hover:underline">Clear filters</button>
+                      )}
+                    </td>
+                  </tr>
+                ) : (
+                  stocks.map((s, i) => {
+                    const isSel = selected?.id === s.id;
+                    const rsi = s.rsi14;
+                    return (
+                      <tr
+                        key={`${version}-${s.id}`}
+                        onClick={() => setSelected(s)}
+                        style={{ animationDelay: `${Math.min(i, 14) * 18}ms` }}
+                        className={`sd-row cursor-pointer border-b border-zinc-100 transition-colors dark:border-zinc-800 ${
+                          isSel ? "bg-blue-50 shadow-[inset_3px_0_0_#2563eb] dark:bg-blue-950/20" : "hover:bg-zinc-50 dark:hover:bg-zinc-800/50"
+                        }`}
+                      >
+                        <td className="py-3 pl-4 pr-3">
+                          <div className="flex items-center gap-2">
+                            <span className="font-mono text-sm font-black text-zinc-900 dark:text-zinc-50">{ticker(s.stckname)}</span>
+                            {/* RSI only appears when it's notable — everything else lives in the drawer */}
+                            {rsi != null && rsi >= 70 && <span className="rounded bg-red-50 px-1.5 text-[10px] font-bold text-red-600 dark:bg-red-950/60 dark:text-red-400">RSI {rsi.toFixed(0)}</span>}
+                            {rsi != null && rsi <= 30 && <span className="rounded bg-emerald-50 px-1.5 text-[10px] font-bold text-emerald-600 dark:bg-emerald-950/60 dark:text-emerald-400">RSI {rsi.toFixed(0)}</span>}
+                          </div>
+                          {s.sec && (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); pickSector(s.sec!); }}
+                              className="mt-0.5 block max-w-[180px] truncate text-left text-[11px] text-zinc-400 hover:text-blue-600 hover:underline"
+                            >
+                              {s.sec}
+                            </button>
+                          )}
+                        </td>
+                        <td className="px-3 py-3 font-mono text-sm font-bold tabular-nums text-zinc-800 dark:text-zinc-100">₹{fmt(s.close)}</td>
+                        <td className="px-3 py-3"><PctBadge value={s[PERIOD_COL[period]]} /></td>
+                        <td className="hidden w-48 px-3 py-3 md:table-cell"><MiniRange close={s.close} low={s.week52_low} high={s.week52_high} /></td>
+                        <td className="hidden px-3 py-3 font-mono text-xs text-zinc-500 lg:table-cell">{fmtVol(s.vol)}</td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          {total > PAGE_SIZE && (
+            <div className="flex items-center justify-between border-t border-zinc-100 bg-zinc-50 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-800/40">
+              <span className="font-mono text-xs text-zinc-400">
+                {(page * PAGE_SIZE + 1).toLocaleString("en-IN")}–{Math.min((page + 1) * PAGE_SIZE, total).toLocaleString("en-IN")} of {total.toLocaleString("en-IN")}
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  disabled={page === 0}
+                  onClick={() => { setPage(page - 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                  className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-600 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+                >
+                  ← Prev
+                </button>
+                <span className="text-xs text-zinc-400">{page + 1} / {totalPages}</span>
+                <button
+                  disabled={page >= totalPages - 1}
+                  onClick={() => { setPage(page + 1); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+                  className="rounded-lg border border-zinc-200 bg-white px-3 py-1.5 text-xs font-bold text-zinc-600 transition hover:bg-zinc-100 disabled:cursor-not-allowed disabled:opacity-30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
+      {selected && (
+        <Drawer
+          stock={selected}
+          period={period}
+          onClose={() => setSelected(null)}
+          onNavigate={navigateSelected}
+          onPickSector={pickSector}
+        />
+      )}
     </div>
+  );
+}
+
+function ActiveChip({ label, onClear }: { label: string; onClear: () => void }) {
+  return (
+    <button
+      onClick={onClear}
+      className="flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-2.5 py-1 text-[11px] font-bold text-blue-700 transition-colors hover:bg-blue-100 dark:border-blue-900 dark:bg-blue-950/30 dark:text-blue-300"
+    >
+      {label} <span className="opacity-60">×</span>
+    </button>
+  );
+}
+
+function MiniRange({ close, low, high }: { close: number; low: number | null; high: number | null }) {
+  const pct = high != null && low != null && high !== low ? Math.min(Math.max(((close - low) / (high - low)) * 100, 0), 100) : null;
+  if (pct == null) return <span className="text-xs text-zinc-300">—</span>;
+  return (
+    <div className="flex items-center gap-2">
+      <div className="relative h-1.5 flex-1 rounded-full bg-zinc-200 dark:bg-zinc-700">
+        {/* grows from the left on mount (sd-grow), colored by position in the range */}
+        <div
+          className={`sd-grow absolute inset-y-0 left-0 rounded-full ${pct > 66 ? "bg-emerald-500" : pct < 33 ? "bg-red-500" : "bg-blue-500"}`}
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+      <span className="w-8 text-right font-mono text-[10px] tabular-nums text-zinc-400">{pct.toFixed(0)}%</span>
+    </div>
+  );
+}
+
+// useSearchParams requires a Suspense boundary in the Next.js app router
+export default function Page() {
+  return (
+    <Suspense fallback={null}>
+      <StockDashboard />
+    </Suspense>
   );
 }

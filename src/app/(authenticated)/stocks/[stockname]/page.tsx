@@ -121,7 +121,7 @@ export default async function StockDetailPage({ params }: Props) {
       <br/>
       <ScannerStocks stockname={decodedStockName}/>
       <br/>
-      <StockFinancials stockname={decodedStockName} />
+      {/* <StockFinancials stockname={decodedStockName} /> */}
       <br />
       {/* {data ? (
         <StockDataTablesNoHeader

@@ -19,13 +19,14 @@ import MarketNewsBanner from "./market-news-section";
 import AiStockPicksCard from "./ai-stock-picked-section";
 import MarketSentimentCard from "./ai-index-picked-section";
 import StockPerformanceSectionHome from "./cust_stock_performance";
+import PortfolioSection from "./web_portfolio/web_portfolio_optionxi";
 
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <ContentLayout title="Dashboard">
         <nav aria-label="breadcrumbs" className="mb-6">
-          <Breadcrumb>
+          {/* <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink 
@@ -36,34 +37,31 @@ export default function DashboardPage() {
                 </BreadcrumbLink>
               </BreadcrumbItem>             
             </BreadcrumbList>
-          </Breadcrumb>
+          </Breadcrumb> */}
         </nav> 
-        <IndicesGlance/>
+        {/* <IndicesGlance/> */}
         <br/>
        
         <HeroSection/>
         {/* <WatchListCTA/> */}
-        <ToggleTools/>
-       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <AiStockPicksCard />
-          <MarketSentimentCard />
-        </div>
+        {/* <ToggleTools/> */}
+        {/* <MarketSentimentCard /> */}
+        
         <br/>
-        <StockPerformanceSectionHome />
+         <TopStocksTabs limit={10} />
         <br/>
-        <AnalyticsToolsSection />
+        {/* <AnalyticsToolsSection /> */}
+         <StockPerformanceSectionHome />
         <br/>
-        <MarketNewsBanner />
+       
 
 
         {/* Tools */}
-        <TopStocksTabs limit={10} />
         <br/>
         <MarketMovers/>
+        {/* <MarketInsightsGrid/> */}
         <br/>
-        <br/>
-        <MarketInsightsGrid/>
-        <br/>
+        <PortfolioSection/>
 
         {/* <TopStocksHeatMap category="bullish" limit={10} /> */}
         <br/>
@@ -75,6 +73,7 @@ export default function DashboardPage() {
         {/* <br/> */}
         {/* <ScrollCarousel/> */}
         {/* <MarketTrendsSection/> */}
+         <MarketNewsBanner />
         
       </ContentLayout>
     </div>
